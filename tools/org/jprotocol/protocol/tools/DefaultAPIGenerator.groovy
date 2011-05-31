@@ -2,7 +2,13 @@ package org.jprotocol.protocol.tools
   
 
 import org.jprotocol.codegen.*       
+import org.jprotocol.example.api.RequestAPIFactory;
+import org.jprotocol.example.api.ResponseAPIFactory;
+import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery;
 import org.jprotocol.framework.handler.Handler;
+import org.jprotocol.framework.handler.IFlushable;
+import org.jprotocol.framework.handler.Handler.Type;
+import org.jprotocol.framework.test.ProtocolMockery;
 import org.jprotocol.framework.dsl.ProtocolLayoutType.Direction
 
 public class DefaultAPIGenerator extends AbstractAPIGenerator {
@@ -13,6 +19,8 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
  			 new DefaultAPIGenerator(it, it.requestProtocol, pack, dir)
 			 new DefaultAPIGenerator(it, it.responseProtocol, pack, dir)
 			 new DefaultHandlerGenerator(it, pack, dir)
+			 new DefaultFacadeGenerator(Handler.Type.Server, pack, dir)
+			 new DefaultFacadeGenerator(Handler.Type.Client, pack, dir)
 		 }
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
@@ -39,6 +47,54 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 		""
 	}
 	
+}
+
+
+class DefaultFacadeGenerator extends JavaGenerator {
+	DefaultFacadeGenerator(Handler.Type type, pack, dir) {
+		super(pack + ".handler",  "${type}Facade")
+		stdPackage()
+		line "import org.jprotocol.framework.test.ProtocolMockery"
+		line "import org.jprotocol.example.api.*"
+		line "import org.jprotocol.framework.handler.Handler.Type"
+		line "import org.jprotocol.framework.handler.IFlushable"
+		
+		line "import org.jprotocol.framework.facade.*"
+		stdJavaDoc()
+		block("public class $name extends Abstract${type}Facade") {
+			line "private final DefaultHandlerHierarchyWithMockery hierarchy"
+			line "private final RequestAPIFactory requestFactory"
+			line "private final ResponseAPIFactory responseFactory"
+			block("public ${name}(IFlushable flushable)") {
+				line "super(flushable, Type.Server)"
+				line "requestFactory = new RequestAPIFactory()"
+				line "responseFactory = new ResponseAPIFactory()"
+				line "hierarchy = createHierarchy()"
+			}
+			javadoc() {
+				comment "Override to provide specialized implementation"
+			}
+			block("protected DefaultHandlerHierarchyWithMockery createHierarchy()") {
+				line "return new DefaultHandlerHierarchyWithMockery(type, flushable)"
+			}
+			block("public RequestAPIFactory requests()") {
+				line "return requestFactory"
+			}
+			block("public ResponseAPIFactory responses()") {
+				line "return responseFactory"
+			}
+		
+			block("@Override protected ProtocolMockery getMockery()") {
+				line "return hierarchy.mockery"
+			}
+			block("@Override public void receive(byte[] data)") {
+				line "hierarchy.receive(data)"
+			}
+		
+		
+		}
+		save(dir)
+	}
 }
 
 class DefaultAPIFactoryGenerator extends JavaGenerator {
