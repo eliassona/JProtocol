@@ -55,6 +55,7 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 		stdPackage()
 		line "import org.jprotocol.framework.facade.AbstractFacade"
 		line "import org.jprotocol.framework.handler.IFlushable"
+		line "import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger"
 		stdJavaDoc()
 		
 		block("public class $name") {
@@ -75,7 +76,7 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 			 	comment "Override to provide a specialized version of ClientFacade"
 			}
 			block("protected ClientFacade createClientFacade(IFlushable flushable)") {
-				line "return new ClientFacade(flushable)"
+				line "return new ClientFacade(flushable, new NullProtocolLogger())"
 			}
 			javadoc() {
 			 	comment "Override to provide a specialized version of ServerFacade"
@@ -112,13 +113,17 @@ class DefaultFacadeGenerator extends JavaGenerator {
 		line "import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery"
 		
 		line "import org.jprotocol.framework.facade.*"
+		line "import org.jprotocol.framework.logger.*"
 		stdJavaDoc()
 		block("public class $name extends Abstract${type}Facade") {
 			line "private final DefaultHandlerHierarchyWithMockery hierarchy"
 			line "private final RequestAPIFactory requestFactory"
 			line "private final ResponseAPIFactory responseFactory"
 			block("public ${name}(IFlushable flushable)") {
-				line "super(flushable, Type.${type})"
+				line "this(flushable, new ProtocolLogger())"
+			}
+			block("public ${name}(IFlushable flushable, IProtocolLogger logger)") {
+				line "super(flushable, Type.${type}, logger)"
 				line "requestFactory = new RequestAPIFactory()"
 				line "responseFactory = new ResponseAPIFactory()"
 				line "hierarchy = createHierarchy()"
@@ -127,7 +132,7 @@ class DefaultFacadeGenerator extends JavaGenerator {
 				comment "Override to provide specialized implementation"
 			}
 			block("protected DefaultHandlerHierarchyWithMockery createHierarchy()") {
-				line "return new DefaultHandlerHierarchyWithMockery(type, flushable)"
+				line "return new DefaultHandlerHierarchyWithMockery(type, flushable, logger)"
 			}
 			block("public RequestAPIFactory requests()") {
 				line "return requestFactory"

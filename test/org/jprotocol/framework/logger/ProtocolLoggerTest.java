@@ -15,7 +15,7 @@ public class ProtocolLoggerTest {
 		StringWriter out = new StringWriter();
 		ProtocolLogger pl = new ProtocolLogger(out);
 		pl.write("Client", Direction.Request, new byte[]{0, 127, -1});
-		assertEquals("Client,Request,0,127,255", out.getBuffer().toString());
+		assertEquals("Client,Request,0,127,255\n", out.getBuffer().toString());
 		pl.write("Client", Direction.Response, new byte[]{0, 127, -1});
 	}
 	@Test
@@ -23,6 +23,6 @@ public class ProtocolLoggerTest {
 		StringWriter out = new StringWriter();
 		ProtocolLogger pl = new ProtocolLogger(out);
 		pl.write("Client", Direction.Response, new byte[]{0, 127, -1});
-		assertEquals("Client,Response,0,127,255", out.getBuffer().toString());
+		assertEquals("Client,Response,0,127,255\n", out.getBuffer().toString());
 	}
 }

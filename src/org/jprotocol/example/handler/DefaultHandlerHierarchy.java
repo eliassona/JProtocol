@@ -8,6 +8,7 @@ import org.jprotocol.example.api.MyMiddleProtocolB_Request_API;
 import org.jprotocol.example.api.MyMiddleProtocolB_Response_API;
 import org.jprotocol.example.api.MyRootProtocol_Request_API;
 import org.jprotocol.example.api.MyRootProtocol_Response_API;
+import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.dsl.IProtocolMessage;
 import org.jprotocol.framework.handler.AbstractHandlerHierarchy;
 import org.jprotocol.framework.handler.Handler;
@@ -17,11 +18,12 @@ import org.jprotocol.framework.handler.HandlerDsl.UpperHandler;
 import org.jprotocol.framework.handler.IFlushable;
 import org.jprotocol.framework.handler.IProtocolSniffer;
 import org.jprotocol.framework.handler.IProtocolState;
+import org.jprotocol.framework.logger.IProtocolLogger;
 
 public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 	
-	public DefaultHandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer) {
-		super(type, flushable, protocolState, sniffer);
+	public DefaultHandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
+		super(type, flushable, protocolState, sniffer, logger);
 	}
 	
 	
@@ -42,7 +44,7 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 
 	@Override
 	protected Root createRoot(IFlushable flushable) {
-		return new Root(getRootContext(), flushable);
+		return new Root(getRootContext(), flushable, logger);
 	}
 	protected final HandlerContext getRootContext() {
 		return new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.RootSwitch_ArgName, MyRootProtocol_Response_API.RootSwitchResp.RootSwitchResp_ArgName, 0, 0, protocolState, sniffer);
@@ -64,13 +66,29 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 }
 class Root extends DefaultMyRootProtocolHandler {
 	private final IFlushable flushable;
+	private final IProtocolLogger logger;
 
-	Root(HandlerContext context, IFlushable flushable) {
+	Root(HandlerContext context, IFlushable flushable, IProtocolLogger logger) {
 		super(context);
 		this.flushable = flushable;
+		this.logger = logger;
 	}
 	@Override
 	protected void flush(IProtocolMessage p) {
-		flushable.flush(p.getData());
+		byte[] data = p.getData();
+		logger.write("", flushDirection(), data);
+		flushable.flush(data);
 	}
+	@Override
+	public void receive(byte[] data) {
+		logger.write("", receiveDirection(), data);
+		super.receive(data);
+	}
+	private Direction receiveDirection() {
+		return isServer() ? Direction.Request : Direction.Response;
+	}
+	private Direction flushDirection() {
+		return isServer() ? Direction.Response : Direction.Request;
+	}
+	
 }

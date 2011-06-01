@@ -1,5 +1,6 @@
 package org.jprotocol.framework.logger;
 
+import static org.jprotocol.util.Contract.neverGetHere;
 import static org.jprotocol.util.Contract.notNull;
 import static org.jprotocol.util.Contract.require;
 
@@ -27,22 +28,26 @@ public class ProtocolLogger implements IProtocolLogger {
     private final static Logger logger = Logger.getLogger(ProtocolLogger.class.getName());
     private final Writer out;
    
-    public ProtocolLogger() throws FileNotFoundException {
+    public ProtocolLogger() {
     	this(getWriter());
     	
     }
     
-    public ProtocolLogger(Writer out) throws FileNotFoundException {
+    public ProtocolLogger(Writer out)  {
     	this.out = out;
         activateFlushTimer();
     }
 
-    private static Writer getWriter() throws FileNotFoundException {
+    private static Writer getWriter()  {
         final int sizeOfRow = 250; 
         final int noOfLines = 300;
         final int bufferSize = sizeOfRow * noOfLines;
         if (doesLoggerPathExist()) {
-            return new BufferedWriter(new PrintWriter(getLoggerFileNameAndPath()), bufferSize);
+        	try {
+        		return new BufferedWriter(new PrintWriter(getLoggerFileNameAndPath()), bufferSize);
+        	} catch (FileNotFoundException e) {
+        		neverGetHere(e.getMessage());
+        	}
         }
         return new NullWriter();
     }
@@ -106,6 +111,7 @@ public class ProtocolLogger implements IProtocolLogger {
         	out.write(dir.toString());
         	out.write(",");
         	out.write(format(data));
+        	out.write("\n");
         } catch (Throwable t) {
         	logger.warning(t.getMessage());
         }

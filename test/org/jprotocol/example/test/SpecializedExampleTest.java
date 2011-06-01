@@ -10,6 +10,7 @@ import org.jprotocol.framework.handler.Handler;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.HandlerContext;
 import org.jprotocol.framework.handler.IFlushable;
+import org.jprotocol.framework.logger.IProtocolLogger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,15 +47,15 @@ class SpecializedServerFacade extends ServerFacade {
 	}
 	@Override
 	protected SpecializedHandlerHierarchyWithMockery createHierarchy() {
-		return new SpecializedHandlerHierarchyWithMockery(type, flushable);
+		return new SpecializedHandlerHierarchyWithMockery(type, flushable, logger);
 	}
 
 }
 
 class SpecializedHandlerHierarchyWithMockery extends DefaultHandlerHierarchyWithMockery {
 
-	public SpecializedHandlerHierarchyWithMockery(Type type, IFlushable flushable) {
-		super(type, flushable);
+	public SpecializedHandlerHierarchyWithMockery(Type type, IFlushable flushable, IProtocolLogger logger) {
+		super(type, flushable, logger);
 	}
 	@Override
 	protected Handler<?, ?> createMiddleA(HandlerContext context) {

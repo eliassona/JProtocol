@@ -45,7 +45,7 @@ abstract public class Handler<R extends AbstractDecoratedProtocolMessage, S exte
     private final String upperHeaderReceiveFieldName;
 	private final String upperHeaderSendFieldName;
     protected final IProtocolLayoutFactory factory;
-    private final Type type;
+    public final Type type;
     protected final boolean msbFirst;
     
     /**
