@@ -1,5 +1,8 @@
 package org.jprotocol.framework.handler;
 import static org.jprotocol.framework.handler.HandlerDsl.root;
+import static org.jprotocol.util.Contract.neverGetHere;
+
+import java.io.IOException;
 
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.HandlerDsl.UpperHandler;
@@ -22,7 +25,12 @@ abstract public class AbstractHandlerHierarchy<R extends Handler<?, ?>> {
         this.logger = logger;
         this.protocolState = protocolState;
         this.root = createRoot(flushable);
-        init();
+        try {
+			logger.write(this.root);
+	        init();
+		} catch (IOException e) {
+			neverGetHere(e.getMessage());
+		}
     }
     private void init() {
         root(getRoot(), upperHandlers());

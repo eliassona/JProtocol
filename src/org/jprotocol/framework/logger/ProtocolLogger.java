@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.dsl.ProtocolMessage;
+import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.quantity.Quantity;
 
 
@@ -30,7 +31,6 @@ public class ProtocolLogger implements IProtocolLogger {
    
     public ProtocolLogger() {
     	this(getWriter());
-    	
     }
     
     public ProtocolLogger(Writer out)  {
@@ -204,6 +204,12 @@ public class ProtocolLogger implements IProtocolLogger {
 	public void writeSpecifyRequests() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void write(IHandler root) throws IOException {
+		out.write(root.getClass().getName());
+		out.write("\n");
 	}
 
 }

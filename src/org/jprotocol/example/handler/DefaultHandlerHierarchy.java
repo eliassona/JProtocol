@@ -76,12 +76,12 @@ class Root extends DefaultMyRootProtocolHandler {
 	@Override
 	protected void flush(IProtocolMessage p) {
 		byte[] data = p.getData();
-		logger.write("", flushDirection(), data);
+		logger.write("JProtocol", flushDirection(), data);
 		flushable.flush(data);
 	}
 	@Override
 	public void receive(byte[] data) {
-		logger.write("", receiveDirection(), data);
+		logger.write("JProtocol", receiveDirection(), data);
 		super.receive(data);
 	}
 	private Direction receiveDirection() {
