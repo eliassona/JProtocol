@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.dsl.ProtocolMessage;
+import org.jprotocol.quantity.Quantity;
 
 
 
@@ -22,7 +23,7 @@ import org.jprotocol.framework.dsl.ProtocolMessage;
  * Writes byte array information to a file called protocol.log that can be used by protocol analyzers afterwards.
  * @author eliasa01
  */
-public class ProtocolLogger {    
+public class ProtocolLogger implements IProtocolLogger {    
     private final static Logger logger = Logger.getLogger(ProtocolLogger.class.getName());
     private final Writer out;
    
@@ -91,10 +92,13 @@ public class ProtocolLogger {
     }
     
 
+    @Override
     public synchronized void write(
             final String client,
             final Direction dir, 
             final byte[] data) {
+    	require(notNull(client));
+    	require(notNull(dir));
     	require(notNull(data));
         try {
         	out.write(client);
@@ -116,6 +120,84 @@ public class ProtocolLogger {
 			buf.append(ProtocolMessage.intOf(b));
 		}
 		return buf.toString();
+	}
+
+	@Override
+	public void writeInfo(String infoMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeTest(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeSuccessfulExpect(String expectStr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeFailedExpect(String expectStr, String failureMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeSuccessfulAllow(String allowStr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeFailedAllow(String allowStr, String failureMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writePendingVerify(Quantity timeout) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeSuccessfulVerify() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeFailedVerify(String errorMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeAddResponse(String request, String response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeInject(String response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeAllowRequests() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void writeSpecifyRequests() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -29,6 +29,7 @@ import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IProtocolSniffer;
 import org.jprotocol.framework.handler.QualifiedName;
 import org.jprotocol.framework.list.Expr;
+import org.jprotocol.framework.logger.IProtocolLogger;
 
 import org.jprotocol.quantity.Quantity;
 import org.jprotocol.quantity.Unit;

@@ -1,5 +1,6 @@
-package org.jprotocol.framework.test;
+package org.jprotocol.framework.logger;
 
+import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.quantity.Quantity;
 
 /**
@@ -8,6 +9,9 @@ import org.jprotocol.quantity.Quantity;
  *
  */
 public interface IProtocolLogger {
+
+	void write(String client, Direction dir, byte[] data);
+
 	/**
 	 * An info message
 	 * @param infoMessage
@@ -148,8 +152,14 @@ public interface IProtocolLogger {
 			//Do nothing
 		}
 
+		@Override
+		public void write(String client, Direction dir, byte[] data) {
+			//Do nothing
+		}
+
 		
 	}
+
 
 
 }

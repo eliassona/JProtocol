@@ -18,6 +18,7 @@ import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.IUpperHandler;
 import org.jprotocol.framework.handler.QualifiedName;
 import org.jprotocol.framework.list.Expr;
+import org.jprotocol.framework.logger.IProtocolLogger;
 
 import org.jprotocol.quantity.Unit;
 import org.jprotocol.util.Contract;

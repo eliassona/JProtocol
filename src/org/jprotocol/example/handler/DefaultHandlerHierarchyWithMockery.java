@@ -4,7 +4,7 @@ import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IFlushable;
 import org.jprotocol.framework.handler.ProtocolSnifferProxy;
 import org.jprotocol.framework.handler.ProtocolState;
-import org.jprotocol.framework.test.IProtocolLogger.NullProtocolLogger;
+import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger;
 import org.jprotocol.framework.test.ProtocolMockery;
 
 public class DefaultHandlerHierarchyWithMockery extends DefaultHandlerHierarchy {
