@@ -21,6 +21,7 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 			 new DefaultHandlerGenerator(it, pack, dir)
 			 new DefaultFacadeGenerator(Handler.Type.Server, pack, dir)
 			 new DefaultFacadeGenerator(Handler.Type.Client, pack, dir)
+			 new DefaultTestFacadeGenerator(pack, dir)
 		 }
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
@@ -47,17 +48,69 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 		""
 	}
 	
+} 
+ 
+class DefaultTestFacadeGenerator extends JavaGenerator {
+	DefaultTestFacadeGenerator(pack, dir) {
+		super(pack + ".facade",  "TestFacade")
+		stdPackage()
+		line "import org.jprotocol.framework.facade.AbstractFacade"
+		line "import org.jprotocol.framework.handler.IFlushable"
+		stdJavaDoc()
+		
+		block("public class $name") {
+			line "public final ClientFacade client"
+			line "public final ServerFacade server"
+		
+			block("public ${name}()") {
+				line "FlushableClientServer cf = new FlushableClientServer()"
+				line "FlushableClientServer sf = new FlushableClientServer()"
+				line "client = createClientFacade(cf)"
+				line "server = createServerFacade(sf)"
+				line "cf.setTarget(server)"
+				line "sf.setTarget(client)"
+			}
+		
+
+			javadoc() {
+			 	comment "Override to provide a specialized version of ClientFacade"
+			}
+			block("protected ClientFacade createClientFacade(IFlushable flushable)") {
+				line "return new ClientFacade(flushable)"
+			}
+			javadoc() {
+			 	comment "Override to provide a specialized version of ServerFacade"
+			}
+			block("protected ServerFacade createServerFacade(IFlushable flushable)") {
+				line "return new ServerFacade(flushable)"
+			}
+		}
+		
+		block("class FlushableClientServer implements IFlushable") {
+		
+			line "private AbstractFacade server"
+		
+			block("@Override public void flush(byte[] data)") {
+				line "server.receive(data)"
+			} 
+		
+			block("public void setTarget(AbstractFacade server)") {
+				line "this.server = server"
+			}
+			
+		}
+		save(dir)
+	}
 }
-
-
 class DefaultFacadeGenerator extends JavaGenerator {
 	DefaultFacadeGenerator(Handler.Type type, pack, dir) {
-		super(pack + ".handler",  "${type}Facade")
+		super(pack + ".facade",  "${type}Facade")
 		stdPackage()
 		line "import org.jprotocol.framework.test.ProtocolMockery"
 		line "import org.jprotocol.example.api.*"
 		line "import org.jprotocol.framework.handler.Handler.Type"
 		line "import org.jprotocol.framework.handler.IFlushable"
+		line "import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery"
 		
 		line "import org.jprotocol.framework.facade.*"
 		stdJavaDoc()
@@ -66,7 +119,7 @@ class DefaultFacadeGenerator extends JavaGenerator {
 			line "private final RequestAPIFactory requestFactory"
 			line "private final ResponseAPIFactory responseFactory"
 			block("public ${name}(IFlushable flushable)") {
-				line "super(flushable, Type.Server)"
+				line "super(flushable, Type.${type})"
 				line "requestFactory = new RequestAPIFactory()"
 				line "responseFactory = new ResponseAPIFactory()"
 				line "hierarchy = createHierarchy()"

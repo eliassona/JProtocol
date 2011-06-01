@@ -1,9 +1,10 @@
 package org.jprotocol.example.test;
 import static org.junit.Assert.assertTrue;
 
+import org.jprotocol.example.facade.ServerFacade;
+import org.jprotocol.example.facade.TestFacade;
 import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery;
 import org.jprotocol.example.handler.DefaultMyMiddleProtocolAHandler;
-import org.jprotocol.example.handler.server.ServerFacade;
 import org.jprotocol.framework.dsl.IProtocolMessage;
 import org.jprotocol.framework.handler.Handler;
 import org.jprotocol.framework.handler.Handler.Type;
@@ -30,7 +31,7 @@ public class SpecializedExampleTest {
 }
 
 
-class SpecializedClientServerTestFacade extends ClientServerTestFacade {
+class SpecializedClientServerTestFacade extends TestFacade {
 	@Override
 	protected ServerFacade createServerFacade(IFlushable flushable) {
 		return new SpecializedServerFacade(flushable);

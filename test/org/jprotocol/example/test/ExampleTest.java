@@ -1,17 +1,19 @@
 package org.jprotocol.example.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.jprotocol.example.facade.TestFacade;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ExampleTest {
 
-	private ClientServerTestFacade o;
+	private TestFacade o;
 
 	@Before
 	public void before() {
-		o = new ClientServerTestFacade();
+		o = new TestFacade();
 	}
 	
 	
