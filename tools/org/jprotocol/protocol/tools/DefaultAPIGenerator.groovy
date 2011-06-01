@@ -10,7 +10,7 @@ import org.jprotocol.framework.handler.IFlushable;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.test.ProtocolMockery;
 import org.jprotocol.framework.dsl.ProtocolLayoutType.Direction
-
+ 
 public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	 
 	final factory
@@ -44,10 +44,9 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	} 
 
 	public String getInterfaceType(String name) {
-		println "============================================" + name
 		""
 	}
-	
+	  
 } 
  
 class DefaultTestFacadeGenerator extends JavaGenerator {

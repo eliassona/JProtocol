@@ -99,7 +99,7 @@ public final class ProtocolMessage implements IProtocolMessage {
         return result;
     }
 
-    private static int intOf(byte b) {
+    public static int intOf(byte b) {
         return ~(b ^ 0xff) & b;
     }
     @Override
