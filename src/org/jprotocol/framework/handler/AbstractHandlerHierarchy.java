@@ -27,12 +27,11 @@ abstract public class AbstractHandlerHierarchy<R extends Handler<?, ?>> {
         this.root = createRoot(flushable);
         try {
 			logger.write(this.root);
-	        init();
 		} catch (IOException e) {
 			neverGetHere(e.getMessage());
 		}
     }
-    private void init() {
+    public void init() {
         root(getRoot(), upperHandlers());
     }
     protected final R getRoot() {

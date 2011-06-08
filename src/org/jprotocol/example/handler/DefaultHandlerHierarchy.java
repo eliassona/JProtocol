@@ -16,12 +16,15 @@ import org.jprotocol.framework.handler.HandlerDsl.UpperHandler;
 import org.jprotocol.framework.handler.IFlushable;
 import org.jprotocol.framework.handler.IProtocolSniffer;
 import org.jprotocol.framework.handler.IProtocolState;
+import org.jprotocol.framework.handler.LeafHandlerContext;
+import org.jprotocol.framework.handler.RootHandlerContext;
 import org.jprotocol.framework.logger.IProtocolLogger;
 
 public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 	
 	public DefaultHandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
 		super(type, flushable, protocolState, sniffer, logger);
+		init();
 	}
 	
 	
@@ -29,10 +32,10 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 	protected UpperHandler[] upperHandlers() {
 		return upperHandlers( 
 			handler(createMiddleA(new HandlerContext(type, msbFirst, MyMiddleProtocolA_Request_API.MiddleSwitch.MiddleSwitch_ArgName, MyMiddleProtocolA_Response_API.MiddleSwitch.MiddleSwitch_ArgName, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A, protocolState, sniffer)), 
-			  handler(createLeafA(new HandlerContext(type, msbFirst, null, null, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A, protocolState, sniffer)))
+			  handler(createLeafA(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A, protocolState, sniffer)))
 			),
 			handler(createMiddleB(new HandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.MiddleSwitch_ArgName, MyMiddleProtocolB_Response_API.MiddleSwitch.MiddleSwitch_ArgName, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B, protocolState, sniffer)), 
-			  handler(createLeafB(new HandlerContext(type, msbFirst, null, null, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B, protocolState, sniffer)))
+			  handler(createLeafB(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B, protocolState, sniffer)))
 			)
 		);
 	}
@@ -45,7 +48,7 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 		return new Root(getRootContext(), flushable, logger);
 	}
 	protected final HandlerContext getRootContext() {
-		return new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.RootSwitch_ArgName, MyRootProtocol_Response_API.RootSwitchResp.RootSwitchResp_ArgName, 0, 0, protocolState, sniffer);
+		return new RootHandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.RootSwitch_ArgName, MyRootProtocol_Response_API.RootSwitchResp.RootSwitchResp_ArgName, protocolState, sniffer);
 	}
 	protected Handler<?, ?> createLeafB(HandlerContext context) {
 		return new DefaultMyLeafProtocolBHandler(context);
