@@ -9,7 +9,7 @@ import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 
 
 /**
- * This class provides a DSL for specifying protocol data. It immutable. 
+ * This class provides a DSL for specifying protocol data. It's immutable. 
  * The class must be overridden to define request and response protocol data.
  * <br>
  * </code></pre>
