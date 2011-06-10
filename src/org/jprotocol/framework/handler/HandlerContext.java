@@ -7,8 +7,6 @@ public class HandlerContext {
 	public final IProtocolState protocolState;
 	public final IProtocolSniffer sniffer;
 	public final boolean msbFirst;
-	public final String upperHeaderRequestFieldName;
-	public final String upperHeaderResponseFieldName;
 	public final int lowerHeaderRequestValue;
 	public final int lowerHeaderResponseValue;
 	public HandlerContext(
@@ -22,8 +20,6 @@ public class HandlerContext {
             IProtocolSniffer sniffer) {
 		this.type = type;
 		this.msbFirst = msbFirst;
-        this.upperHeaderRequestFieldName = upperHeaderRequestFieldName;
-        this.upperHeaderResponseFieldName = upperHeaderResponseFieldName;
         this.lowerHeaderRequestValue = lowerHeaderRequestValue;
         this.lowerHeaderResponseValue = lowerHeaderResponseValue;
 		this.protocolState = protocolState;

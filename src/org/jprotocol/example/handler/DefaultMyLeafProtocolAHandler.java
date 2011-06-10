@@ -8,7 +8,7 @@ import org.jprotocol.example.api.*;
 */
 public class DefaultMyLeafProtocolAHandler extends Handler<MyLeafProtocolA_Request_API, MyLeafProtocolA_Response_API> {
     protected DefaultMyLeafProtocolAHandler(HandlerContext context) {
-        super(new org.jprotocol.example.dsl.MyLeafProtocolA(), context);
+        super(new org.jprotocol.example.dsl.MyLeafProtocolA(), null, null, context);
     }
     @Override public final MyLeafProtocolA_Request_API createRequest(IProtocolMessage p) {
         return new MyLeafProtocolA_Request_API(p);
