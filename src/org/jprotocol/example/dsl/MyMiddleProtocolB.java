@@ -1,6 +1,7 @@
 package org.jprotocol.example.dsl;
 
 import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
 
 public class MyMiddleProtocolB extends ProtocolLayoutFactory {
 	public MyMiddleProtocolB() {
@@ -8,11 +9,11 @@ public class MyMiddleProtocolB extends ProtocolLayoutFactory {
 		protocols(
 		  request(
 			argByte("MiddleHeader", offset(0), value("X", 1), value("Z", 2)),
-			argByte("MiddleSwitch", offset(1), value("A", 1), value("B", 2))
+			argByte("MiddleSwitch", offset(1), SwitchEnum.Switch, value("A", 1), value("B", 2))
 		  ), 
 		  response(
 			argByte("MiddleHeader", offset(0), value("X", 1), value("Z", 2)),
-			argByte("MiddleSwitch", offset(1), value("A", 1), value("B", 2))
+			argByte("MiddleSwitch", offset(1), SwitchEnum.Switch, value("A", 1), value("B", 2))
 		  )
 		);
 	}

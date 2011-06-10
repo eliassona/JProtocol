@@ -13,6 +13,7 @@ import org.jprotocol.quantity.Unit;
 import org.jprotocol.util.IName;
 
 
+
 abstract public class AbstractMemoryLayoutFactory implements IName { 
     private static final int BYTE_SIZE = 8;
     private final boolean includePayload;
@@ -126,6 +127,9 @@ abstract public class AbstractMemoryLayoutFactory implements IName {
     protected final IArgumentType argByte(String argName, int size, int offset, INameValuePair... values) {
         return arg(argName, size * BYTE_SIZE, offset * BYTE_SIZE, values);
     }
+    protected final IArgumentType argByte(String argName, int size, int offset, SwitchEnum isSwitch, INameValuePair... values) {
+        return arg(argName, size * BYTE_SIZE, offset * BYTE_SIZE, isSwitch, values);
+    }
     protected final IArgumentType argByte(String argName, int size, int offset, double realOffset, double resolution, Unit unit) {
         return arg(argName, size * BYTE_SIZE, offset * BYTE_SIZE, realOffset, resolution, unit);
     }
@@ -139,6 +143,9 @@ abstract public class AbstractMemoryLayoutFactory implements IName {
      */
     protected final IArgumentType argByte(String argName, int offset, INameValuePair... values) {
         return argByte(argName, 1, offset, values);
+    }
+    protected final IArgumentType argByte(String argName, int offset, SwitchEnum isSwitch, INameValuePair... values) {
+        return argByte(argName, 1, offset, isSwitch, values);
     }
     protected IArgumentType argByte(String argName, int offset, double realOffset, double resolution, Unit unit) {
         return argByte(argName, 1, offset, realOffset, resolution, unit);
