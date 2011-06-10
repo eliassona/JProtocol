@@ -102,7 +102,7 @@ public interface IArgumentType {
      */
     boolean isReal();
 
-    SwitchEnum isSwitch();
+    boolean isSwitch();
     
     IArgumentType[] getChildren();
     

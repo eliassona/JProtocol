@@ -104,8 +104,8 @@ public class AddressSizeArgType extends AbstractArgumentType {
     }
 
 	@Override
-	public SwitchEnum isSwitch() {
-		return SwitchEnum.NoSwitch;
+	public boolean isSwitch() {
+		return false;
 	}
 
 

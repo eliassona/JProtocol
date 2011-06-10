@@ -10,6 +10,7 @@ import static org.jprotocol.util.Contract.require;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
 import org.jprotocol.quantity.Unit;
 
 
@@ -168,8 +169,8 @@ public class ArgumentType extends AbstractArgumentType {
         return false;
     }
 	@Override
-	public SwitchEnum isSwitch() {
-		return isSwitch;
+	public boolean isSwitch() {
+		return isSwitch == SwitchEnum.Switch;
 	}
 
 }
