@@ -12,8 +12,6 @@ public class HandlerContext {
 	public HandlerContext(
             Type type, 
             boolean msbFirst, 
-            String upperHeaderRequestFieldName, 
-            String upperHeaderResponseFieldName,
             int lowerHeaderRequestValue, 
             int lowerHeaderResponseValue, 
             IProtocolState protocolState,

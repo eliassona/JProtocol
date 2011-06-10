@@ -1,15 +1,12 @@
 package org.jprotocol.protocol.tools
   
 
-import org.jprotocol.codegen.*       
-import org.jprotocol.example.api.RequestAPIFactory;
-import org.jprotocol.example.api.ResponseAPIFactory;
-import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery;
-import org.jprotocol.framework.handler.Handler;
-import org.jprotocol.framework.handler.IFlushable;
-import org.jprotocol.framework.handler.Handler.Type;
-import org.jprotocol.framework.test.ProtocolMockery;
-import org.jprotocol.framework.dsl.ProtocolLayoutType.Direction
+import org.jprotocol.codegen.*
+import org.jprotocol.framework.dsl.IArgumentType
+import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction
+import org.jprotocol.framework.dsl.argiters.FindSwitchIter
+import org.jprotocol.framework.handler.Handler
+import org.jprotocol.framework.handler.Handler.Type
  
 public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	 
@@ -189,13 +186,9 @@ class DefaultHandlerGenerator extends JavaGenerator {
 		line "import ${pack}.api.*"
 		stdJavaDoc()
 		block("public class $name extends Handler<${requestApiClass}, ${responseApiClass}>") {
-			
 			block("protected ${name}(HandlerContext context)") {
-				line "super(new ${layout.class.name}(), context)"
+				line(/super(new ${layout.class.name}(), ${fieldNameOf(new FindSwitchIter(layout.requestProtocol))}, ${fieldNameOf(new FindSwitchIter(layout.responseProtocol))}, context)/)
 			}
-		
-	
-			
 			block("@Override public final ${requestApiClass} createRequest(IProtocolMessage p)") {
 				line "return new ${requestApiClass}(p)"
 			}
@@ -205,6 +198,13 @@ class DefaultHandlerGenerator extends JavaGenerator {
 
 		}
 		save(dir) 
+	}
+	
+	String fieldNameOf(FindSwitchIter iter) {
+		if (iter.foundSwitch == null) {
+			return "null"
+		}
+		(/"${iter.foundSwitch.name}"/)
 	}
 	
 	String getRequestApiClass() {

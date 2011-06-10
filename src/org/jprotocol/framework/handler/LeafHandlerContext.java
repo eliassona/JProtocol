@@ -11,7 +11,7 @@ public class LeafHandlerContext extends HandlerContext {
 			int lowerHeaderResponseValue, 
 			IProtocolState protocolState,
 			IProtocolSniffer sniffer) {
-		super(type, msbFirst, null, null, lowerHeaderRequestValue, lowerHeaderResponseValue, protocolState, sniffer);
+		super(type, msbFirst, lowerHeaderRequestValue, lowerHeaderResponseValue, protocolState, sniffer);
 	}
 
 }

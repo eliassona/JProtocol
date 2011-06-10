@@ -7,11 +7,9 @@ public class RootHandlerContext extends HandlerContext {
 	public RootHandlerContext(
 			Type type, 
 			boolean msbFirst,
-			String upperHeaderRequestFieldName,
-			String upperHeaderResponseFieldName, 
 			IProtocolState protocolState,
 			IProtocolSniffer sniffer) {
-		super(type, msbFirst, upperHeaderRequestFieldName, upperHeaderResponseFieldName, 0,0, protocolState, sniffer);
+		super(type, msbFirst, 0,0, protocolState, sniffer);
 	}
 
 }

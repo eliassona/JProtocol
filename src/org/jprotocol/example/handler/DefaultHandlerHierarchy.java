@@ -31,10 +31,10 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 	@Override
 	protected UpperHandler[] upperHandlers() {
 		return upperHandlers( 
-			handler(createMiddleA(new HandlerContext(type, msbFirst, MyMiddleProtocolA_Request_API.MiddleSwitch.MiddleSwitch_ArgName, MyMiddleProtocolA_Response_API.MiddleSwitch.MiddleSwitch_ArgName, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A, protocolState, sniffer)), 
+			handler(createMiddleA(new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A, protocolState, sniffer)), 
 			  handler(createLeafA(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A, protocolState, sniffer)))
 			),
-			handler(createMiddleB(new HandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.MiddleSwitch_ArgName, MyMiddleProtocolB_Response_API.MiddleSwitch.MiddleSwitch_ArgName, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B, protocolState, sniffer)), 
+			handler(createMiddleB(new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B, protocolState, sniffer)), 
 			  handler(createLeafB(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B, protocolState, sniffer)))
 			)
 		);
@@ -48,7 +48,7 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<Root>{
 		return new Root(getRootContext(), flushable, logger);
 	}
 	protected final HandlerContext getRootContext() {
-		return new RootHandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.RootSwitch_ArgName, MyRootProtocol_Response_API.RootSwitchResp.RootSwitchResp_ArgName, protocolState, sniffer);
+		return new RootHandlerContext(type, msbFirst, protocolState, sniffer);
 	}
 	protected Handler<?, ?> createLeafB(HandlerContext context) {
 		return new DefaultMyLeafProtocolBHandler(context);

@@ -1,7 +1,5 @@
 package org.jprotocol.framework.dsl.argiters;
 
-import static org.jprotocol.util.Contract.check;
-
 import org.jprotocol.framework.dsl.IArgumentType;
 import org.jprotocol.framework.dsl.IProtocolLayoutType;
 
@@ -23,12 +21,8 @@ public class FindSwitchIter extends ArgTypeIter {
 		return true;
 	}
 	
-	public boolean hasSwitch() {
-		return foundSwitch != null;
-	}
 	
 	public IArgumentType getSwitch() {
-		check(hasSwitch());
 		return foundSwitch;
 	}
 

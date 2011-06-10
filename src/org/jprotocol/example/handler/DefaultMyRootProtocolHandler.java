@@ -8,7 +8,7 @@ import org.jprotocol.example.api.*;
 */
 public class DefaultMyRootProtocolHandler extends Handler<MyRootProtocol_Request_API, MyRootProtocol_Response_API> {
     protected DefaultMyRootProtocolHandler(HandlerContext context) {
-        super(new org.jprotocol.example.dsl.MyRootProtocol(), MyRootProtocol_Request_API.RootSwitch.RootSwitch_ArgName, MyRootProtocol_Response_API.RootSwitchResp.RootSwitchResp_ArgName, context);
+        super(new org.jprotocol.example.dsl.MyRootProtocol(), "RootSwitch", "RootSwitchResp", context);
     }
     @Override public final MyRootProtocol_Request_API createRequest(IProtocolMessage p) {
         return new MyRootProtocol_Request_API(p);
