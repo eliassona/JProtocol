@@ -41,5 +41,9 @@ abstract public class AbstractHandlerHierarchy<R extends Handler<?, ?>> {
         root.receive(data);
     }
     abstract protected R createRoot(IFlushable flushable);
+	
+    protected final HandlerContext getRootContext() {
+		return new RootHandlerContext(type, msbFirst, protocolState, sniffer);
+	}
     abstract protected UpperHandler[] upperHandlers();
 }

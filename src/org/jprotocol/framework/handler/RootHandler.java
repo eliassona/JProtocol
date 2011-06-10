@@ -1,11 +1,10 @@
 package org.jprotocol.framework.handler;
 
-import static org.jprotocol.quantity.Quantity.quantity;
-import static org.jprotocol.quantity.Unit.ms;
-
 import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
 import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.realtime.RealtimeThread;
+import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.logger.IProtocolLogger;
 
 
 /**
@@ -17,19 +16,36 @@ import org.jprotocol.framework.realtime.RealtimeThread;
  * @param <S>
  */
 abstract public class RootHandler<R extends AbstractDecoratedProtocolMessage, S extends AbstractDecoratedProtocolMessage> extends Handler<R, S> {
-    private final RealtimeThread rtThread;
-	protected RootHandler(IProtocolLayoutFactory factory, Type type, boolean msbFirst, String upperHandlerFieldName, IProtocolState protocolState) {
-        this(factory, type, msbFirst, upperHandlerFieldName, protocolState, null);
-    }
-    protected RootHandler(IProtocolLayoutFactory factory, Type type, boolean msbFirst, String upperHandlerFieldName, IProtocolState protocolState, IProtocolSniffer sniffer) {
-        super(factory, type, msbFirst, upperHandlerFieldName, 0, 0, protocolState, sniffer);
-        this.rtThread = new RealtimeThread(quantity(8, ms));
-
-    }
-    
-    public RealtimeThread getRealtimeThread() {
-    	return rtThread;
-    }
+	private final IFlushable flushable;
+	private final IProtocolLogger logger;
+	protected RootHandler(
+			IProtocolLayoutFactory factory,
+			String upperHeaderRequestFieldName,
+			String upperHeaderResponseFieldName, 
+			HandlerContext context,
+			IFlushable flushable, 
+			IProtocolLogger logger) {
+		super(factory, upperHeaderRequestFieldName, upperHeaderResponseFieldName, context);
+		this.flushable = flushable;
+		this.logger = logger;
+	}
+	@Override
+	protected void flush(IProtocolMessage p) {
+		byte[] data = p.getData();
+		logger.write("JProtocol", flushDirection(), data);
+		flushable.flush(data);
+	}
+	@Override
+	public void receive(byte[] data) {
+		logger.write("JProtocol", receiveDirection(), data);
+		super.receive(data);
+	}
+	private Direction receiveDirection() {
+		return isServer() ? Direction.Request : Direction.Response;
+	}
+	private Direction flushDirection() {
+		return isServer() ? Direction.Response : Direction.Request;
+	}
     
     
 }
