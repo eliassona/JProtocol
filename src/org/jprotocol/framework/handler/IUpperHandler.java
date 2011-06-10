@@ -11,6 +11,4 @@ public interface IUpperHandler extends IHandler {
     void receive(byte[] data);
     void resetState();
     
-    @Deprecated
-    void setFactory(String version);
 }
