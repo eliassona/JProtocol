@@ -46,4 +46,7 @@ abstract public class AbstractHandlerHierarchy<R extends Handler<?, ?>> {
 		return new RootHandlerContext(type, msbFirst, protocolState, sniffer);
 	}
     abstract protected UpperHandler[] upperHandlers();
+	protected final UpperHandler[] upperHandlers(UpperHandler...handlers) {
+		return handlers;
+	}
 }

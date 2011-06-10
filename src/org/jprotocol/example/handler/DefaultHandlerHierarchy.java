@@ -17,7 +17,6 @@ import org.jprotocol.framework.handler.IFlushable;
 import org.jprotocol.framework.handler.IProtocolSniffer;
 import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.LeafHandlerContext;
-import org.jprotocol.framework.handler.RootHandlerContext;
 import org.jprotocol.framework.logger.IProtocolLogger;
 
 public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<DefaultMyRootProtocolHandler>{
@@ -38,9 +37,6 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<DefaultMyR
 			  handler(createLeafB(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B, protocolState, sniffer)))
 			)
 		);
-	}
-	private UpperHandler[] upperHandlers(UpperHandler...handlers) {
-		return handlers;
 	}
 
 	@Override
