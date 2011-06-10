@@ -1,9 +1,10 @@
 package org.jprotocol.example.dsl;
 
 import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
+import org.jprotocol.framework.dsl.IRoot;
 import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
 
-public class MyRootProtocol extends ProtocolLayoutFactory {
+public class MyRootProtocol extends ProtocolLayoutFactory implements IRoot {
 	public MyRootProtocol() {
 		super("MyRootProtocol");
 		protocols(
