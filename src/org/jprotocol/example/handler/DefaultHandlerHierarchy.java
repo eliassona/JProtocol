@@ -19,7 +19,7 @@ import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.LeafHandlerContext;
 import org.jprotocol.framework.logger.IProtocolLogger;
 
-public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<DefaultMyRootProtocolHandler>{
+public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy {
 	
 	public DefaultHandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
 		super(type, flushable, protocolState, sniffer, logger);
@@ -40,7 +40,7 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy<DefaultMyR
 	}
 
 	@Override
-	protected DefaultMyRootProtocolHandler createRoot(IFlushable flushable) {
+	protected Handler<?, ?> createRoot(IFlushable flushable) {
 		return new DefaultMyRootProtocolHandler(getRootContext(), flushable, logger);
 	}
 	protected Handler<?, ?> createLeafB(HandlerContext context) {
