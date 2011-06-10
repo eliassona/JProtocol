@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
 import org.jprotocol.framework.dsl.argiters.FindEndIndexArgIter;
 import org.jprotocol.framework.dsl.argiters.ValueNameOfIter;
 
@@ -113,7 +114,7 @@ public class ProtocolLayoutType implements IProtocolLayoutType {
                     if (subA.isEnumType()) {
                         values = subA.getValues();
                     }
-                    return new ArgumentType(subA.getName(), subA.getSizeInBits(), subA.getOffset() + index * a.getSizeInByteOfOneIndexedArg() * 8, values);
+                    return new ArgumentType(subA.getName(), subA.getSizeInBits(), subA.getOffset() + index * a.getSizeInByteOfOneIndexedArg() * 8, SwitchEnum.NoSwitch, values);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package org.jprotocol.framework.dsl;
 
 import static org.jprotocol.util.Contract.check;
+import static org.jprotocol.util.Contract.implies;
 import static org.jprotocol.util.Contract.isNotNull;
 import static org.jprotocol.util.Contract.neverGetHere;
 import static org.jprotocol.util.Contract.notNull;
@@ -22,19 +23,22 @@ public class ArgumentType extends AbstractArgumentType {
     private final Unit unit;
     private final boolean virtual;
 	private final EnumerationImpl enumeration;
+	private final SwitchEnum isSwitch;
 
-    public ArgumentType(String name, int size, int offset, IEnumeration e) {
-    	this(name, size, offset, e.getValues());
+    public ArgumentType(String name, int size, int offset, SwitchEnum isSwitch, IEnumeration e) {
+    	this(name, size, offset, isSwitch, e.getValues());
     }	
-    public ArgumentType(String name, int size, int offset, INameValuePair... values) {
-        this(name, size, offset, false, values);
+    public ArgumentType(String name, int size, int offset, SwitchEnum isSwitch, INameValuePair... values) {
+        this(name, size, offset, isSwitch, false, values);
     }
     
-    public ArgumentType(String name, int size, int offset, boolean virtual, INameValuePair... values) {
+    public ArgumentType(String name, int size, int offset, SwitchEnum isSwitch, boolean virtual, INameValuePair... values) {
         super(name, size, offset);
         require(notNull(values));
+        implies(isSwitch == SwitchEnum.Switch, values.length > 0);
         this.realOffset = 0;
         this.resolution = 1;
+        this.isSwitch = isSwitch;
         this.virtual = virtual;
         this.unit = Unit.noUnit;
         this.values = values;
@@ -54,6 +58,7 @@ public class ArgumentType extends AbstractArgumentType {
         require(resolution > 0);
         this.realOffset = realOffset;
         this.resolution = resolution;
+        this.isSwitch = SwitchEnum.NoSwitch;
         this.virtual = false;
         this.unit = unit;
         this.values = new INameValuePair[]{};
@@ -162,5 +167,9 @@ public class ArgumentType extends AbstractArgumentType {
     public boolean isSize() {
         return false;
     }
+	@Override
+	public SwitchEnum isSwitch() {
+		return isSwitch;
+	}
 
 }

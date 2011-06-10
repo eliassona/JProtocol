@@ -170,4 +170,8 @@ public class ArgTypeOffsetProxy implements IArgumentType {
 //	public int hashCode() {
 //		return target.getName().hashCode();
 //	}
+	@Override
+	public SwitchEnum isSwitch() {
+		return target.isSwitch();
+	}
 }

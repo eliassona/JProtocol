@@ -103,6 +103,11 @@ public class AddressSizeArgType extends AbstractArgumentType {
         return !isAddress;
     }
 
+	@Override
+	public SwitchEnum isSwitch() {
+		return SwitchEnum.NoSwitch;
+	}
+
 
 
 }

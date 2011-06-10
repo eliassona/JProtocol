@@ -7,6 +7,7 @@ import static org.jprotocol.util.Contract.require;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
 import org.jprotocol.quantity.Quantity;
 import org.jprotocol.quantity.Unit;
 import org.jprotocol.util.IName;
@@ -80,11 +81,14 @@ abstract public class AbstractMemoryLayoutFactory implements IName {
      * @return the created argument
      */
     protected final IArgumentType arg(String argName, int size, int offset, INameValuePair... values) {
-        return new ArgumentType(argName, size, offset, values);
+    	return arg(argName, size, offset, SwitchEnum.NoSwitch, values);
+    }
+    protected final IArgumentType arg(String argName, int size, int offset, SwitchEnum isSwitch, INameValuePair... values) {
+        return new ArgumentType(argName, size, offset, isSwitch, false, values);
     }
     
     protected final IArgumentType arg(String name, int size, int offset, IEnumeration e) {
-    	return new ArgumentType(name, size, offset, e);
+    	return new ArgumentType(name, size, offset, SwitchEnum.NoSwitch, e);
     }
     
     /**
@@ -94,7 +98,7 @@ abstract public class AbstractMemoryLayoutFactory implements IName {
      * @return
      */
     protected final IArgumentType vArg(String argName, INameValuePair... values) {
-        return new ArgumentType(argName, BYTE_SIZE * 2, 0, true, values);
+        return new ArgumentType(argName, BYTE_SIZE * 2, 0, SwitchEnum.NoSwitch, true, values);
     }
     
     /**

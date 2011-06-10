@@ -106,4 +106,9 @@ public class StringArgumentType extends AbstractArgumentType {
     public boolean isSize() {
         return false;
     }
+
+	@Override
+	public SwitchEnum isSwitch() {
+		return SwitchEnum.NoSwitch;
+	}
 }

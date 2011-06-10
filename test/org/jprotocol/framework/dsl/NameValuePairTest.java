@@ -2,12 +2,13 @@ package org.jprotocol.framework.dsl;
 
 import junit.framework.TestCase;
 
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 
 
 public class NameValuePairTest extends TestCase {
     public void testPayload() {
-        IArgumentType arg = new ArgumentType("arg1", 16, 16);
+        IArgumentType arg = new ArgumentType("arg1", 16, 16, SwitchEnum.NoSwitch);
         IProtocolLayoutType payload1 = new ProtocolLayoutType("payload " + Direction.Request, "payload", Direction.Request, arg);
         INameValuePair nvp = new NameValuePair("nvp1", 0, payload1, "Prefix", 10);
         assertEquals(1, nvp.getArgTypes().length);
@@ -34,6 +35,6 @@ public class NameValuePairTest extends TestCase {
 		return createSubArg("a1");
 	}
 	private IArgumentType createSubArg(String name) {
-		return new ArgumentType(name, 1, 0, new NameValuePair("v2", 0x1));
+		return new ArgumentType(name, 1, 0, SwitchEnum.NoSwitch, false, new NameValuePair("v2", 0x1));
 	}
 }

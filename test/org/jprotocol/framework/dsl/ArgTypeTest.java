@@ -1,11 +1,13 @@
 package org.jprotocol.framework.dsl;
 
+import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
+
 import junit.framework.TestCase;
 
 
 public class ArgTypeTest extends TestCase {
     public void testArgType() {
-        IArgumentType arg = new ArgumentType("arg", 7, 20, new NameValuePair("Name", 1));
+        IArgumentType arg = new ArgumentType("arg", 7, 20, SwitchEnum.NoSwitch, new NameValuePair("Name", 1));
         assertEquals("Name", arg.nameOf(1));
         assertEquals(1, arg.valueOf("Name"));
         assertEquals(7, arg.getSizeInBits());
@@ -24,12 +26,12 @@ public class ArgTypeTest extends TestCase {
     }
     
     private IArgumentType createIntArg() {
-    	return new ArgumentType("arg", 7, 20, new NameValuePair("Name", 1));
+    	return new ArgumentType("arg", 7, 20, SwitchEnum.NoSwitch, new NameValuePair("Name", 1));
     }
     private IArgumentType createEnumArg1() {
-    	return new ArgumentType("arg", 7, 20, new NameValuePair("Name", 1));
+    	return new ArgumentType("arg", 7, 20, SwitchEnum.NoSwitch, new NameValuePair("Name", 1));
     }
     private IArgumentType createEnumArg2() {
-    	return new ArgumentType("arg", 7, 20, new NameValuePair("Name", 1, 10, createIntArg()));
+    	return new ArgumentType("arg", 7, 20, SwitchEnum.NoSwitch, new NameValuePair("Name", 1, 10, createIntArg()));
     }
 }

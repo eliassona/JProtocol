@@ -18,7 +18,8 @@ import org.jprotocol.quantity.Unit;
  */
 public interface IArgumentType {
     
-    
+	enum SwitchEnum {Switch, NoSwitch}
+	
     /**
      * Name of argument
      * @return name of argument
@@ -100,6 +101,8 @@ public interface IArgumentType {
      * @return
      */
     boolean isReal();
+
+    SwitchEnum isSwitch();
     
     IArgumentType[] getChildren();
     

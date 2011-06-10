@@ -166,7 +166,7 @@ public class IndexArgumentType extends AbstractArgumentType {
             values = arg.getValues();
         }
         if (arg.isEnumType()) {
-            return new ArgumentType(arg.getName(), arg.getSizeInBits(), arg.getOffset() + ofs, values);
+            return new ArgumentType(arg.getName(), arg.getSizeInBits(), arg.getOffset() + ofs, SwitchEnum.NoSwitch, values);
         }
         return new ArgumentType(arg.getName(), arg.getSizeInBits(), arg.getOffset() + ofs, arg.getRealOffset(), arg.getResolution(), arg.getUnit());
     }
@@ -176,6 +176,11 @@ public class IndexArgumentType extends AbstractArgumentType {
     private static IArgumentType parentOf(IProtocolLayoutType type, IArgumentType argType) {
         return new FindParentArgType(argType, type).parentArgType;
     }
+
+	@Override
+	public SwitchEnum isSwitch() {
+		return SwitchEnum.NoSwitch;
+	}
 
 
 }
