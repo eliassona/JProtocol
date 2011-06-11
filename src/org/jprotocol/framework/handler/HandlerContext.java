@@ -10,17 +10,14 @@ public class HandlerContext {
 	public final int lowerHeaderRequestValue;
 	public final int lowerHeaderResponseValue;
 	public HandlerContext(
-            Type type, 
-            boolean msbFirst, 
+			IHandlerHierarchy handlerHierarchy,
             int lowerHeaderRequestValue, 
-            int lowerHeaderResponseValue, 
-            IProtocolState protocolState,
-            IProtocolSniffer sniffer) {
-		this.type = type;
-		this.msbFirst = msbFirst;
+            int lowerHeaderResponseValue) {
+		this.type = handlerHierarchy.getType();
+		this.msbFirst = handlerHierarchy.isMsbFirst();
         this.lowerHeaderRequestValue = lowerHeaderRequestValue;
         this.lowerHeaderResponseValue = lowerHeaderResponseValue;
-		this.protocolState = protocolState;
-		this.sniffer = sniffer;
+		this.protocolState = handlerHierarchy.getProtocolState();
+		this.sniffer = handlerHierarchy.getSniffer();
 	}
 }

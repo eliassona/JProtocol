@@ -30,11 +30,11 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy {
 	@Override
 	protected UpperHandler[] upperHandlers() {
 		return upperHandlers( 
-			handler(createMiddleA(new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A, protocolState, sniffer)), 
-			  handler(createLeafA(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A, protocolState, sniffer)))
+			handler(createMiddleA(new HandlerContext(this, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A)), 
+			  handler(createLeafA(new LeafHandlerContext(this, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A)))
 			),
-			handler(createMiddleB(new HandlerContext(type, msbFirst, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B, protocolState, sniffer)), 
-			  handler(createLeafB(new LeafHandlerContext(type, msbFirst, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B, protocolState, sniffer)))
+			handler(createMiddleB(new HandlerContext(this, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B)), 
+			  handler(createLeafB(new LeafHandlerContext(this, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B)))
 			)
 		);
 	}

@@ -45,7 +45,7 @@ abstract public class AbstractHandlerHierarchy implements IHandlerHierarchy {
     abstract protected Handler<?, ?> createRoot();
 	
     protected final HandlerContext getRootContext() {
-		return new RootHandlerContext(type, msbFirst, protocolState, sniffer);
+		return new RootHandlerContext(this);
 	}
     abstract protected UpperHandler[] upperHandlers();
 	protected final UpperHandler[] upperHandlers(UpperHandler...handlers) {
