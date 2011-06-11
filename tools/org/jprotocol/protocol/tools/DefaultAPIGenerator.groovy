@@ -2,11 +2,15 @@ package org.jprotocol.protocol.tools
   
 
 import org.jprotocol.codegen.*
+import org.jprotocol.example.handler.DefaultMyLeafProtocolBHandler;
 import org.jprotocol.framework.dsl.IRoot
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction
 import org.jprotocol.framework.dsl.argiters.FindSwitchIter
 import org.jprotocol.framework.handler.Handler
+import org.jprotocol.framework.handler.HandlerContext;
 import org.jprotocol.framework.handler.IFlushable;
+import org.jprotocol.framework.handler.IProtocolSniffer;
+import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.Handler.Type
 import org.jprotocol.framework.logger.IProtocolLogger;
  
@@ -22,6 +26,7 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 			 new DefaultFacadeGenerator(Handler.Type.Client, pack, dir)
 			 new DefaultTestFacadeGenerator(pack, dir)
 		 }
+		 new DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
 	}
@@ -174,6 +179,37 @@ class DefaultAPIFactoryGenerator extends JavaGenerator {
 	} 
 		  
 } 
+
+class DefaultHandlerHierarchyGenerator extends JavaGenerator {
+	final layout
+	final classNameUtil
+	DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir) {
+		super(pack + ".handler", "AbstractDefaultHandlerHierarchy")
+		stdPackage()
+		line "import org.jprotocol.framework.handler.*"
+		line "import org.jprotocol.framework.logger.IProtocolLogger"
+		line "import org.jprotocol.framework.handler.Handler.Type"
+		stdJavaDoc()
+		block("abstract public class $name extends AbstractHandlerHierarchy") {
+			block("public ${name}(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
+				line "super(type, flushable, protocolState, sniffer, logger)"
+			}
+			protocolLayouts.each {
+				def methodName = NameFormatter.formatName(it.name) + "Handler"
+				if (it instanceof IRoot) {
+					block("@Override protected Handler<?, ?> createRoot()") {
+						line "return new Default${methodName}(getRootContext(), flushable, logger)"
+					}
+				} else {
+					block("protected Handler<?, ?> create${methodName}(HandlerContext context)") {
+						line "return new Default${methodName}(context)"
+					}
+				}
+			}
+		}
+		save(dir)
+	}
+}
 
 class DefaultHandlerGenerator extends JavaGenerator {
 	final layout 

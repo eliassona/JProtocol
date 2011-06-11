@@ -58,7 +58,7 @@ class SpecializedHandlerHierarchyWithMockery extends DefaultHandlerHierarchyWith
 		super(type, flushable, logger);
 	}
 	@Override
-	protected Handler<?, ?> createMiddleA(HandlerContext context) {
+	protected Handler<?, ?> createMyMiddleProtocolAHandler(HandlerContext context) {
 		return new SpecializedMyMiddleProtocolAHandler(context);
 	}
 
