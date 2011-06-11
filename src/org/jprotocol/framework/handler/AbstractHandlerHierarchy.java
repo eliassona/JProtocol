@@ -18,13 +18,15 @@ abstract public class AbstractHandlerHierarchy {
     protected final IProtocolSniffer sniffer;
     private final Handler<?, ?> root;
 	protected final IProtocolLogger logger;
+	protected final IFlushable flushable;
     public AbstractHandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
         this.type = type;
         this.msbFirst = false;
         this.sniffer = sniffer;
+        this.flushable = flushable;
         this.logger = logger;
         this.protocolState = protocolState;
-        this.root = createRoot(flushable);
+        this.root = createRoot();
         try {
 			logger.write(this.root);
 		} catch (IOException e) {
@@ -40,7 +42,7 @@ abstract public class AbstractHandlerHierarchy {
     public void receive(byte[] data) {
         root.receive(data);
     }
-    abstract protected Handler<?, ?> createRoot(IFlushable flushable);
+    abstract protected Handler<?, ?> createRoot();
 	
     protected final HandlerContext getRootContext() {
 		return new RootHandlerContext(type, msbFirst, protocolState, sniffer);

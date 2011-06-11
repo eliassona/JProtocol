@@ -40,7 +40,7 @@ public class DefaultHandlerHierarchy extends AbstractHandlerHierarchy {
 	}
 
 	@Override
-	protected Handler<?, ?> createRoot(IFlushable flushable) {
+	protected Handler<?, ?> createRoot() {
 		return new DefaultMyRootProtocolHandler(getRootContext(), flushable, logger);
 	}
 	protected Handler<?, ?> createLeafB(HandlerContext context) {
