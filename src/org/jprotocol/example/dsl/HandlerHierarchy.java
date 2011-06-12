@@ -30,21 +30,6 @@ public class HandlerHierarchy extends AbstractDefaultHandlerHierarchy {
 		);
     }
     
-	@Override
-	protected Handler<?, ?> createMyMiddleProtocolAHandler(HandlerContext context) {
-		return new SpecializedMyMiddleProtocolAHandler(context);
-	}
-
     
     
-}
-class SpecializedMyMiddleProtocolAHandler extends DefaultMyMiddleProtocolAHandler {
-	protected SpecializedMyMiddleProtocolAHandler(HandlerContext context) {
-		super(context);
-	}
-	
-	@Override
-	protected void makeHeader(IProtocolMessage header, IProtocolMessage payload, int headerValue) {
-		createResponse(header).getMiddleHeader().setZ();
-	}
 }
