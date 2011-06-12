@@ -3,7 +3,7 @@ import org.jprotocol.framework.test.ProtocolMockery;
 import org.jprotocol.example.api.*;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IFlushable;
-import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery;
+import org.jprotocol.example.handler.ServerHandlerHierarchyWithMockery;
 import org.jprotocol.framework.facade.*;
 import org.jprotocol.framework.logger.*;
 /**
@@ -11,7 +11,7 @@ import org.jprotocol.framework.logger.*;
 * @author eliasa01
 */
 public class ServerFacade extends AbstractServerFacade {
-    private final DefaultHandlerHierarchyWithMockery hierarchy;
+    private final ServerHandlerHierarchyWithMockery hierarchy;
     private final RequestAPIFactory requestFactory;
     private final ResponseAPIFactory responseFactory;
     public ServerFacade(IFlushable flushable) {
@@ -26,8 +26,8 @@ public class ServerFacade extends AbstractServerFacade {
     /**
     * Override to provide specialized implementation
     */
-    protected DefaultHandlerHierarchyWithMockery createHierarchy() {
-        return new DefaultHandlerHierarchyWithMockery(type, flushable, logger);
+    protected ServerHandlerHierarchyWithMockery createHierarchy() {
+        return new ServerHandlerHierarchyWithMockery(flushable, logger);
     }
     public RequestAPIFactory requests() {
         return requestFactory;
