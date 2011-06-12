@@ -78,6 +78,7 @@ class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 		block("public class ${type}HandlerHierarchy extends HandlerHierarchy") {
 			block("public ${type}HandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
 				line "super(Type.${type}, flushable, protocolState, sniffer, logger)"
+				line "init()"
 			}
 		
 		}
@@ -100,7 +101,6 @@ class HandlerHierarchyGenerator extends JavaGenerator {
 		block("public class $name extends AbstractDefaultHandlerHierarchy") {
 			block("public ${name}(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
 				line "super(type, flushable, protocolState, sniffer, logger)"
-				line "init()"
 			}
 			block ("@Override protected UpperHandler[] upperHandlers()") {
 				line "return upperHandlers(REPLACE WITH REAL HANDLER HIERARCHY CODE HERE!!!)"
@@ -245,7 +245,6 @@ class ClientServerHandlerHierarchyWithMockeryGenerator extends JavaGenerator {
 	ClientServerHandlerHierarchyWithMockeryGenerator(Type type, srcPackage, pack, dir) {
 		super(pack + ".handler", "${type}HandlerHierarchyWithMockery")
 		stdPackage()
-		line "import org.jprotocol.framework.handler.Handler.Type"
 		line "import org.jprotocol.framework.handler.*"
 		line "import org.jprotocol.framework.logger.IProtocolLogger"
 		line "import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger"

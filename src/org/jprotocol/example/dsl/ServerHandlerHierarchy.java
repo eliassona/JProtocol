@@ -7,6 +7,7 @@ import org.jprotocol.framework.logger.IProtocolLogger;
 public class ServerHandlerHierarchy extends HandlerHierarchy {
     public ServerHandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
         super(Type.Server, flushable, protocolState, sniffer, logger);
+        init();
     }
 	@Override
 	protected Handler<?, ?> createMyMiddleProtocolAHandler(HandlerContext context) {

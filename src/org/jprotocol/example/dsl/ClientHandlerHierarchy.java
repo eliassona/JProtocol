@@ -5,5 +5,6 @@ import org.jprotocol.framework.logger.IProtocolLogger;
 public class ClientHandlerHierarchy extends HandlerHierarchy {
     public ClientHandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
         super(Type.Client, flushable, protocolState, sniffer, logger);
+        init();
     }
 }

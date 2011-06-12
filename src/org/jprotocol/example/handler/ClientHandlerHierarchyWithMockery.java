@@ -1,5 +1,4 @@
 package org.jprotocol.example.handler;
-import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.*;
 import org.jprotocol.framework.logger.IProtocolLogger;
 import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger;
