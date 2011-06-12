@@ -2,7 +2,6 @@ package org.jprotocol.example.facade;
 import org.jprotocol.example.api.RequestAPIFactory;
 import org.jprotocol.example.api.ResponseAPIFactory;
 import org.jprotocol.example.handler.ClientHandlerHierarchyWithMockery;
-import org.jprotocol.example.handler.ServerHandlerHierarchyWithMockery;
 import org.jprotocol.framework.facade.AbstractClientFacade;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IFlushable;

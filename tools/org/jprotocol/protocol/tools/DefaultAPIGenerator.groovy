@@ -1,4 +1,3 @@
-
 package org.jprotocol.protocol.tools
    
 
@@ -21,7 +20,8 @@ import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger;
 import org.jprotocol.framework.test.ProtocolMockery;
  
 public class DefaultAPIGenerator extends AbstractAPIGenerator {
-	 
+
+		 
 	final factory
 	public static void create(ProtocolLayouts protocols, pack, dir) {
 		 final protocolLayouts = protocols.protocolLayouts
@@ -34,10 +34,13 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 			 new DefaultTestFacadeGenerator(pack, dir)
 		 }
 		 new DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir)
-		 new DefaultHandlerHierarchyWithMockeryGenerator(protocols.class.getPackage().name, pack, dir)
+		 new ClientServerHandlerHierarchyWithMockeryGenerator(Type.Server, protocols.class.getPackage().name, pack, dir)
+		 new ClientServerHandlerHierarchyWithMockeryGenerator(Type.Client, protocols.class.getPackage().name, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
 		 new HandlerHierarchyGenerator(protocols, pack, dir)
+		 new ClientServerHandlerHierarchyGenerator(Type.Server, protocols, dir)
+		 new ClientServerHandlerHierarchyGenerator(Type.Client, protocols, dir)
 	}
 	
 	public DefaultAPIGenerator(factory, protocol, String pack, String dir) {
@@ -61,14 +64,33 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	}
 	  
 } 
- 
+class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
+	ClientServerHandlerHierarchyGenerator(Type type, protocols, String dir) {
+		this(type, protocols.class.getPackage().name, dir)
+	}
+	ClientServerHandlerHierarchyGenerator(Type type, String pack, String dir) {
+		super(pack, "${type}HandlerHierarchy")
+		if (HandlerHierarchyGenerator.exists(pack, name, dir)) return;
+		stdPackage()
+		line "import org.jprotocol.framework.handler.Handler.Type"
+		line "import org.jprotocol.framework.handler.*"
+		line "import org.jprotocol.framework.logger.IProtocolLogger"
+		block("public class ${type}HandlerHierarchy extends HandlerHierarchy") {
+			block("public ${type}HandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
+				line "super(Type.${type}, flushable, protocolState, sniffer, logger)"
+			}
+		
+		}
+		save(dir)
+	}
+}
 class HandlerHierarchyGenerator extends JavaGenerator {
 	HandlerHierarchyGenerator(protocols, String genPackage, String dir) {
 		this(protocols.class.getPackage().name, genPackage, dir)
 	}
 	private HandlerHierarchyGenerator(String pack, String genPackage, String dir) {
 		super(pack, "HandlerHierarchy")
-		if (new File(dir, pack.replace('.', '/') + "/${name}.java").exists()) return
+		if (exists(pack, name, dir)) return;
 		stdPackage()
 		line "import org.jprotocol.framework.handler.Handler.Type"
 		line "import org.jprotocol.framework.handler.HandlerDsl.UpperHandler";
@@ -85,6 +107,9 @@ class HandlerHierarchyGenerator extends JavaGenerator {
 			}
 		}
 		save(dir)
+	}
+	static boolean exists(String pack, String name, String dir) {
+		new File(dir, pack.replace('.', '/') + "/${name}.java").exists()
 	}
 }
 
@@ -155,7 +180,7 @@ class DefaultFacadeGenerator extends JavaGenerator {
 		line "import org.jprotocol.framework.logger.*"
 		stdJavaDoc()
 		block("public class $name extends Abstract${type}Facade") {
-			line "private final DefaultHandlerHierarchyWithMockery hierarchy"
+			line "private final ${type}HandlerHierarchyWithMockery hierarchy"
 			line "private final RequestAPIFactory requestFactory"
 			line "private final ResponseAPIFactory responseFactory"
 			block("public ${name}(IFlushable flushable)") {
@@ -170,8 +195,8 @@ class DefaultFacadeGenerator extends JavaGenerator {
 			javadoc() {
 				comment "Override to provide specialized implementation"
 			}
-			block("protected DefaultHandlerHierarchyWithMockery createHierarchy()") {
-				line "return new DefaultHandlerHierarchyWithMockery(type, flushable, logger)"
+			block("protected ${type}HandlerHierarchyWithMockery createHierarchy()") {
+				line "return new ${type}HandlerHierarchyWithMockery(flushable, logger)"
 			}
 			block("public RequestAPIFactory requests()") {
 				line "return requestFactory"
@@ -216,9 +241,9 @@ class DefaultAPIFactoryGenerator extends JavaGenerator {
 } 
 
 
-class DefaultHandlerHierarchyWithMockeryGenerator extends JavaGenerator {
-	DefaultHandlerHierarchyWithMockeryGenerator(srcPackage, pack, dir) {
-		super(pack + ".handler", "DefaultHandlerHierarchyWithMockery")
+class ClientServerHandlerHierarchyWithMockeryGenerator extends JavaGenerator {
+	ClientServerHandlerHierarchyWithMockeryGenerator(Type type, srcPackage, pack, dir) {
+		super(pack + ".handler", "${type}HandlerHierarchyWithMockery")
 		stdPackage()
 		line "import org.jprotocol.framework.handler.Handler.Type"
 		line "import org.jprotocol.framework.handler.*"
@@ -227,13 +252,13 @@ class DefaultHandlerHierarchyWithMockeryGenerator extends JavaGenerator {
 		line "import org.jprotocol.framework.test.ProtocolMockery"
 		line "import ${srcPackage}.HandlerHierarchy"
 		stdJavaDoc()
-		block("public class DefaultHandlerHierarchyWithMockery extends HandlerHierarchy") {
+		block("public class $name extends ${type}HandlerHierarchy") {
 			line "public final ProtocolMockery mockery"
-			block("public DefaultHandlerHierarchyWithMockery(Type type, final IFlushable flushable, IProtocolLogger logger)") {
-				line "this(type, flushable, logger, new ProtocolSnifferProxy())"
+			block("public ${name}(final IFlushable flushable, IProtocolLogger logger)") {
+				line "this(flushable, logger, new ProtocolSnifferProxy())"
 			}
-			block("private DefaultHandlerHierarchyWithMockery(Type type, final IFlushable flushable, IProtocolLogger logger, ProtocolSnifferProxy sniffer)") {
-				line "super(type, flushable, new ProtocolState(), sniffer, logger)"
+			block("private ${name}(final IFlushable flushable, IProtocolLogger logger, ProtocolSnifferProxy sniffer)") {
+				line "super(flushable, new ProtocolState(), sniffer, logger)"
 				line "this.mockery = new ProtocolMockery(getRoot(), new NullProtocolLogger(), true)"
 				line "sniffer.init(mockery)"
 			}
