@@ -12,5 +12,6 @@ public class MyLeafProtocolA extends ProtocolLayoutFactory {
 		  response()
 		);
 	}
+}	
 	
-}
+

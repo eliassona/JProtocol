@@ -1,3 +1,4 @@
+
 package org.jprotocol.protocol.tools
    
 
@@ -5,6 +6,7 @@ import org.jprotocol.codegen.*
 import org.jprotocol.example.handler.DefaultMyLeafProtocolBHandler;
 import org.jprotocol.framework.dsl.IRoot
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction
+import org.jprotocol.framework.dsl.ProtocolLayouts;
 import org.jprotocol.framework.dsl.argiters.FindSwitchIter
 import org.jprotocol.framework.handler.Handler
 import org.jprotocol.framework.handler.HandlerContext;
@@ -21,7 +23,8 @@ import org.jprotocol.framework.test.ProtocolMockery;
 public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	 
 	final factory
-	public static void create(protocolLayouts, pack, dir) {
+	public static void create(ProtocolLayouts protocols, pack, dir) {
+		 final protocolLayouts = protocols.protocolLayouts
 		 protocolLayouts.each {
  			 new DefaultAPIGenerator(it, it.requestProtocol, pack, dir)
 			 new DefaultAPIGenerator(it, it.responseProtocol, pack, dir)
@@ -34,6 +37,7 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 		 new DefaultHandlerHierarchyWithMockeryGenerator(pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
+		 new HandlerHierarchyGenerator(protocols, pack, dir)
 	}
 	
 	public DefaultAPIGenerator(factory, protocol, String pack, String dir) {
@@ -58,6 +62,32 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 	  
 } 
  
+class HandlerHierarchyGenerator extends JavaGenerator {
+	HandlerHierarchyGenerator(protocols, String genPackage, String dir) {
+		this(protocols.class.getPackage().name, genPackage, dir)
+	}
+	private HandlerHierarchyGenerator(String pack, String genPackage, String dir) {
+		super(pack, "HandlerHierarchy")
+		if (new File(dir, pack.replace('.', '/') + "/${name}.java").exists()) return
+		stdPackage()
+		line "import org.jprotocol.framework.handler.Handler.Type"
+		line "import org.jprotocol.framework.handler.HandlerDsl.UpperHandler";
+		line "import org.jprotocol.framework.handler.*"
+		line "import org.jprotocol.framework.logger.IProtocolLogger"
+		line "import ${genPackage}.handler.AbstractDefaultHandlerHierarchy"
+		block("public class $name extends AbstractDefaultHandlerHierarchy") {
+			block("public ${name}(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
+				line "super(type, flushable, protocolState, sniffer, logger)"
+				line "init()"
+			}
+			block ("@Override protected UpperHandler[] upperHandlers()") {
+				line "return upperHandlers(REPLACE WITH REAL HANDLER HIERARCHY CODE HERE!!!)"
+			}
+		}
+		save(dir)
+	}
+}
+
 class DefaultTestFacadeGenerator extends JavaGenerator {
 	DefaultTestFacadeGenerator(pack, dir) {
 		super(pack + ".facade",  "TestFacade")
