@@ -1,25 +1,16 @@
 package org.jprotocol.example.test;
 import static org.junit.Assert.assertTrue;
 
-import org.jprotocol.example.facade.ServerFacade;
 import org.jprotocol.example.facade.TestFacade;
-import org.jprotocol.example.handler.DefaultHandlerHierarchyWithMockery;
-import org.jprotocol.example.handler.DefaultMyMiddleProtocolAHandler;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.handler.Handler;
-import org.jprotocol.framework.handler.Handler.Type;
-import org.jprotocol.framework.handler.HandlerContext;
-import org.jprotocol.framework.handler.IFlushable;
-import org.jprotocol.framework.logger.IProtocolLogger;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SpecializedExampleTest {
-	private SpecializedClientServerTestFacade o;
+	private TestFacade o;
 
 	@Before
 	public void before() {
-		o = new SpecializedClientServerTestFacade();
+		o = new TestFacade();
 	}
 	
 	@Test
@@ -32,47 +23,3 @@ public class SpecializedExampleTest {
 }
 
 
-class SpecializedClientServerTestFacade extends TestFacade {
-	@Override
-	protected ServerFacade createServerFacade(IFlushable flushable) {
-		return new SpecializedServerFacade(flushable);
-	}
-
-}
-
-class SpecializedServerFacade extends ServerFacade {
-
-	public SpecializedServerFacade(IFlushable flushable) {
-		super(flushable);
-	}
-	@Override
-	protected SpecializedHandlerHierarchyWithMockery createHierarchy() {
-		return new SpecializedHandlerHierarchyWithMockery(type, flushable, logger);
-	}
-
-}
-
-class SpecializedHandlerHierarchyWithMockery extends DefaultHandlerHierarchyWithMockery {
-
-	public SpecializedHandlerHierarchyWithMockery(Type type, IFlushable flushable, IProtocolLogger logger) {
-		super(type, flushable, logger);
-	}
-	@Override
-	protected Handler<?, ?> createMyMiddleProtocolAHandler(HandlerContext context) {
-		return new SpecializedMyMiddleProtocolAHandler(context);
-	}
-
-	
-	
-}
-
-class SpecializedMyMiddleProtocolAHandler extends DefaultMyMiddleProtocolAHandler {
-	protected SpecializedMyMiddleProtocolAHandler(HandlerContext context) {
-		super(context);
-	}
-	
-	@Override
-	protected void makeHeader(IProtocolMessage header, IProtocolMessage payload, int headerValue) {
-		createResponse(header).getMiddleHeader().setZ();
-	}
-}
