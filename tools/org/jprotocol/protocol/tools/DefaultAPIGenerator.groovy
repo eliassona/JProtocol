@@ -76,7 +76,7 @@ class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 		line "import org.jprotocol.framework.handler.Handler.Type"
 		line "import org.jprotocol.framework.handler.*"
 		line "import org.jprotocol.framework.logger.IProtocolLogger"
-		block("public class ${type}HandlerHierarchy extends HandlerHierarchy") {
+		block("public final class ${type}HandlerHierarchy extends HandlerHierarchy") {
 			block("public ${type}HandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
 				line "super(Type.${type}, flushable, protocolState, sniffer, logger)"
 				line "init()"
