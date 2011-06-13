@@ -10,9 +10,4 @@ public class MyProtocols extends ProtocolLayouts {
 			  new MyMiddleProtocolB(), 
 			  new MyRootProtocol());
 	}
-	
-	
-	public static void main(String[] args) {
-		System.out.println(new MyProtocols().getProtocolLayouts().size());
-	}
 }
