@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
@@ -100,15 +101,20 @@ public class ProtocolLogger implements IProtocolLogger {
 
     @Override
     public synchronized void write(
+    		Date timeStamp,
             final Direction dir, 
             final byte[] data) {
     	require(notNull(dir));
     	require(notNull(data));
+    	StringBuffer buf = new StringBuffer(100);
         try {
-        	out.write(numberOf(dir) + "");
-        	out.write(",");
-        	out.write(format(data));
-        	out.write("\n");
+        	buf.append(timeStamp.getTime());
+        	buf.append(",");
+        	buf.append(numberOf(dir) + "");
+        	buf.append(",");
+        	buf.append(format(data));
+        	buf.append("\n");
+        	out.write(buf.toString());
         } catch (Throwable t) {
         	logger.warning(t.getMessage());
         }

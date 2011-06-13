@@ -1,5 +1,7 @@
 package org.jprotocol.framework.handler;
 
+import java.util.Date;
+
 import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
 import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
@@ -32,12 +34,12 @@ abstract public class RootHandler<R extends AbstractDecoratedProtocolMessage, S 
 	@Override
 	protected void flush(IProtocolMessage p) {
 		byte[] data = p.getData();
-		logger.write(flushDirection(), data);
+		logger.write(new Date(), flushDirection(), data);
 		flushable.flush(data);
 	}
 	@Override
 	public void receive(byte[] data) {
-		logger.write(receiveDirection(), data);
+		logger.write(new Date(), receiveDirection(), data);
 		super.receive(data);
 	}
 	private Direction receiveDirection() {

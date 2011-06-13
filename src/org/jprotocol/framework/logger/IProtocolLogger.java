@@ -1,6 +1,7 @@
 package org.jprotocol.framework.logger;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
@@ -14,7 +15,7 @@ import org.jprotocol.quantity.Quantity;
 public interface IProtocolLogger {
 
 	void write(Class<? extends IHandlerHierarchy> client, Class<? extends IHandlerHierarchy> server) throws IOException;
-	void write(Direction dir, byte[] data);
+	void write(Date timeStamp, Direction dir, byte[] data);
 
 	/**
 	 * An info message
@@ -157,7 +158,7 @@ public interface IProtocolLogger {
 		}
 
 		@Override
-		public void write(Direction dir, byte[] data) {
+		public void write(Date timeStamp, Direction dir, byte[] data) {
 			//Do nothing
 		}
 
