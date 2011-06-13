@@ -35,17 +35,20 @@ abstract public class AbstractHandlerHierarchy implements IHandlerHierarchy {
     }
     @SuppressWarnings("unchecked")
 	private Class<? extends IHandlerHierarchy> other() {
-    	Type otherType = Type.Server;
-    	if (type == Type.Server) {
-    		otherType = Type.Client;
-    	}
 		try {
-			return (Class<? extends IHandlerHierarchy>) Class.forName(getClass().getPackage().getName() + "." + getClass().getSimpleName().replace(type.toString(), otherType.toString()));
+			return (Class<? extends IHandlerHierarchy>) Class.forName(getClass().getPackage().getName() + "." + getClass().getSimpleName().replace(type.toString(), otherType().toString()));
 		} catch (ClassNotFoundException e) {
 			neverGetHere(e.getMessage());
 			return null;
 		}
 	}
+    
+    private Type otherType() {
+    	if (type == Type.Server) {
+    		return Type.Client;
+    	}
+    	return Type.Server;
+    }
 	public void init() {
         root(getRoot(), upperHandlers());
     }
