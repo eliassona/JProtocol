@@ -28,7 +28,7 @@ abstract public class AbstractHandlerHierarchy implements IHandlerHierarchy {
         this.protocolState = protocolState;
         this.root = createRoot();
         try {
-			logger.write(this.root);
+			logger.write(this);
 		} catch (IOException e) {
 			neverGetHere(e.getMessage());
 		}
