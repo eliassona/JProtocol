@@ -36,7 +36,7 @@ abstract public class AbstractHandlerHierarchy implements IHandlerHierarchy {
     public void init() {
         root(getRoot(), upperHandlers());
     }
-    protected final Handler<?, ?> getRoot() {
+    public final Handler<?, ?> getRoot() {
         return root;
     }
     public void receive(byte[] data) {

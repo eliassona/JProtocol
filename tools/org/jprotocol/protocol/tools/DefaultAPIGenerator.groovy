@@ -2,6 +2,7 @@ package org.jprotocol.protocol.tools
    
 
 import org.jprotocol.codegen.*
+import org.jprotocol.example.dsl.ClientHandlerHierarchy;
 import org.jprotocol.example.handler.DefaultMyLeafProtocolBHandler;
 import org.jprotocol.framework.dsl.IRoot
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction
@@ -31,8 +32,8 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 			 new DefaultHandlerGenerator(it, pack, dir)
 			 new DefaultTestFacadeGenerator(pack, dir)
 		 }
-		 new DefaultFacadeGenerator(Handler.Type.Server, pack, dir)
-		 new DefaultFacadeGenerator(Handler.Type.Client, pack, dir)
+		 new DefaultFacadeGenerator(Handler.Type.Server, protocols.class.getPackage().name, pack, dir)
+		 new DefaultFacadeGenerator(Handler.Type.Client, protocols.class.getPackage().name, pack, dir)
 		 new DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir)
 		 new ClientServerHandlerHierarchyWithMockeryGenerator(Type.Server, protocols.class.getPackage().name, pack, dir)
 		 new ClientServerHandlerHierarchyWithMockeryGenerator(Type.Client, protocols.class.getPackage().name, pack, dir)
@@ -167,22 +168,24 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 	}
 }
 class DefaultFacadeGenerator extends JavaGenerator {
-	DefaultFacadeGenerator(Handler.Type type, pack, dir) {
+	DefaultFacadeGenerator(Handler.Type type, String srcPackage, String pack, String dir) {
 		super(pack + ".facade",  "${type}Facade")
 		stdPackage()
 		line "import org.jprotocol.framework.test.ProtocolMockery"
 		line "import org.jprotocol.example.api.*"
 		line "import org.jprotocol.framework.handler.Handler.Type"
-		line "import org.jprotocol.framework.handler.IFlushable"
-		line "import org.jprotocol.example.handler.${type}HandlerHierarchyWithMockery"
+		line "import org.jprotocol.framework.handler.*"
 		
 		line "import org.jprotocol.framework.facade.*"
 		line "import org.jprotocol.framework.logger.*"
+		line "import ${srcPackage}.${type}HandlerHierarchy"
 		stdJavaDoc()
 		block("public class $name extends Abstract${type}Facade") {
-			line "private final ${type}HandlerHierarchyWithMockery hierarchy"
+			line "private final AbstractHandlerHierarchy hierarchy"
 			line "private final RequestAPIFactory requestFactory"
 			line "private final ResponseAPIFactory responseFactory"
+			line "private ProtocolMockery mockery"
+			
 			block("public ${name}(IFlushable flushable)") {
 				line "this(flushable, new ProtocolLogger())"
 			}
@@ -195,8 +198,12 @@ class DefaultFacadeGenerator extends JavaGenerator {
 			javadoc() {
 				comment "Override to provide specialized implementation"
 			}
-			block("protected ${type}HandlerHierarchyWithMockery createHierarchy()") {
-				line "return new ${type}HandlerHierarchyWithMockery(flushable, logger)"
+			block("protected AbstractHandlerHierarchy createHierarchy()") {
+		    	line "ProtocolSnifferProxy psp = new ProtocolSnifferProxy()"
+		    	line "${type}HandlerHierarchy chh = new ${type}HandlerHierarchy(flushable, new ProtocolState(), psp, logger)"
+		    	line "this.mockery = new ProtocolMockery(chh.getRoot(), logger, true)"
+		        line "psp.init(mockery)"
+		        line "return chh"
 			}
 			block("public RequestAPIFactory requests()") {
 				line "return requestFactory"
@@ -206,7 +213,7 @@ class DefaultFacadeGenerator extends JavaGenerator {
 			}
 		
 			block("@Override protected ProtocolMockery getMockery()") {
-				line "return hierarchy.mockery"
+				line "return mockery"
 			}
 			block("@Override public void receive(byte[] data)") {
 				line "hierarchy.receive(data)"
