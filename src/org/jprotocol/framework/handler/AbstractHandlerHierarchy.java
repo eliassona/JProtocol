@@ -37,11 +37,11 @@ abstract public class AbstractHandlerHierarchy implements IHandlerHierarchy {
     @SuppressWarnings("unchecked")
 	private Class<? extends IHandlerHierarchy> other() {
     	Type otherType = Type.Server;
-    	if (getClass().getSimpleName().startsWith(Type.Server.toString())) {
+    	if (type == Type.Server) {
     		otherType = Type.Client;
     	}
 		try {
-			return (Class<? extends IHandlerHierarchy>) Class.forName(getClass().getPackage().getName() + "." + otherType + "HandlerHierarchy");
+			return (Class<? extends IHandlerHierarchy>) Class.forName(getClass().getPackage().getName() + "." + getClass().getSimpleName().replace(type.toString(), otherType.toString()));
 		} catch (ClassNotFoundException e) {
 			neverGetHere(e.getMessage());
 			return null;
