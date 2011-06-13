@@ -9,4 +9,5 @@ public interface IHandlerHierarchy {
 	IProtocolLogger getLogger();
 	IProtocolState getProtocolState();
 	Type getType();
+	IHandler getRoot();
 }
