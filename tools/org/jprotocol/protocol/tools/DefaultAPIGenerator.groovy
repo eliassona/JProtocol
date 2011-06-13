@@ -67,12 +67,17 @@ class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 			comment "In this class override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers"
 			comment "@note Do not extend this class!"
 		}
- 		block("public final class ${type}HandlerHierarchy extends HandlerHierarchy") {
-			block("public ${type}HandlerHierarchy(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
+ 		block("public final class $name extends HandlerHierarchy") {
+			block("public ${name}(IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger)") {
 				line "super(Type.${type}, flushable, protocolState, sniffer, logger)"
 				line "init()"
 			}
-		
+			javadoc() {
+				comment "This factory method is needed for pLog. The implementation can be altered but the signature must remain the same"
+			}
+		 	block("public static $name pLog(IProtocolState protocolState, IProtocolSniffer sniffer)") {
+				 line "return new ${name}(new IFlushable.NullFlushable(), protocolState, sniffer, new IProtocolLogger.NullProtocolLogger())"
+			 }
 		}
 		save(dir)
 	}

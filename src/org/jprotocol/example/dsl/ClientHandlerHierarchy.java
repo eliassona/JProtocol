@@ -11,4 +11,10 @@ public final class ClientHandlerHierarchy extends HandlerHierarchy {
         super(Type.Client, flushable, protocolState, sniffer, logger);
         init();
     }
+    /**
+    * This factory method is needed for pLog. The implementation can be altered but the signature must remain the same
+    */
+    public static ClientHandlerHierarchy pLog(IProtocolState protocolState, IProtocolSniffer sniffer) {
+        return new ClientHandlerHierarchy(new IFlushable.NullFlushable(), protocolState, sniffer, new IProtocolLogger.NullProtocolLogger());
+    }
 }
