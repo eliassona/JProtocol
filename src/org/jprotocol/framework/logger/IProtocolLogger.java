@@ -3,7 +3,6 @@ package org.jprotocol.framework.logger;
 import java.io.IOException;
 
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
-import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
 import org.jprotocol.quantity.Quantity;
 
@@ -14,7 +13,7 @@ import org.jprotocol.quantity.Quantity;
  */
 public interface IProtocolLogger {
 
-	void write(IHandlerHierarchy hierarchy) throws IOException;
+	void write(Class<? extends IHandlerHierarchy> client, Class<? extends IHandlerHierarchy> server) throws IOException;
 	void write(String client, Direction dir, byte[] data);
 
 	/**
@@ -163,7 +162,7 @@ public interface IProtocolLogger {
 		}
 
 		@Override
-		public void write(IHandlerHierarchy hierarchy) {
+		public void write(Class<? extends IHandlerHierarchy> client, Class<? extends IHandlerHierarchy> server) {
 		}
 
 		

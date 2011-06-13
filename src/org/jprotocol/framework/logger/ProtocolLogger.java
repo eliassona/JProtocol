@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.dsl.ProtocolMessage;
 import org.jprotocol.framework.handler.Handler.Type;
-import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
 import org.jprotocol.quantity.Quantity;
 
@@ -209,11 +208,15 @@ public class ProtocolLogger implements IProtocolLogger {
 	}
 
 	@Override
-	public void write(IHandlerHierarchy hierarchy) throws IOException {
-		out.write(hierarchy.getClass().getName());
-		out.write("\n");
+	public void write(Class<? extends IHandlerHierarchy> client, Class<? extends IHandlerHierarchy> server) throws IOException {
+		write(client);
+		write(server);
 	}
 
+	private void write(Class<? extends IHandlerHierarchy> clazz) throws IOException {
+		out.write(clazz.getName());
+		out.write("\n");
+	}
 }
 
 class NullWriter extends Writer {
