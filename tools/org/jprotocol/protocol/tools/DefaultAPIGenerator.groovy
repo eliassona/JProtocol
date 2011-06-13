@@ -64,7 +64,7 @@ class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 		line "import org.jprotocol.framework.handler.*"
 		line "import org.jprotocol.framework.logger.IProtocolLogger"
 		javadoc() {
-			comment "In this class override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers"
+			comment "Override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers"
 			comment "@note Do not extend this class!"
 		}
  		block("public final class $name extends HandlerHierarchy") {
