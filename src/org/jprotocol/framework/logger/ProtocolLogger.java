@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.dsl.ProtocolMessage;
+import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
 import org.jprotocol.quantity.Quantity;
@@ -30,8 +31,8 @@ public class ProtocolLogger implements IProtocolLogger {
     private final static Logger logger = Logger.getLogger(ProtocolLogger.class.getName());
     private final Writer out;
    
-    public ProtocolLogger() {
-    	this(getWriter());
+    public ProtocolLogger(Type type) {
+    	this(getWriter(type));
     }
     
     public ProtocolLogger(Writer out)  {
@@ -39,13 +40,13 @@ public class ProtocolLogger implements IProtocolLogger {
         activateFlushTimer();
     }
 
-    private static Writer getWriter()  {
+    private static Writer getWriter(Type type)  {
         final int sizeOfRow = 250; 
         final int noOfLines = 300;
         final int bufferSize = sizeOfRow * noOfLines;
         if (doesLoggerPathExist()) {
         	try {
-        		return new BufferedWriter(new PrintWriter(getLoggerFileNameAndPath()), bufferSize);
+        		return new BufferedWriter(new PrintWriter(getLoggerFileNameAndPath(type)), bufferSize);
         	} catch (FileNotFoundException e) {
         		neverGetHere(e.getMessage());
         	}
@@ -57,8 +58,8 @@ public class ProtocolLogger implements IProtocolLogger {
         return new File(getLoggerPath()).exists();
     }
 
-    public static String getLoggerFileNameAndPath() {
-        return getLoggerPath() + "/protocol.log";
+    public static String getLoggerFileNameAndPath(Type type) {
+        return getLoggerPath() + "/" + type + "Protocol.log";
     }
     private static String getLoggerPath() {
         return System.getProperty("user.home", ".");

@@ -16,7 +16,7 @@ public class ServerFacade extends AbstractServerFacade {
     private final ResponseAPIFactory responseFactory;
     private ProtocolMockery mockery;
     public ServerFacade(IFlushable flushable) {
-        this(flushable, new ProtocolLogger());
+        this(flushable, new ProtocolLogger(Type.Server));
     }
     public ServerFacade(IFlushable flushable, IProtocolLogger logger) {
         super(flushable, Type.Server, logger);

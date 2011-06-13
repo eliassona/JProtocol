@@ -16,7 +16,7 @@ public class ClientFacade extends AbstractClientFacade {
     private final ResponseAPIFactory responseFactory;
     private ProtocolMockery mockery;
     public ClientFacade(IFlushable flushable) {
-        this(flushable, new ProtocolLogger());
+        this(flushable, new ProtocolLogger(Type.Client));
     }
     public ClientFacade(IFlushable flushable, IProtocolLogger logger) {
         super(flushable, Type.Client, logger);

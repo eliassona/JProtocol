@@ -19,8 +19,8 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
  			 new DefaultAPIGenerator(it, it.requestProtocol, pack, dir)
 			 new DefaultAPIGenerator(it, it.responseProtocol, pack, dir)
 			 new DefaultHandlerGenerator(it, pack, dir)
-			 new DefaultTestFacadeGenerator(pack, dir)
 		 }
+		 new DefaultTestFacadeGenerator(pack, dir)
 		 new DefaultFacadeGenerator(Handler.Type.Server, protocols.class.getPackage().name, pack, dir)
 		 new DefaultFacadeGenerator(Handler.Type.Client, protocols.class.getPackage().name, pack, dir)
 		 new DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir)
@@ -116,7 +116,6 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 		stdPackage()
 		line "import org.jprotocol.framework.facade.AbstractFacade"
 		line "import org.jprotocol.framework.handler.IFlushable"
-		line "import org.jprotocol.framework.logger.IProtocolLogger.NullProtocolLogger"
 		stdJavaDoc()
 		
 		block("public class $name") {
@@ -137,7 +136,7 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 			 	comment "Override to provide a specialized version of ClientFacade"
 			}
 			block("protected ClientFacade createClientFacade(IFlushable flushable)") {
-				line "return new ClientFacade(flushable, new NullProtocolLogger())"
+				line "return new ClientFacade(flushable)"
 			}
 			javadoc() {
 			 	comment "Override to provide a specialized version of ServerFacade"
@@ -183,7 +182,7 @@ class DefaultFacadeGenerator extends JavaGenerator {
 			line "private ProtocolMockery mockery"
 			
 			block("public ${name}(IFlushable flushable)") {
-				line "this(flushable, new ProtocolLogger())"
+				line "this(flushable, new ProtocolLogger(Type.${type}))"
 			}
 			block("public ${name}(IFlushable flushable, IProtocolLogger logger)") {
 				line "super(flushable, Type.${type}, logger)"
