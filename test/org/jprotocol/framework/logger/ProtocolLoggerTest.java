@@ -14,15 +14,15 @@ public class ProtocolLoggerTest {
 	public void request() throws FileNotFoundException {
 		StringWriter out = new StringWriter();
 		ProtocolLogger pl = new ProtocolLogger(out);
-		pl.write("Client", Direction.Request, new byte[]{0, 127, -1});
-		assertEquals("Client,Request,0,127,255\n", out.getBuffer().toString());
-		pl.write("Client", Direction.Response, new byte[]{0, 127, -1});
+		pl.write(Direction.Request, new byte[]{0, 127, -1});
+		assertEquals("0,0,127,255\n", out.getBuffer().toString());
+		pl.write(Direction.Response, new byte[]{0, 127, -1});
 	}
 	@Test
 	public void response() throws FileNotFoundException {
 		StringWriter out = new StringWriter();
 		ProtocolLogger pl = new ProtocolLogger(out);
-		pl.write("Client", Direction.Response, new byte[]{0, 127, -1});
-		assertEquals("Client,Response,0,127,255\n", out.getBuffer().toString());
+		pl.write(Direction.Response, new byte[]{0, 127, -1});
+		assertEquals("1,0,127,255\n", out.getBuffer().toString());
 	}
 }

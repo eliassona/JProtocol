@@ -14,7 +14,7 @@ import org.jprotocol.quantity.Quantity;
 public interface IProtocolLogger {
 
 	void write(Class<? extends IHandlerHierarchy> client, Class<? extends IHandlerHierarchy> server) throws IOException;
-	void write(String client, Direction dir, byte[] data);
+	void write(Direction dir, byte[] data);
 
 	/**
 	 * An info message
@@ -157,7 +157,7 @@ public interface IProtocolLogger {
 		}
 
 		@Override
-		public void write(String client, Direction dir, byte[] data) {
+		public void write(Direction dir, byte[] data) {
 			//Do nothing
 		}
 

@@ -100,16 +100,12 @@ public class ProtocolLogger implements IProtocolLogger {
 
     @Override
     public synchronized void write(
-            final String client,
             final Direction dir, 
             final byte[] data) {
-    	require(notNull(client));
     	require(notNull(dir));
     	require(notNull(data));
         try {
-        	out.write(client);
-        	out.write(",");
-        	out.write(dir.toString());
+        	out.write(numberOf(dir) + "");
         	out.write(",");
         	out.write(format(data));
         	out.write("\n");
@@ -118,6 +114,13 @@ public class ProtocolLogger implements IProtocolLogger {
         }
     }
 
+    private int numberOf(Direction dir) {
+    	if (dir == Direction.Request) {
+    		return 0;
+    	}
+    	return 1;
+    }
+    
 	private String format(byte[] data) {
 		StringBuffer buf = new StringBuffer(200);
 		for (byte b: data) {

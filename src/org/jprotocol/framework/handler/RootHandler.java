@@ -32,12 +32,12 @@ abstract public class RootHandler<R extends AbstractDecoratedProtocolMessage, S 
 	@Override
 	protected void flush(IProtocolMessage p) {
 		byte[] data = p.getData();
-		logger.write("JProtocol", flushDirection(), data);
+		logger.write(flushDirection(), data);
 		flushable.flush(data);
 	}
 	@Override
 	public void receive(byte[] data) {
-		logger.write("JProtocol", receiveDirection(), data);
+		logger.write(receiveDirection(), data);
 		super.receive(data);
 	}
 	private Direction receiveDirection() {
