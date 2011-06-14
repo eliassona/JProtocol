@@ -3,8 +3,6 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 
-repositoryServerName = 've-repository'
-downloadRepositoryServer= "http://${repositoryServerName}:8081/artifactory"
 
 
 configurations {
@@ -35,8 +33,7 @@ sourceSets {
 }
 
 repositories {
-	mavenRepo name: 'plugins-repo', urls: "${downloadRepositoryServer}/plugins-release"
-	mavenRepo name: 'libs-repo', urls: "${downloadRepositoryServer}/libs-release"
+	mavenCentral()
 }
 
 dependencies {
