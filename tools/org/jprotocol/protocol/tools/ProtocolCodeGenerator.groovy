@@ -1,6 +1,6 @@
 package org.jprotocol.protocol.tools
    
-
+ 
 import org.jprotocol.codegen.*
 import org.jprotocol.framework.dsl.IRoot
 import org.jprotocol.framework.dsl.ProtocolLayouts
@@ -9,15 +9,15 @@ import org.jprotocol.framework.dsl.argiters.FindSwitchIter
 import org.jprotocol.framework.handler.Handler
 import org.jprotocol.framework.handler.Handler.Type
  
-public class DefaultAPIGenerator extends AbstractAPIGenerator {
+public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 
 		 
 	final factory
-	public static void create(ProtocolLayouts protocols, pack, dir) {
+	public static void generate(ProtocolLayouts protocols, pack, dir) {
 		 final protocolLayouts = protocols.protocolLayouts
 		 protocolLayouts.each {
- 			 new DefaultAPIGenerator(it, it.requestProtocol, pack, dir)
-			 new DefaultAPIGenerator(it, it.responseProtocol, pack, dir)
+ 			 new ProtocolCodeGenerator(it, it.requestProtocol, pack, dir)
+			 new ProtocolCodeGenerator(it, it.responseProtocol, pack, dir)
 			 new DefaultHandlerGenerator(it, pack, dir)
 		 }
 		 new DefaultTestFacadeGenerator(pack, dir)
@@ -31,7 +31,7 @@ public class DefaultAPIGenerator extends AbstractAPIGenerator {
 		 new ClientServerHandlerHierarchyGenerator(Type.Client, protocols, dir)
 	}
 	
-	public DefaultAPIGenerator(factory, protocol, String pack, String dir) {
+	public ProtocolCodeGenerator(factory, protocol, String pack, String dir) {
 		super(protocol, pack + ".api")
 		this.factory = factory
 		println("Saving to ${new File(dir)}")

@@ -8,7 +8,7 @@ class ExampleGenerator {
 	}
 
 	private static void generate(protocols, String pack, String dir) {
-		DefaultAPIGenerator.create(protocols, pack, dir)
+		ProtocolCodeGenerator.generate(protocols, pack, dir)
 	}	 
 	 
 
