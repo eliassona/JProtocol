@@ -51,5 +51,9 @@ dependencies {
 
 }
 
+task jarTools(type: Jar) {
+	baseName = "${project.name}Tools"
+	from 'tools'
+}
 
 
