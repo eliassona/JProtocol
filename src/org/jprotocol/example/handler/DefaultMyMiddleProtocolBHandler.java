@@ -8,7 +8,7 @@ import org.jprotocol.example.api.*;
 */
 public class DefaultMyMiddleProtocolBHandler extends Handler<MyMiddleProtocolB_Request_API, MyMiddleProtocolB_Response_API> {
     protected DefaultMyMiddleProtocolBHandler(HandlerContext context) {
-        super(new org.jprotocol.example.dsl.MyMiddleProtocolB(), "MiddleSwitch", "MiddleSwitch", context);
+        super(new org.jprotocol.example.protocols.MyMiddleProtocolB(), "MiddleSwitch", "MiddleSwitch", context);
     }
     @Override public final MyMiddleProtocolB_Request_API createRequest(IProtocolMessage p) {
         return new MyMiddleProtocolB_Request_API(p);

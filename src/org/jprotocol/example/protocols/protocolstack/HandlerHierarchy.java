@@ -1,4 +1,4 @@
-package org.jprotocol.example.dsl.protocolstack;
+package org.jprotocol.example.protocols.protocolstack;
 import static org.jprotocol.framework.handler.HandlerDsl.handler;
 
 import org.jprotocol.framework.handler.Handler.Type;

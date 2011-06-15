@@ -9,7 +9,7 @@ import org.jprotocol.framework.logger.IProtocolLogger;
 */
 public class DefaultMyRootProtocolHandler extends RootHandler<MyRootProtocol_Request_API, MyRootProtocol_Response_API> {
     protected DefaultMyRootProtocolHandler(HandlerContext context, IFlushable flushable, IProtocolLogger logger) {
-        super(new org.jprotocol.example.dsl.MyRootProtocol(), "RootSwitch", "RootSwitchResp", context, flushable, logger);
+        super(new org.jprotocol.example.protocols.MyRootProtocol(), "RootSwitch", "RootSwitchResp", context, flushable, logger);
     }
     @Override public final MyRootProtocol_Request_API createRequest(IProtocolMessage p) {
         return new MyRootProtocol_Request_API(p);

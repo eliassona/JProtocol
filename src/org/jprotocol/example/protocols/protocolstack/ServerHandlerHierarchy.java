@@ -1,4 +1,4 @@
-package org.jprotocol.example.dsl.protocolstack;
+package org.jprotocol.example.protocols.protocolstack;
 import org.jprotocol.example.handler.DefaultMyMiddleProtocolAHandler;
 import org.jprotocol.framework.core.IProtocolMessage;
 import org.jprotocol.framework.handler.Handler;

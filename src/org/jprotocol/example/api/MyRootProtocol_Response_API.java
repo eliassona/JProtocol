@@ -24,7 +24,7 @@ public class MyRootProtocol_Response_API extends AbstractDecoratedProtocolMessag
         this.parent = this;
     }
     static MyRootProtocol_Response_API_Test createTest() {
-        return new MyRootProtocol_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.dsl.MyRootProtocol().getRequestProtocol()));
+        return new MyRootProtocol_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.protocols.MyRootProtocol().getRequestProtocol()));
     }
     static MyRootProtocol_Response_API_Test createTest(StringBuilderProtocolMessage protocol) {
         return new MyRootProtocol_Response_API_Test(protocol);

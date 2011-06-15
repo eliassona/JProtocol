@@ -1,9 +1,8 @@
-package org.jprotocol.example.dsl;
+package org.jprotocol.example.protocols;
 
 import static org.jprotocol.quantity.Unit.hz;
 
 import org.jprotocol.framework.core.ProtocolLayoutFactory;
-import org.jprotocol.quantity.Unit;
 
 public class MyLeafProtocolA extends ProtocolLayoutFactory {
 	public MyLeafProtocolA() {

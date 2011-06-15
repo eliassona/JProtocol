@@ -1,4 +1,4 @@
-package org.jprotocol.example.dsl;
+package org.jprotocol.example.protocols;
 
 import org.jprotocol.framework.core.ProtocolLayoutFactory;
 import org.jprotocol.framework.core.IArgumentType.SwitchEnum;
