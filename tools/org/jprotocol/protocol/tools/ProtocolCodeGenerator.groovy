@@ -14,6 +14,7 @@ public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 		 
 	final factory
 	public static void generate(ProtocolLayouts protocols, pack, dir) {
+		 final protocolStackPackage = protocols.class.getPackage().name + ".protocolstack"
 		 final protocolLayouts = protocols.protocolLayouts
 		 protocolLayouts.each {
  			 new ProtocolCodeGenerator(it, it.requestProtocol, pack, dir)
@@ -21,12 +22,12 @@ public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 			 new DefaultHandlerGenerator(it, pack, dir)
 		 }
 		 new DefaultTestFacadeGenerator(pack, dir)
-		 new DefaultFacadeGenerator(Handler.Type.Server, protocols.class.getPackage().name, pack, dir)
-		 new DefaultFacadeGenerator(Handler.Type.Client, protocols.class.getPackage().name, pack, dir)
+		 new DefaultFacadeGenerator(Handler.Type.Server, protocolStackPackage, pack, dir)
+		 new DefaultFacadeGenerator(Handler.Type.Client, protocolStackPackage, pack, dir)
 		 new DefaultHandlerHierarchyGenerator(protocolLayouts, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Request, pack, dir)
 		 new DefaultAPIFactoryGenerator(protocolLayouts, Direction.Response, pack, dir)
-		 new HandlerHierarchyGenerator(protocols, pack, dir)
+		 new HandlerHierarchyGenerator(protocolStackPackage, pack, dir)
 		 new ClientServerHandlerHierarchyGenerator(Type.Server, protocols, dir)
 		 new ClientServerHandlerHierarchyGenerator(Type.Client, protocols, dir)
 	}
@@ -54,7 +55,7 @@ public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 } 
 class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 	ClientServerHandlerHierarchyGenerator(Type type, protocols, String dir) {
-		this(type, protocols.class.getPackage().name, dir)
+		this(type, protocols.class.getPackage().name + ".protocolstack", dir)
 	}
 	ClientServerHandlerHierarchyGenerator(Type type, String pack, String dir) {
 		super(pack, "${type}HandlerHierarchy")
@@ -83,10 +84,7 @@ class ClientServerHandlerHierarchyGenerator extends JavaGenerator {
 	}
 }
 class HandlerHierarchyGenerator extends JavaGenerator {
-	HandlerHierarchyGenerator(protocols, String genPackage, String dir) {
-		this(protocols.class.getPackage().name, genPackage, dir)
-	}
-	private HandlerHierarchyGenerator(String pack, String genPackage, String dir) {
+	HandlerHierarchyGenerator(String pack, String genPackage, String dir) {
 		super(pack, "HandlerHierarchy")
 		if (exists(pack, name, dir)) return;
 		stdPackage()
@@ -280,7 +278,7 @@ class DefaultHandlerGenerator extends JavaGenerator {
 		this.layout = layout
 		this.classNameUtil = new ClassNameUtil(layout)
 		stdPackage()
-		line "import org.jprotocol.framework.dsl.*"
+		line "import org.jprotocol.framework.core.*"
 		line "import org.jprotocol.framework.handler.*"
 		line "import ${pack}.api.*"
 		if (isRoot()) line "import org.jprotocol.framework.logger.IProtocolLogger"

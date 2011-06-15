@@ -1,11 +1,15 @@
-package org.jprotocol.example.dsl;
+package org.jprotocol.example.dsl.protocolstack;
 import org.jprotocol.example.handler.DefaultMyMiddleProtocolAHandler;
 import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.handler.Handler;
 import org.jprotocol.framework.handler.Handler.Type;
-import org.jprotocol.framework.handler.*;
+import org.jprotocol.framework.handler.HandlerContext;
+import org.jprotocol.framework.handler.IFlushable;
+import org.jprotocol.framework.handler.IProtocolSniffer;
+import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.logger.IProtocolLogger;
 /**
-* In this class override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers
+* Override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers
 * @note Do not extend this class!
 */
 public final class ServerHandlerHierarchy extends HandlerHierarchy {

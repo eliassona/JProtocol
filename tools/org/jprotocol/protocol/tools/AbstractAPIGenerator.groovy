@@ -37,7 +37,7 @@ abstract public class AbstractAPIGenerator  extends JavaGenerator {
     def generate() {
         stdPackage()
         line 'import org.jprotocol.framework.api.*'
-        line 'import org.jprotocol.framework.dsl.*'
+        line 'import org.jprotocol.framework.core.*'
 		line 'import org.jprotocol.framework.test.*'
         if (hasQuantity()) {
         	line 'import org.jprotocol.quantity.Quantity'
@@ -224,9 +224,9 @@ abstract public class AbstractAPIGenerator  extends JavaGenerator {
         }
         block("public static class ${iterableName} implements Iterable<${iArgName}>") {
         	line "private final ${name} parent"
-        	line "private final IProtocol protocol"
+        	line "private final IProtocolMessage protocol"
         	line "private final int[] indexes"
-        	block("${iterableName}(${name} parent, IProtocol protocol, int...indexes)") {
+        	block("${iterableName}(${name} parent, IProtocolMessage protocol, int...indexes)") {
         		line "this.parent = parent"
         		line "this.protocol = protocol"
         		line "this.indexes = indexes"
@@ -255,10 +255,10 @@ abstract public class AbstractAPIGenerator  extends JavaGenerator {
     		}
         }
         
-        block("public static class ${iArgName} extends AbstractDecoratedIndexedArg") {
+        block("public static class ${iArgName} extends AbstractDecoratedIndexedArgument") {
             line "private final ${name} parent"
             line "private final int[] indexes"
-            block("public ${iArgName}(${name} parent, IProtocol protocol, int...indexes)") {
+            block("public ${iArgName}(${name} parent, IProtocolMessage protocol, int...indexes)") {
                 line "super(protocol)"
                 line "this.indexes = indexes"
                 line "this.parent = parent"

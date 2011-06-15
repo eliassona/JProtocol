@@ -1,6 +1,10 @@
-package org.jprotocol.example.dsl;
+package org.jprotocol.example.dsl.protocolstack;
 import static org.jprotocol.framework.handler.HandlerDsl.handler;
 
+import org.jprotocol.framework.handler.Handler.Type;
+import org.jprotocol.framework.handler.HandlerDsl.UpperHandler;
+import org.jprotocol.framework.handler.*;
+import org.jprotocol.framework.logger.IProtocolLogger;
 import org.jprotocol.example.api.MyMiddleProtocolA_Request_API;
 import org.jprotocol.example.api.MyMiddleProtocolA_Response_API;
 import org.jprotocol.example.api.MyMiddleProtocolB_Request_API;
@@ -8,15 +12,7 @@ import org.jprotocol.example.api.MyMiddleProtocolB_Response_API;
 import org.jprotocol.example.api.MyRootProtocol_Request_API;
 import org.jprotocol.example.api.MyRootProtocol_Response_API;
 import org.jprotocol.example.handler.AbstractDefaultHandlerHierarchy;
-import org.jprotocol.framework.handler.Handler.Type;
-import org.jprotocol.framework.handler.HandlerContext;
-import org.jprotocol.framework.handler.HandlerDsl.UpperHandler;
-import org.jprotocol.framework.handler.IFlushable;
-import org.jprotocol.framework.handler.IProtocolSniffer;
-import org.jprotocol.framework.handler.IProtocolState;
-import org.jprotocol.framework.handler.LeafHandlerContext;
-import org.jprotocol.framework.logger.IProtocolLogger;
-public class HandlerHierarchy extends AbstractDefaultHandlerHierarchy {
+abstract public class HandlerHierarchy extends AbstractDefaultHandlerHierarchy {
     public HandlerHierarchy(Type type, final IFlushable flushable, IProtocolState protocolState, IProtocolSniffer sniffer, IProtocolLogger logger) {
         super(type, flushable, protocolState, sniffer, logger);
     }

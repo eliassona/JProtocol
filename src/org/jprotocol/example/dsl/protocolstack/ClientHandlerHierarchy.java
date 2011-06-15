@@ -1,9 +1,9 @@
-package org.jprotocol.example.dsl;
+package org.jprotocol.example.dsl.protocolstack;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.*;
 import org.jprotocol.framework.logger.IProtocolLogger;
 /**
-* In this class override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers
+* Override create methods defined in AbstractDefaultHandlerHierarchy to provide specific implementation for handlers
 * @note Do not extend this class!
 */
 public final class ClientHandlerHierarchy extends HandlerHierarchy {
