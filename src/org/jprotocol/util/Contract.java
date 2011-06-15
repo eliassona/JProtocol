@@ -11,57 +11,6 @@ import org.hamcrest.StringDescription;
 
 
 
-/**
- * <b>Contract</b> - Pragmatic support for Design by Contract<sup>TM</sup> or Contract Programming.
- * <p>
- * <strong>Background</strong><br> 
- * The central idea of DBC is a metaphor on how elements of a software system 
- * collaborate with each other, on the basis of mutual obligations and benefits. 
- * The metaphor comes from business life, where a "client" and a "supplier" 
- * agree on a "contract" which defines for example that:<ul>
- * <li>The supplier must provide a certain product (obligation) and is entitled to 
- *     expect that the client has paid its fee (benefit). 
- * <li>The client must pay the fee (obligation) and is entitled to get the product 
- *     (benefit). 
- * <li>Both parties must satisfy certain obligations, such as laws and regulations, 
- *     applying to all contracts. [WikiPeadia]
- * </ul>
- * <strong>Guidelines for defining contracts</strong><ul>
- * <li>Do NOT use commands when defining contract statements. Only queries are
- * allowed. That means, executing the contract  shall not change the (perceived)
- * state of that object.   The reason is  that contracts are part of the specification, not the semantics!
- * <li>Clients must have the possibility to access the queries used in require 
- * contracts. Do not use private fields/methods in contract statements.
- * <li>Try to define "atomic" contracts, that is avoid merging contract that could
- * be stated separately. This helps the error location process after a contract
- * violation, you do not have to guess in which part the violation occurred.
- * <li>Contracts and multi-threading requires special attention! E.g. do not put 
- * contracts on the supplier object if used by multiple threads. 
- * </ul>
- * <strong>Practical info</strong><br>
- * Contract programming is supported in multiple ways with this pragmatic encapsulation: 
- * <ul>
- * <li>Some are based on <code>boolean</code>s and boolean expressions. These methods
- *     are named isXyz, eg <code>isNotNull(...)</code> and <code>isInRange(...)</code>.
- *     Use implementation in SyntacticSugar.java. The corresponding implementation in
- *     this class is deprecated.</li>
- * <li>Other are based on the Hamcrest matchers.</li>
- * <li>The rest are based on the type <code>IContractCondition</code>, to be able
- *      to support automatic logging for standard cases. This means that you
- *      don't have to (but you still may) include description strings, and the 
- *      readability is improved. The naming for these are eg <code>notNull(...)</code> and
- *      <code>inRange(...)</code></li>
- * </ul> 
- * <strong>Info and examples:</strong><ul>
- * <li>Read the java-doc for info and simple examples.
- * <li>Look at the unit-tests in ContractTest.java.
- * <li>Hit "Ctrl-Shift-G" in Eclipse having the cursor on e.g the require() definition below.
- * <li>Se e.g. <a href="http://en.wikipedia.org/wiki/Design_by_contract">http://en.wikipedia.org/wiki/Design_by_contract</a> for further information.
- * <li>Read chapter 11 (Design by Contract - building reliable software) in "Object Oriented Software Construction", 2:nd ed. by Bertrand Meyer.
- * </ul>
- * <p>
- * @author Christopher Graae (graaec01)
- */
 public class Contract
 {    
     // --------------------------------------------
