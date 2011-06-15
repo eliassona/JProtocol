@@ -1,7 +1,7 @@
 package org.jprotocol.protocol.tools
 
 import org.jprotocol.codegen.*
-import com.sjm.protocol.framework.dsl.*
+import com.sjm.protocol.framework.core.*
 import org.jprotocol.codegen.NameFormatter
  
 import org.jprotocol.framework.core.MemoryLayoutFactory

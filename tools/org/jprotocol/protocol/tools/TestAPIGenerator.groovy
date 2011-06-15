@@ -1,6 +1,6 @@
 package org.jprotocol.protocol.tools
 
-import com.sjm.protocol.framework.dsl.*
+import com.sjm.protocol.framework.core.*
 import com.sjm.tools.quantity.*
 
 /**

@@ -1,6 +1,6 @@
 package org.jprotocol.protocol.tools
 
-import org.jprotocol.framework.dsl.*
+import org.jprotocol.framework.core.*
 import org.jprotocol.codegen.*
 
 
