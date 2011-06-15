@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IllegalByteArrayValue;
-import org.jprotocol.framework.dsl.ProtocolException;
-import org.jprotocol.framework.dsl.ProtocolMessage;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.IllegalByteArrayValue;
+import org.jprotocol.framework.core.ProtocolException;
+import org.jprotocol.framework.core.ProtocolMessage;
 import org.jprotocol.framework.handler.IProtocolSniffer.InhibitException;
 import org.jprotocol.quantity.Quantity;
 

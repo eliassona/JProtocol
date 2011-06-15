@@ -1,5 +1,5 @@
 package org.jprotocol.example.handler;
-import org.jprotocol.framework.dsl.*;
+import org.jprotocol.framework.core.*;
 import org.jprotocol.framework.handler.*;
 import org.jprotocol.example.api.*;
 /**

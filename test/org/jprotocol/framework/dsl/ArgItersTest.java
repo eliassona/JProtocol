@@ -2,7 +2,12 @@ package org.jprotocol.framework.dsl;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.argiters.GetAllArgsIter;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
+import org.jprotocol.framework.core.argiters.GetAllArgsIter;
 
 
 

@@ -2,10 +2,10 @@ package org.jprotocol.framework.handler;
 
 import java.util.Date;
 
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
-import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.logger.IProtocolLogger;
 
 

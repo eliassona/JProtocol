@@ -2,10 +2,10 @@ package org.jprotocol.protocol.tools;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.IArgumentType;
-import org.jprotocol.framework.dsl.INameValuePair;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.MemoryLayoutFactory;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.INameValuePair;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.MemoryLayoutFactory;
 
 public class TestFactoryTest extends TestCase {
 	public void testEquals() {

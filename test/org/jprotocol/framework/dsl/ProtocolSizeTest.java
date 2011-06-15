@@ -2,7 +2,10 @@ package org.jprotocol.framework.dsl;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.MemoryLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.jprotocol.quantity.Unit;
 
 

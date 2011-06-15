@@ -21,9 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jprotocol.framework.dsl.IArgumentType;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.handler.Handler;
 import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IProtocolSniffer;

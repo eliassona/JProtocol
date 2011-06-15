@@ -2,11 +2,11 @@ package org.jprotocol.framework.handler;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.dsl.ProtocolMessage;
-import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IProtocolSniffer.InhibitException;
 import org.junit.Before;

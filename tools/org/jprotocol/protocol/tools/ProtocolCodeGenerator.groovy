@@ -1,11 +1,11 @@
 package org.jprotocol.protocol.tools
-   
+     
  
 import org.jprotocol.codegen.*
-import org.jprotocol.framework.dsl.IRoot
-import org.jprotocol.framework.dsl.ProtocolLayouts
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction
-import org.jprotocol.framework.dsl.argiters.FindSwitchIter
+import org.jprotocol.framework.core.IRoot
+import org.jprotocol.framework.core.ProtocolLayouts
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction
+import org.jprotocol.framework.core.argiters.FindSwitchIter
 import org.jprotocol.framework.handler.Handler
 import org.jprotocol.framework.handler.Handler.Type
  

@@ -2,7 +2,7 @@ package org.jprotocol.protocol.tools;
 
 import java.util.Set;
 
-import org.jprotocol.framework.dsl.IEnumeration;
+import org.jprotocol.framework.core.IEnumeration;
 
 
 public interface IEnumClass {

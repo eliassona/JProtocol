@@ -3,6 +3,9 @@ package org.jprotocol.framework.dsl;
 import static org.jprotocol.quantity.Quantity.quantity;
 import junit.framework.TestCase;
 
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.StringBuilderProtocolMessage;
 import org.jprotocol.quantity.Unit;
 
 

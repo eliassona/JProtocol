@@ -2,13 +2,13 @@ package org.jprotocol.protocol.tools;
 import java.util.Iterator;
 
 import org.jprotocol.framework.api.AbstractIterator;
-import org.jprotocol.framework.dsl.AbstractDecoratedArgument;
-import org.jprotocol.framework.dsl.AbstractDecoratedIndexedArgument;
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.ProtocolMessage;
-import org.jprotocol.framework.dsl.StringBuilderProtocolMessage;
+import org.jprotocol.framework.core.AbstractDecoratedArgument;
+import org.jprotocol.framework.core.AbstractDecoratedIndexedArgument;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.ProtocolMessage;
+import org.jprotocol.framework.core.StringBuilderProtocolMessage;
 import org.jprotocol.framework.test.ITestable;
 
 import org.jprotocol.quantity.Quantity;

@@ -1,6 +1,9 @@
 package org.jprotocol.framework.dsl;
 
-import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
+import org.jprotocol.framework.core.ArgumentType;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.NameValuePair;
+import org.jprotocol.framework.core.IArgumentType.SwitchEnum;
 
 import junit.framework.TestCase;
 

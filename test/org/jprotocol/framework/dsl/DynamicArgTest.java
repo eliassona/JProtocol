@@ -2,6 +2,9 @@ package org.jprotocol.framework.dsl;
 
 import junit.framework.TestCase;
 
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.IDynamicCalcStrategy;
+import org.jprotocol.framework.core.IProtocolMessage;
 import org.jprotocol.quantity.Quantity;
 import org.jprotocol.quantity.Unit;
 

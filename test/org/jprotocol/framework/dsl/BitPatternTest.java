@@ -2,6 +2,9 @@ package org.jprotocol.framework.dsl;
 
 import java.util.logging.Logger;
 
+import org.jprotocol.framework.core.BitPattern;
+import org.jprotocol.framework.core.IBitPattern;
+
 import junit.framework.TestCase;
 
 /**

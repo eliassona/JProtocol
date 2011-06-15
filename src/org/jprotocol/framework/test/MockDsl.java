@@ -1,6 +1,6 @@
 package org.jprotocol.framework.test;
 
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
 import org.jprotocol.framework.handler.QualifiedName;
 import org.jprotocol.framework.list.Expr;
 

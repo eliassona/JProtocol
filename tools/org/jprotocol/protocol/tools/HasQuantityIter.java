@@ -1,8 +1,8 @@
 package org.jprotocol.protocol.tools;
 
-import org.jprotocol.framework.dsl.IArgumentType;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.argiters.ArgTypeIter;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.argiters.ArgTypeIter;
 
 public class HasQuantityIter extends ArgTypeIter {
 	private boolean quantityFound;

@@ -2,7 +2,7 @@ package org.jprotocol.protocol.tools;
 
 import static org.jprotocol.quantity.Quantity.quantity;
 
-import org.jprotocol.framework.dsl.MemoryLayoutFactory;
+import org.jprotocol.framework.core.MemoryLayoutFactory;
 import org.jprotocol.quantity.Unit;
 
 class TestFactory extends MemoryLayoutFactory {

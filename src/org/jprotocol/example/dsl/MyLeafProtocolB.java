@@ -1,6 +1,6 @@
 package org.jprotocol.example.dsl;
 
-import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
 
 public class MyLeafProtocolB extends ProtocolLayoutFactory {
 	public MyLeafProtocolB() {

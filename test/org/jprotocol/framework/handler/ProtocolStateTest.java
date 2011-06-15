@@ -4,9 +4,9 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.INameValuePair;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.INameValuePair;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
 
 
 public class ProtocolStateTest extends TestCase {

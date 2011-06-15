@@ -10,7 +10,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.verify;
 
-import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolMessage;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.junit.Test;
 

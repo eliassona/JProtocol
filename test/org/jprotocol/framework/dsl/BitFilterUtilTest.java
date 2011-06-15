@@ -1,11 +1,11 @@
 package org.jprotocol.framework.dsl;
 
-import static org.jprotocol.framework.dsl.BitFilterUtil.arrayOf;
-import static org.jprotocol.framework.dsl.BitFilterUtil.filter;
-import static org.jprotocol.framework.dsl.BitFilterUtil.filterByte;
-import static org.jprotocol.framework.dsl.BitFilterUtil.intOf;
-import static org.jprotocol.framework.dsl.BitFilterUtil.offset;
-import static org.jprotocol.framework.dsl.BitFilterUtil.size;
+import static org.jprotocol.framework.core.BitFilterUtil.arrayOf;
+import static org.jprotocol.framework.core.BitFilterUtil.filter;
+import static org.jprotocol.framework.core.BitFilterUtil.filterByte;
+import static org.jprotocol.framework.core.BitFilterUtil.intOf;
+import static org.jprotocol.framework.core.BitFilterUtil.offset;
+import static org.jprotocol.framework.core.BitFilterUtil.size;
 import junit.framework.TestCase;
 
 import org.jprotocol.util.Contract.ContractError;

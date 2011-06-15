@@ -15,8 +15,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
-import org.jprotocol.framework.dsl.ProtocolMessage;
+import org.jprotocol.framework.core.ProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
 import org.jprotocol.quantity.Quantity;

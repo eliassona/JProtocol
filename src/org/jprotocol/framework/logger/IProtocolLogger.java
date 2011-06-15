@@ -3,7 +3,7 @@ package org.jprotocol.framework.logger;
 import java.io.IOException;
 import java.util.Date;
 
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.jprotocol.framework.handler.IHandlerHierarchy;
 import org.jprotocol.quantity.Quantity;
 

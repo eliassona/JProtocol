@@ -1,6 +1,6 @@
 package org.jprotocol.framework.handler;
 
-import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolMessage;
 
 
 @SuppressWarnings("serial")

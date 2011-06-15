@@ -2,9 +2,9 @@ package org.jprotocol.framework.handler;
 
 import java.util.List;
 
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolMessage;
 
 
 /**

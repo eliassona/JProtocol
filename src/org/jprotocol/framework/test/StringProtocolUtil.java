@@ -1,6 +1,6 @@
 package org.jprotocol.framework.test;
 
-import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolMessage;
 import org.jprotocol.framework.list.Expr;
 
 /**

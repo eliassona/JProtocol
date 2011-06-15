@@ -1,6 +1,6 @@
 package org.jprotocol.example.dsl;
 import org.jprotocol.example.handler.DefaultMyMiddleProtocolAHandler;
-import org.jprotocol.framework.dsl.IProtocolMessage;
+import org.jprotocol.framework.core.IProtocolMessage;
 import org.jprotocol.framework.handler.Handler.Type;
 import org.jprotocol.framework.handler.*;
 import org.jprotocol.framework.logger.IProtocolLogger;

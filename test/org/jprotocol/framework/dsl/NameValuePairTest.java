@@ -2,8 +2,14 @@ package org.jprotocol.framework.dsl;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.IArgumentType.SwitchEnum;
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.core.ArgumentType;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.INameValuePair;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.NameValuePair;
+import org.jprotocol.framework.core.ProtocolLayoutType;
+import org.jprotocol.framework.core.IArgumentType.SwitchEnum;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 
 
 public class NameValuePairTest extends TestCase {

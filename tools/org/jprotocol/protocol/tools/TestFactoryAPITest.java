@@ -3,7 +3,7 @@ package org.jprotocol.protocol.tools;
 import static org.jprotocol.util.Contract.neverGetHere;
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.StringBuilderProtocolMessage;
+import org.jprotocol.framework.core.StringBuilderProtocolMessage;
 import org.jprotocol.protocol.tools.TestFactory_API.Indexed;
 import org.jprotocol.protocol.tools.TestFactory_API.Indexed.Indexed2;
 import org.jprotocol.protocol.tools.TestFactory_API.TestFactory_API_Test;

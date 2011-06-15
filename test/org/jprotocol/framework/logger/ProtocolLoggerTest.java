@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.StringWriter;
 import java.util.Date;
 
-import org.jprotocol.framework.dsl.IProtocolLayoutType.Direction;
+import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
 import org.junit.Test;
 
 public class ProtocolLoggerTest {

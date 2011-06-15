@@ -1,7 +1,7 @@
 package org.jprotocol.protocol.tools;
 
 import org.apache.tools.ant.Task;
-import org.jprotocol.framework.dsl.ProtocolLayouts;
+import org.jprotocol.framework.core.ProtocolLayouts;
 
 public class ProtocolGeneratorTask extends Task {
 	private String rootDir = "src";

@@ -1,6 +1,6 @@
 package org.jprotocol.framework.realtime;
 
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
 
 public interface IRealtimeStream {
 	

@@ -3,6 +3,9 @@ package org.jprotocol.framework.dsl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jprotocol.framework.core.ImmutableList;
+import org.jprotocol.framework.core.ProtocolData;
+
 import junit.framework.TestCase;
 
 

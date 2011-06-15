@@ -1,5 +1,9 @@
 package org.jprotocol.framework.dsl;
 
+import org.jprotocol.framework.core.EnumerationImpl;
+import org.jprotocol.framework.core.IEnumeration;
+import org.jprotocol.framework.core.NameValuePair;
+
 import junit.framework.TestCase;
 
 public class EnumerationTest extends TestCase {

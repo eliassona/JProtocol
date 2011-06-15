@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.jprotocol.framework.dsl.IArgumentType;
-import org.jprotocol.framework.dsl.INameValuePair;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
+import org.jprotocol.framework.core.IArgumentType;
+import org.jprotocol.framework.core.INameValuePair;
+import org.jprotocol.framework.core.IProtocolLayoutType;
 
  
 public class ProtocolState implements IProtocolState {

@@ -1,5 +1,7 @@
 package org.jprotocol.framework.dsl;
 
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+
 import junit.framework.TestCase;
 
 

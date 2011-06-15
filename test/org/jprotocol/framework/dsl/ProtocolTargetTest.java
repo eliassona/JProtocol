@@ -1,5 +1,9 @@
 package org.jprotocol.framework.dsl;
 
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.MemoryLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
+
 import junit.framework.TestCase;
 
 

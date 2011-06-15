@@ -1,8 +1,8 @@
 package org.jprotocol.framework.handler;
 
-import org.jprotocol.framework.dsl.AbstractDecoratedProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolMessage;
 
 
 

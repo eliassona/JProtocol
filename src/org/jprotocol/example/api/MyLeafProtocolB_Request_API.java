@@ -1,6 +1,6 @@
 package org.jprotocol.example.api;
 import org.jprotocol.framework.api.*;
-import org.jprotocol.framework.dsl.*;
+import org.jprotocol.framework.core.*;
 import org.jprotocol.framework.test.*;
 import org.jprotocol.quantity.Quantity;
 import java.util.Iterator;

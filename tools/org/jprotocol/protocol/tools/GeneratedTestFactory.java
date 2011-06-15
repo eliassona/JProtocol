@@ -1,5 +1,5 @@
 package org.jprotocol.protocol.tools;
-import org.jprotocol.framework.dsl.MemoryLayoutFactory;
+import org.jprotocol.framework.core.MemoryLayoutFactory;
 import org.jprotocol.quantity.Quantity;
 import org.jprotocol.quantity.Unit;
 /**

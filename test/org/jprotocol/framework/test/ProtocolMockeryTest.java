@@ -7,11 +7,11 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.jprotocol.framework.dsl.IProtocolMessage;
-import org.jprotocol.framework.dsl.IProtocolLayoutFactory;
-import org.jprotocol.framework.dsl.IProtocolLayoutType;
-import org.jprotocol.framework.dsl.ProtocolMessage;
-import org.jprotocol.framework.dsl.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
 import org.jprotocol.framework.handler.IHandler;
 import org.jprotocol.framework.handler.IProtocolSniffer.InhibitException;
 import org.jprotocol.framework.handler.IProtocolState;

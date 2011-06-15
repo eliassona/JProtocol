@@ -8,6 +8,12 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.jprotocol.framework.core.IProtocolLayoutFactory;
+import org.jprotocol.framework.core.IProtocolLayoutType;
+import org.jprotocol.framework.core.IProtocolMessage;
+import org.jprotocol.framework.core.IllegalByteArrayValue;
+import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.framework.core.ProtocolMessage;
 import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.ProtocolState;
 

@@ -3,8 +3,8 @@ package org.jprotocol.protocol.tools
 import org.jprotocol.codegen.*
 import com.sjm.protocol.framework.dsl.*
 import org.jprotocol.codegen.NameFormatter
-
-import org.jprotocol.framework.dsl.MemoryLayoutFactory
+ 
+import org.jprotocol.framework.core.MemoryLayoutFactory
 /**
  * @author eliasa01
  *
