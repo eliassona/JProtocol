@@ -23,7 +23,7 @@ public class MyLeafProtocolB_Response_API extends AbstractDecoratedProtocolMessa
         this.parent = this;
     }
     static MyLeafProtocolB_Response_API_Test createTest() {
-        return new MyLeafProtocolB_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.protocols.MyLeafProtocolB().getRequestProtocol()));
+        return new MyLeafProtocolB_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.protocols.MyLeafProtocolB().getResponseProtocol()));
     }
     static MyLeafProtocolB_Response_API_Test createTest(StringBuilderProtocolMessage protocol) {
         return new MyLeafProtocolB_Response_API_Test(protocol);

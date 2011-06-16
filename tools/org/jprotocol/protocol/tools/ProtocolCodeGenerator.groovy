@@ -43,7 +43,7 @@ public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 	def additionalConstructors() {
 		 
 		block("static ${name}_Test createTest()") {
-			line "return new ${name}_Test(new StringBuilderProtocolMessage(new ${factory.class.name}().getRequestProtocol()))"
+			line "return new ${name}_Test(new StringBuilderProtocolMessage(new ${factory.class.name}().get${protocol.direction}Protocol()))"
 		}
 	
 	} 

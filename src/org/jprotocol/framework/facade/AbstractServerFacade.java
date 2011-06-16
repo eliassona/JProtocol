@@ -17,7 +17,8 @@ abstract public class AbstractServerFacade extends AbstractFacade {
 	public void allow(Request request) {
 		getMockery().allow(request.toString());
 	}
-	public void when(Request request) {
+	public ResponseAction when(Request request) {
+		return new ResponseAction(request, getMockery());
 //		hierarchy.mockery.addResponse(requestResponse, removeWhenMatched)
 	}
 	public void send(Response response) {

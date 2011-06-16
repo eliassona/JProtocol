@@ -209,8 +209,8 @@ abstract public class Handler<R extends AbstractDecoratedProtocolMessage, S exte
     	if (isLeaf()) {
 	        if (response == null) {
 	        	response = createResponse();
-	        	sendResponse(response);
 	        }
+        	sendResponse(response);
     	}
     }
     /**

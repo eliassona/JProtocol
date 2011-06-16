@@ -3,6 +3,7 @@ package org.jprotocol.example.protocols;
 import static org.jprotocol.quantity.Unit.hz;
 
 import org.jprotocol.framework.core.ProtocolLayoutFactory;
+import org.jprotocol.quantity.Unit;
 
 public class MyLeafProtocolA extends ProtocolLayoutFactory {
 	public MyLeafProtocolA() {
@@ -17,7 +18,10 @@ public class MyLeafProtocolA extends ProtocolLayoutFactory {
 			  )
 			)
 		  ), 
-		  response()
+		  response(
+			argShort("AShort", offset(0), realOffset(0), resolution(.5), Unit.A),
+			arg("AnEnum", size(1), offset(2), value("no", 0), value("yes", 1))
+		  )
 		);
 	}
 }	

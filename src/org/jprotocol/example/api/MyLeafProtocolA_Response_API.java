@@ -2,6 +2,7 @@ package org.jprotocol.example.api;
 import org.jprotocol.framework.api.*;
 import org.jprotocol.framework.core.*;
 import org.jprotocol.framework.test.*;
+import org.jprotocol.quantity.Quantity;
 import java.util.Iterator;
 import org.jprotocol.framework.test.ITestable;
 /**
@@ -23,7 +24,7 @@ public class MyLeafProtocolA_Response_API extends AbstractDecoratedProtocolMessa
         this.parent = this;
     }
     static MyLeafProtocolA_Response_API_Test createTest() {
-        return new MyLeafProtocolA_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.protocols.MyLeafProtocolA().getRequestProtocol()));
+        return new MyLeafProtocolA_Response_API_Test(new StringBuilderProtocolMessage(new org.jprotocol.example.protocols.MyLeafProtocolA().getResponseProtocol()));
     }
     static MyLeafProtocolA_Response_API_Test createTest(StringBuilderProtocolMessage protocol) {
         return new MyLeafProtocolA_Response_API_Test(protocol);
@@ -31,6 +32,103 @@ public class MyLeafProtocolA_Response_API extends AbstractDecoratedProtocolMessa
     public static class MyLeafProtocolA_Response_API_Test extends MyLeafProtocolA_Response_API {
         MyLeafProtocolA_Response_API_Test(StringBuilderProtocolMessage protocol) {
             super(protocol, true);
+        }
+    }
+    /**
+    * Argument: AShort
+    */
+    public AShort getAShort() {
+        return new AShort(parent, protocol);
+    }
+    public static class AShort extends AbstractDecoratedArgument {
+        public static final String AShort_ArgName = "AShort";
+        private final MyLeafProtocolA_Response_API parent;
+        AShort(MyLeafProtocolA_Response_API parent, IProtocolMessage protocol, int...indexes) {
+            super(protocol, "AShort", indexes);
+            this.parent = parent;
+        }
+        public int getBitValue() {
+            return _getBitValue(indexes);
+        }
+        public MyLeafProtocolA_Response_API setBitValue(int value) {
+            _setBitValue(value, indexes);
+            return parent;
+        }
+        public int getValue() {
+            return _getValue(indexes);
+        }
+        public MyLeafProtocolA_Response_API setValue(int value) {
+            _setValue(value + "", indexes);
+            return parent;
+        }
+        public Quantity getRealQuantity() {
+            return _getRealQuantity(indexes);
+        }
+        public MyLeafProtocolA_Response_API setRealQuantity(Quantity value) {
+            _setRealQuantity(value, indexes);
+            return parent;
+        }
+        public double getRealValue() {
+            return _getRealValue(indexes);
+        }
+        public MyLeafProtocolA_Response_API setRealValue(double value) {
+            _setRealValue(value, indexes);
+            return parent;
+        }
+    }
+    /**
+    * Argument: AnEnum
+    */
+    public AnEnum getAnEnum() {
+        return new AnEnum(parent, protocol);
+    }
+    public static class AnEnum extends AbstractDecoratedArgument {
+        public static final String AnEnum_ArgName = "AnEnum";
+        private final MyLeafProtocolA_Response_API parent;
+        AnEnum(MyLeafProtocolA_Response_API parent, IProtocolMessage protocol, int...indexes) {
+            super(protocol, "AnEnum", indexes);
+            this.parent = parent;
+        }
+        public int getBitValue() {
+            return _getBitValue(indexes);
+        }
+        public MyLeafProtocolA_Response_API setBitValue(int value) {
+            _setBitValue(value, indexes);
+            return parent;
+        }
+        public static interface AnEnum_Command extends APICommand<MyLeafProtocolA_Response_API> {
+        }
+        public static final int no = 0;
+        public static final String no_NAME = "no";
+        /**
+        */
+        public boolean isno() {
+            return _isValue("no", indexes);
+        }
+        /**
+        */
+        public MyLeafProtocolA_Response_API setno() {
+            _setValue("no", indexes);
+            return parent;
+        }
+        public static AnEnum_Command getno_Command() {
+            return new AnEnum_Command() { @Override public MyLeafProtocolA_Response_API execute(MyLeafProtocolA_Response_API target) { target.getProtocol().setValue("AnEnum", "no"); return target; }};
+        }
+        public static final int yes = 1;
+        public static final String yes_NAME = "yes";
+        /**
+        */
+        public boolean isyes() {
+            return _isValue("yes", indexes);
+        }
+        /**
+        */
+        public MyLeafProtocolA_Response_API setyes() {
+            _setValue("yes", indexes);
+            return parent;
+        }
+        public static AnEnum_Command getyes_Command() {
+            return new AnEnum_Command() { @Override public MyLeafProtocolA_Response_API execute(MyLeafProtocolA_Response_API target) { target.getProtocol().setValue("AnEnum", "yes"); return target; }};
         }
     }
     public <T extends APICommand<MyLeafProtocolA_Response_API>> MyLeafProtocolA_Response_API execute(T...commands) {
