@@ -20,8 +20,10 @@ abstract public class HandlerHierarchy extends AbstractDefaultHandlerHierarchy {
 		return upperHandlers( 
 			handler(createMyMiddleProtocolAHandler(new HandlerContext(this, MyRootProtocol_Request_API.RootSwitch.A, MyRootProtocol_Response_API.RootSwitchResp.A)), 
 			  handler(createMyLeafProtocolAHandler(new LeafHandlerContext(this, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A)))
+//			  handler(createMyLeafProtocolBHandler(new LeafHandlerContext(this, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B)))
 			),
 			handler(createMyMiddleProtocolBHandler(new HandlerContext(this, MyRootProtocol_Request_API.RootSwitch.B, MyRootProtocol_Response_API.RootSwitchResp.B)), 
+//			  handler(createMyLeafProtocolAHandler(new LeafHandlerContext(this, MyMiddleProtocolA_Request_API.MiddleSwitch.A, MyMiddleProtocolA_Response_API.MiddleSwitch.A))),
 			  handler(createMyLeafProtocolBHandler(new LeafHandlerContext(this, MyMiddleProtocolB_Request_API.MiddleSwitch.B, MyMiddleProtocolB_Response_API.MiddleSwitch.B)))
 			)
 		);
