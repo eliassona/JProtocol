@@ -82,5 +82,12 @@ public class ExampleTest {
 		assertEquals("The Response \"MyLeafProtocolA\" arguments did not match: expected \"AShort\"=\"4\" but was \"8\", expected \"AnEnum\"=\"yes\" but was \"no\", expected \"AString\"=\"fdsa\" but was \"asdf\"", tf.client.getErrorMessage());
 	}
 	
+	@Test
+	public void specializedMakeHeaderForMiddleA() {
+		tf.client.expect(tf.client.responses().MyMiddleProtocolA_Response_API().getMiddleSwitch().setA().getMiddleHeader().setZ());
+		tf.client.send(tf.client.requests().MyLeafProtocolA_Request_API());
+		assertTrue(tf.client.getErrorMessage(), tf.client.isOk());
+		
+	}
 	
 }
