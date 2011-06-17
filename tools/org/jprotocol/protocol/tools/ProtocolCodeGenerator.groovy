@@ -8,6 +8,7 @@ import org.jprotocol.framework.core.IProtocolLayoutType.Direction
 import org.jprotocol.framework.core.argiters.FindSwitchIter
 import org.jprotocol.framework.handler.Handler
 import org.jprotocol.framework.handler.Handler.Type
+import org.jprotocol.framework.logger.IProtocolLogger;
  
 public class ProtocolCodeGenerator extends AbstractAPIGenerator {
 
@@ -114,6 +115,7 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 		stdPackage()
 		line "import org.jprotocol.framework.facade.AbstractFacade"
 		line "import org.jprotocol.framework.handler.IFlushable"
+		line "import org.jprotocol.framework.logger.IProtocolLogger"
 		stdJavaDoc()
 		
 		block("public class $name") {
@@ -121,10 +123,13 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 			line "public final ServerFacade server"
 		
 			block("public ${name}()") {
+				line "this(new IProtocolLogger.NullProtocolLogger(), new IProtocolLogger.NullProtocolLogger())"
+			}
+			block("public ${name}(IProtocolLogger clientLogger, IProtocolLogger  serverLogger)") {
 				line "FlushableClientServer cf = new FlushableClientServer()"
 				line "FlushableClientServer sf = new FlushableClientServer()"
-				line "client = createClientFacade(cf)"
-				line "server = createServerFacade(sf)"
+				line "client = createClientFacade(cf, clientLogger)"
+				line "server = createServerFacade(sf, serverLogger)"
 				line "cf.setTarget(server)"
 				line "sf.setTarget(client)"
 			}
@@ -133,14 +138,14 @@ class DefaultTestFacadeGenerator extends JavaGenerator {
 			javadoc() {
 			 	comment "Override to provide a specialized version of ClientFacade"
 			}
-			block("protected ClientFacade createClientFacade(IFlushable flushable)") {
-				line "return new ClientFacade(flushable)"
+			block("protected ClientFacade createClientFacade(IFlushable flushable, IProtocolLogger logger)") {
+				line "return new ClientFacade(flushable, logger)"
 			}
 			javadoc() {
 			 	comment "Override to provide a specialized version of ServerFacade"
 			}
-			block("protected ServerFacade createServerFacade(IFlushable flushable)") {
-				line "return new ServerFacade(flushable)"
+			block("protected ServerFacade createServerFacade(IFlushable flushable, IProtocolLogger logger)") {
+				line "return new ServerFacade(flushable, logger)"
 			}
 		}
 		
