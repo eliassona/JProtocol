@@ -131,6 +131,27 @@ public class MyLeafProtocolA_Response_API extends AbstractDecoratedProtocolMessa
             return new AnEnum_Command() { @Override public MyLeafProtocolA_Response_API execute(MyLeafProtocolA_Response_API target) { target.getProtocol().setValue("AnEnum", "yes"); return target; }};
         }
     }
+    /**
+    * Argument: AString
+    */
+    public AString getAString() {
+        return new AString(parent, protocol);
+    }
+    public static class AString extends AbstractDecoratedArgument {
+        public static final String AString_ArgName = "AString";
+        private final MyLeafProtocolA_Response_API parent;
+        AString(MyLeafProtocolA_Response_API parent, IProtocolMessage protocol, int...indexes) {
+            super(protocol, "AString", indexes);
+            this.parent = parent;
+        }
+        public String getValue() {
+            return _getValueAsStr(indexes);
+        }
+        public MyLeafProtocolA_Response_API setValue(String value) {
+            _setValue(value, indexes);
+            return parent;
+        }
+    }
     public <T extends APICommand<MyLeafProtocolA_Response_API>> MyLeafProtocolA_Response_API execute(T...commands) {
         for (APICommand<MyLeafProtocolA_Response_API> c: commands) {
             c.execute(this);

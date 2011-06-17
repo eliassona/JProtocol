@@ -215,7 +215,7 @@ public class StringBuilderProtocolMessage implements IProtocolMessage {
         expectations.append("(\"");
         expectations.append(argType.getName());
         expectations.append("\" \"");
-        expectations.append(realProtocol.getValue(argType.getName()));
+        expectations.append(realProtocol.getValue(argType));
         expectations.append("\")");
     }
 

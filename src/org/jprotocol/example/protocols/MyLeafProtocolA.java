@@ -1,5 +1,7 @@
 package org.jprotocol.example.protocols;
 
+import static org.jprotocol.quantity.Quantity.quantity;
+import static org.jprotocol.quantity.Unit.byteSize;
 import static org.jprotocol.quantity.Unit.hz;
 
 import org.jprotocol.framework.core.ProtocolLayoutFactory;
@@ -20,7 +22,8 @@ public class MyLeafProtocolA extends ProtocolLayoutFactory {
 		  ), 
 		  response(
 			argShort("AShort", offset(0), realOffset(0), resolution(.5), Unit.A),
-			arg("AnEnum", size(1), offset(2), value("no", 0), value("yes", 1))
+			arg("AnEnum", size(1), offset(2), value("no", 0), value("yes", 1)),
+			argStr("AString", quantity(3, byteSize), quantity(100, byteSize))
 		  )
 		);
 	}
