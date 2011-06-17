@@ -36,10 +36,6 @@ import org.jprotocol.quantity.Quantity;
 abstract public class Handler<R extends AbstractDecoratedProtocolMessage, S extends AbstractDecoratedProtocolMessage> extends BaseHandler implements IUpperHandler, ILowerHandler {
     public enum Type {Client, Server}
     private static final Quantity DEFAULT_TIMEOUT = quantity(5, s);
-    private final static int responseDelay;
-    static {
-        responseDelay = Integer.valueOf(System.getProperty("edsl.simmock.responsedelay", "20"));
-    }
     private final static IProtocolSniffer nullSniffer = new NullProtocolSniffer(); 
     private final IProtocolSniffer sniffer;
     private final String upperHeaderReceiveFieldName;
