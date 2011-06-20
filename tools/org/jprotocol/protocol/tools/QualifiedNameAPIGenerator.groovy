@@ -1,5 +1,5 @@
 package org.jprotocol.protocol.tools
-
+ 
 import org.jprotocol.codegen.JavaGenerator
 import org.jprotocol.codegen.NameFormatter
 import org.jprotocol.framework.handler.IHandler
@@ -10,12 +10,12 @@ import org.jprotocol.framework.handler.IHandler
  * @param pack package of the class to generate
  * @param dir the base directory of the class to generate
  */
-class AbstractQualifiedNameAPIGenerator extends JavaGenerator {
+class QualifiedNameAPIGenerator extends JavaGenerator {
 	final names = []
-	AbstractQualifiedNameAPIGenerator(IHandler root, String name, String pack, String dir) {
-		super(pack, name)
+	QualifiedNameAPIGenerator(IHandler root, String name, String pack, String dir) {
+		super(pack, name) 
 		stdPackage()
-		line 'import com.sjm.protocol.framework.handler.QualifiedName'
+		line 'import org.jprotocol.framework.handler.QualifiedName'
 		stdJavaDoc()
 		block("public class $name") {
 			gen(root, null)
@@ -38,7 +38,7 @@ class AbstractQualifiedNameAPIGenerator extends JavaGenerator {
 		if (parent != null) {
 			String sv = parent.switchValueStrOf(h)
 			if (sv.length() > 0) {
-				block("public static final class ${NameFormatter.formatName(sv)}") {
+				block("public static final class ${NameFormatter.formatName(h.receiveType().getName() + "_" + sv)}") {
 					line(/public static final QualifiedName NAME = new QualifiedName("${h.getQualifiedName()}")/)
 					h.upperHandlers.each { uh ->
 						gen(uh, h)

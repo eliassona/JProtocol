@@ -32,4 +32,16 @@ public interface IProtocolSniffer {
 	class InhibitException extends Exception{
         // No impl
     }
+    
+    public static class NullProtocolSniffer implements IProtocolSniffer {
+
+		@Override
+		public IProtocolMessage sniff(IProtocolMessage protocol, IHandler handler) throws InhibitException {
+			return null;
+		}
+
+		@Override
+		public void sniffSend(IProtocolMessage protocol, IHandler handler) {
+		}
+    }
 }

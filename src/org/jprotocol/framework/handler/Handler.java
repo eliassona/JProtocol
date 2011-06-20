@@ -479,17 +479,7 @@ abstract public class Handler<R extends AbstractDecoratedProtocolMessage, S exte
         lowerHandler.send(p, this);
     }
     
-    private void doResponseDelay() {
-//        if (responseDelay <=0) {
-//            return;
-//        }
-//        try {
-//            Thread.sleep(responseDelay);
-//        } catch (InterruptedException e) {
-//            neverGetHere();
-//        }
-    }
- 
+  
     /** 
      * Override to provide implementation
      * @param p

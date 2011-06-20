@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.jprotocol.example.ClientQualifiedNames;
+import org.jprotocol.example.ServerQualifiedNames;
 import org.jprotocol.example.api.MyLeafProtocolA_Request_API;
 import org.jprotocol.example.api.MyLeafProtocolA_Request_API.Array;
 import org.jprotocol.example.api.MyLeafProtocolA_Response_API;
@@ -24,17 +26,17 @@ public class ExampleTest {
 	
 	@Test
 	public void expectSuccessA() {
-		tf.server.expect(tf.server.requests().MyLeafProtocolA_Request_API());
-		tf.client.expect(tf.client.responses().MyLeafProtocolA_Response_API());
-		tf.client.send(tf.client.requests().MyLeafProtocolA_Request_API());
+		tf.server.expect(tf.server.requests().MyLeafProtocolA_Request_API(), ServerQualifiedNames.MyMiddleProtocolA_Request_A.NAME);
+		tf.client.expect(tf.client.responses().MyLeafProtocolA_Response_API(), ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
+		tf.client.send(tf.client.requests().MyLeafProtocolA_Request_API(), ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
 		assertTrue(tf.server.getErrorMessage(), tf.server.isOk());
 		assertTrue(tf.client.getErrorMessage(), tf.client.isOk());
 	}
 	@Test
 	public void expectSuccessB() {
-		tf.server.expect(tf.server.requests().MyLeafProtocolB_Request_API());
-		tf.client.expect(tf.client.responses().MyLeafProtocolB_Response_API());
-		tf.client.send(tf.client.requests().MyLeafProtocolB_Request_API());
+		tf.server.expect(tf.server.requests().MyLeafProtocolB_Request_API(), ServerQualifiedNames.MyMiddleProtocolB_Request_B.NAME);
+		tf.client.expect(tf.client.responses().MyLeafProtocolB_Response_API(), ClientQualifiedNames.MyMiddleProtocolB_Response_B.NAME);
+		tf.client.send(tf.client.requests().MyLeafProtocolB_Request_API(), ClientQualifiedNames.MyMiddleProtocolB_Response_B.NAME);
 		assertTrue(tf.server.getErrorMessage(), tf.server.isOk());
 		assertTrue(tf.client.getErrorMessage(), tf.client.isOk());
 	}
@@ -48,15 +50,15 @@ public class ExampleTest {
 			a.getArrayInt().setBitValue(i);
 			i++;
 		}
-		tf.server.expect(expectedRequest);
-		tf.client.send(tf.server.requests().MyLeafProtocolA_Request_API());
+		tf.server.expect(expectedRequest, ServerQualifiedNames.MyMiddleProtocolA_Request_A.NAME);
+		tf.client.send(tf.server.requests().MyLeafProtocolA_Request_API(), ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
 		assertFalse(tf.server.getErrorMessage(), tf.server.isOk());
 		assertEquals("The Request \"MyLeafProtocolA\" arguments did not match:, expected \"ArrayInt\"=\"1\" but was \"0\", expected \"ArrayInt\"=\"2\" but was \"0\", expected \"ArrayInt\"=\"3\" but was \"0\", expected \"ArrayInt\"=\"4\" but was \"0\", expected \"ArrayInt\"=\"5\" but was \"0\", expected \"ArrayInt\"=\"6\" but was \"0\", expected \"ArrayInt\"=\"7\" but was \"0\", expected \"ArrayInt\"=\"8\" but was \"0\", expected \"ArrayInt\"=\"9\" but was \"0\"", tf.server.getErrorMessage());
 	}
 	
 	@Test
 	public void protocolAHasNotBeenReceived() {
-		tf.server.expect(tf.server.requests().MyLeafProtocolB_Request_API());
+		tf.server.expect(tf.server.requests().MyLeafProtocolB_Request_API(), ServerQualifiedNames.MyMiddleProtocolB_Request_B.NAME);
 		assertFalse(tf.server.getErrorMessage(), tf.server.isOk());
 		assertFalse(tf.server.getErrorMessage(), tf.server.isOk());
 	}
@@ -66,8 +68,8 @@ public class ExampleTest {
 		MyLeafProtocolA_Request_API request = tf.server.requests().MyLeafProtocolA_Request_API();
 		MyLeafProtocolA_Response_API response = tf.server.responses().MyLeafProtocolA_Response_API().getAShort().setRealValue(2).getAnEnum().setyes();
 		tf.server.when(request).thenRespond(response);
-		tf.client.expect(response);
-		tf.client.send(request);
+		tf.client.expect(response, ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
+		tf.client.send(request, ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
 		assertTrue(tf.client.getErrorMessage(), tf.client.isOk());
 	}
 	@Test
@@ -76,8 +78,8 @@ public class ExampleTest {
 		MyLeafProtocolA_Response_API realResponse = tf.server.responses().MyLeafProtocolA_Response_API().getAShort().setRealValue(4).getAnEnum().setno().getAString().setValue("asdf");
 		MyLeafProtocolA_Response_API specResponse = tf.server.responses().MyLeafProtocolA_Response_API().getAShort().setRealValue(2).getAnEnum().setyes().getAString().setValue("fdsa");
 		tf.server.when(request).thenRespond(realResponse);
-		tf.client.expect(specResponse);
-		tf.client.send(request);
+		tf.client.expect(specResponse, ServerQualifiedNames.MyMiddleProtocolA_Request_A.NAME);
+		tf.client.send(request, ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
 		assertFalse(tf.client.getErrorMessage(), tf.client.isOk());
 		assertEquals("The Response \"MyLeafProtocolA\" arguments did not match: expected \"AShort\"=\"4\" but was \"8\", expected \"AnEnum\"=\"yes\" but was \"no\", expected \"AString\"=\"fdsa\" but was \"asdf\"", tf.client.getErrorMessage());
 	}
@@ -85,7 +87,7 @@ public class ExampleTest {
 	@Test
 	public void specializedMakeHeaderForMiddleA() {
 		tf.client.expect(tf.client.responses().MyMiddleProtocolA_Response_API().getMiddleSwitch().setA().getMiddleHeader().setZ());
-		tf.client.send(tf.client.requests().MyLeafProtocolA_Request_API());
+		tf.client.send(tf.client.requests().MyLeafProtocolA_Request_API(), ClientQualifiedNames.MyMiddleProtocolA_Response_A.NAME);
 		assertTrue(tf.client.getErrorMessage(), tf.client.isOk());
 		
 	}
