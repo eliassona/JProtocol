@@ -12,3 +12,10 @@ Protocol APIs and default handlers are then generated from the DSLs.
 
 TBD... 
 
+
+<h2>How to build it</h2>
+Prerequisites
+JDK 1.6
+Gradle 1.0
+
+
