@@ -16,6 +16,11 @@ TBD...
 <h2>How to build it</h2>
 Prerequisites
 JDK 1.6
+Groovy 1.5.6
 Gradle 1.0
 
+
+
+Eclipse
+run 'gradle eclipse' to create eclipse .project and .classpath files if you want to work with eclipse
 
