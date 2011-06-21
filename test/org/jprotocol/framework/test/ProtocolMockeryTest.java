@@ -21,8 +21,8 @@ import org.jprotocol.framework.list.Expr;
 import org.jprotocol.framework.logger.IProtocolLogger;
 
 import org.jprotocol.quantity.Unit;
-import org.jprotocol.util.Contract;
-import org.jprotocol.util.Contract.ContractError;
+import org.jprotocol.util.DBC;
+import org.jprotocol.util.DBC.ContractError;
 
 public class ProtocolMockeryTest extends TestCase {
     public static final String CHILD1_PROTOCOL_NAME = "Child1";
@@ -65,7 +65,7 @@ public class ProtocolMockeryTest extends TestCase {
         } catch (ContractError e) {
         	return;
         }
-        Contract.neverGetHere();
+        DBC.neverGetHere();
     }
     
     public void testCorrectSniff() throws InhibitException {

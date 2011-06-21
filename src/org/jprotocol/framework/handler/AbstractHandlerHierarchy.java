@@ -1,6 +1,6 @@
 package org.jprotocol.framework.handler;
 import static org.jprotocol.framework.handler.HandlerDsl.root;
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 
 import java.io.IOException;
 

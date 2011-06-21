@@ -1,6 +1,6 @@
 package org.jprotocol.protocol.tools;
 
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 import junit.framework.TestCase;
 
 import org.jprotocol.framework.core.StringBuilderProtocolMessage;

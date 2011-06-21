@@ -1,7 +1,7 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.notEmpty;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.notEmpty;
+import static org.jprotocol.util.DBC.require;
 
 import java.util.List;
 

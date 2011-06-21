@@ -1,7 +1,7 @@
 package org.jprotocol.framework.dsl;
 
 import static org.jprotocol.quantity.Quantity.quantity;
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.ProtocolState;
 
 import org.jprotocol.quantity.Unit;
-import org.jprotocol.util.Contract.ContractError;
+import org.jprotocol.util.DBC.ContractError;
 
 
 class TestDBTFactory extends ProtocolLayoutFactory {

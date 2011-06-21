@@ -1,20 +1,20 @@
 package org.jprotocol.util;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.ensure;
-import static org.jprotocol.util.Contract.equalsFalse;
-import static org.jprotocol.util.Contract.equalsNull;
-import static org.jprotocol.util.Contract.equalsTrue;
-import static org.jprotocol.util.Contract.forAll;
-import static org.jprotocol.util.Contract.implies;
-import static org.jprotocol.util.Contract.inRange;
-import static org.jprotocol.util.Contract.invariant;
-import static org.jprotocol.util.Contract.neverGetHere;
-import static org.jprotocol.util.Contract.nonNegative;
-import static org.jprotocol.util.Contract.notEmpty;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
-import static org.jprotocol.util.Contract.underConstruction;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.ensure;
+import static org.jprotocol.util.DBC.equalsFalse;
+import static org.jprotocol.util.DBC.equalsNull;
+import static org.jprotocol.util.DBC.equalsTrue;
+import static org.jprotocol.util.DBC.forAll;
+import static org.jprotocol.util.DBC.implies;
+import static org.jprotocol.util.DBC.inRange;
+import static org.jprotocol.util.DBC.invariant;
+import static org.jprotocol.util.DBC.neverGetHere;
+import static org.jprotocol.util.DBC.nonNegative;
+import static org.jprotocol.util.DBC.notEmpty;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
+import static org.jprotocol.util.DBC.underConstruction;
 import static org.jprotocol.util.SyntacticSugar.containsSubString;
 import static org.jprotocol.util.SyntacticSugar.isEmptyString;
 import static org.jprotocol.util.SyntacticSugar.isForAll;
@@ -36,7 +36,7 @@ import junit.framework.TestCase;
 import org.hamcrest.Matcher;
 
 import org.jprotocol.util.SyntacticSugar;
-import org.jprotocol.util.Contract.ContractError;
+import org.jprotocol.util.DBC.ContractError;
 
 
 public class ContractTest extends TestCase 

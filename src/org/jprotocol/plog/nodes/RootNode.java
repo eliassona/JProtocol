@@ -1,6 +1,6 @@
 package org.jprotocol.plog.nodes;
 
-import static org.jprotocol.util.Contract.check;
+import static org.jprotocol.util.DBC.check;
 
 import java.awt.Color;
 import java.awt.Component;

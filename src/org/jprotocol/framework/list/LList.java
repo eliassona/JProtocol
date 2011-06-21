@@ -1,6 +1,6 @@
 package org.jprotocol.framework.list;
 
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 
  
 public class LList extends Expr {

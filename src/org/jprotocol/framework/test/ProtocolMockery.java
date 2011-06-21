@@ -1,9 +1,9 @@
 package org.jprotocol.framework.test;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.ensure;
-import static org.jprotocol.util.Contract.isNotNull;
-import static org.jprotocol.util.Contract.notNull;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.ensure;
+import static org.jprotocol.util.DBC.isNotNull;
+import static org.jprotocol.util.DBC.notNull;
 import static java.util.Collections.unmodifiableList;
 import static org.jprotocol.framework.test.StringProtocolUtil.argOf;
 import static org.jprotocol.framework.test.StringProtocolUtil.argsOf;

@@ -1,8 +1,8 @@
 package org.jprotocol.framework.handler;
 
-import static org.jprotocol.util.Contract.implies;
-import static org.jprotocol.util.Contract.notEmpty;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.implies;
+import static org.jprotocol.util.DBC.notEmpty;
+import static org.jprotocol.util.DBC.require;
 
 public final class QualifiedName {
 	public static final String SEPARATOR = "//"; 

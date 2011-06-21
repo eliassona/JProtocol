@@ -1,8 +1,8 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.neverGetHere;
-import static org.jprotocol.util.Contract.notNull;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.neverGetHere;
+import static org.jprotocol.util.DBC.notNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;

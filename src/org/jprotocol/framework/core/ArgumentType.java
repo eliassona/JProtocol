@@ -1,11 +1,11 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.implies;
-import static org.jprotocol.util.Contract.isNotNull;
-import static org.jprotocol.util.Contract.neverGetHere;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.implies;
+import static org.jprotocol.util.DBC.isNotNull;
+import static org.jprotocol.util.DBC.neverGetHere;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 
 import java.util.HashMap;
 import java.util.Map;

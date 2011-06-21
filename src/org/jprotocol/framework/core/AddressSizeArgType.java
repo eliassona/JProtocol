@@ -1,7 +1,7 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.neverGetHere;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.neverGetHere;
+import static org.jprotocol.util.DBC.require;
 
 import org.jprotocol.quantity.Unit;
 

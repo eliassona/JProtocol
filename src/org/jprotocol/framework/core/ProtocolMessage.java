@@ -1,12 +1,12 @@
 package org.jprotocol.framework.core;
 
 import static org.jprotocol.quantity.Quantity.quantity;
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.invariant;
-import static org.jprotocol.util.Contract.isNotNull;
-import static org.jprotocol.util.Contract.nonNegative;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.invariant;
+import static org.jprotocol.util.DBC.isNotNull;
+import static org.jprotocol.util.DBC.nonNegative;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 
 import java.util.ArrayList;
 import java.util.List;

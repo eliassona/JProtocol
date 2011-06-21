@@ -1,6 +1,6 @@
 package org.jprotocol.framework.core.argiters;
 
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.require;
 
 import java.util.ArrayList;
 import java.util.Arrays;

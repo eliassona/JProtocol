@@ -1,6 +1,6 @@
 package org.jprotocol.plog.gui;
 
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

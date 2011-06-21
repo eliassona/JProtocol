@@ -1,10 +1,10 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.ensure;
-import static org.jprotocol.util.Contract.nonNegative;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.ensure;
+import static org.jprotocol.util.DBC.nonNegative;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 import static java.util.Arrays.copyOf;
 import static org.jprotocol.framework.core.BitPattern.createBitPattern;
 

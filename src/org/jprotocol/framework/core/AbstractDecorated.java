@@ -1,6 +1,6 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.*;
+import static org.jprotocol.util.DBC.*;
 
 
 public class AbstractDecorated {

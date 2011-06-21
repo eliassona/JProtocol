@@ -1,9 +1,9 @@
 package org.jprotocol.framework.handler;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.isNull;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.isNull;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 
 import org.jprotocol.framework.core.AbstractDecoratedProtocolMessage;
 import org.jprotocol.framework.core.IProtocolLayoutFactory;

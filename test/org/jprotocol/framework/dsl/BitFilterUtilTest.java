@@ -8,7 +8,7 @@ import static org.jprotocol.framework.core.BitFilterUtil.offset;
 import static org.jprotocol.framework.core.BitFilterUtil.size;
 import junit.framework.TestCase;
 
-import org.jprotocol.util.Contract.ContractError;
+import org.jprotocol.util.DBC.ContractError;
 
 
 public class BitFilterUtilTest extends TestCase

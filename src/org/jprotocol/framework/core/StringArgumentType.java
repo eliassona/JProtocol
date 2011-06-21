@@ -1,6 +1,6 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.neverGetHere;
+import static org.jprotocol.util.DBC.neverGetHere;
 
 import org.jprotocol.quantity.Quantity;
 import org.jprotocol.quantity.Unit;

@@ -1,7 +1,7 @@
 package org.jprotocol.framework.core;
 
-import static org.jprotocol.util.Contract.check;
-import static org.jprotocol.util.Contract.isNotNull;
+import static org.jprotocol.util.DBC.check;
+import static org.jprotocol.util.DBC.isNotNull;
 
 import org.jprotocol.framework.core.argiters.ArgTypeOfIter;
 

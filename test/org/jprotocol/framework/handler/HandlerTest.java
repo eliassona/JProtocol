@@ -26,7 +26,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import org.jprotocol.quantity.Quantity;
-import org.jprotocol.util.Contract.ContractError;
+import org.jprotocol.util.DBC.ContractError;
 
 
 abstract public class HandlerTest {

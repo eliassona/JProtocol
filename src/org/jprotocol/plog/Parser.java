@@ -2,7 +2,7 @@ package org.jprotocol.plog;
 
 import static org.jprotocol.framework.handler.Handler.Type.Client;
 import static org.jprotocol.framework.handler.Handler.Type.Server;
-import static org.jprotocol.util.Contract.check;
+import static org.jprotocol.util.DBC.check;
 
 import java.io.BufferedReader;
 import java.io.File;

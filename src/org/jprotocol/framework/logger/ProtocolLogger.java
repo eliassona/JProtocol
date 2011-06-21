@@ -1,8 +1,8 @@
 package org.jprotocol.framework.logger;
 
-import static org.jprotocol.util.Contract.neverGetHere;
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.neverGetHere;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 
 import java.io.BufferedWriter;
 import java.io.File;

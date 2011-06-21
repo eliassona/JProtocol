@@ -1,7 +1,7 @@
 package org.jprotocol.framework.core.argiters;
 
-import static org.jprotocol.util.Contract.notNull;
-import static org.jprotocol.util.Contract.require;
+import static org.jprotocol.util.DBC.notNull;
+import static org.jprotocol.util.DBC.require;
 
 import org.jprotocol.framework.core.ArgTypeOffsetProxy;
 import org.jprotocol.framework.core.IArgumentType;
