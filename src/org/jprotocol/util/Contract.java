@@ -13,23 +13,13 @@ import org.hamcrest.StringDescription;
 
 public class Contract
 {    
-    // --------------------------------------------
-    // Contract programming interfaces.
-    // --------------------------------------------
     
-    /**
-     * Used to define conditions when formulation a contract, that when violated
-     * supports automatic logging.
-     */
     public interface IContractCondition
     {
         public boolean condition(); 
         public String description();
     }
 
-    /**
-     * The error class that is thrown in case of contract violations
-     */
     @SuppressWarnings("serial")
 	public static final class ContractError extends AssertionError
     {
@@ -44,39 +34,11 @@ public class Contract
     // Contract Programming primitive definitions.
     // --------------------------------------------
     
-    /**
-     * Use this to define pre-conditions based on a boolean value that is 
-     * required to be valid when entering a method. 
-     * <p>
-     * This call is delegated to get a predefined description during the 
-     * logging of a require contract violation. Use that variant directly when 
-     * possible, to get maximum support for good readability and logging.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require(isInRage(value, rangeMin, rangeMax));
-     * require(isInRage(value, rangeMin, rangeMax), "Value not in range [", rangeMin, "-", "rangeMax]");
-     * </pre>
-     * @see #require(IContractCondition, Object...)
-     */
     public static void require(boolean requireCondition, final Object... description)
     {
         require(equalsTrue(requireCondition), description);
     }
 
-    /**
-     * Used this to define pre-conditions that are based on a ContractCondition 
-     * required to be valid when entering a method. The contract condition are
-     * logged in case of a violation. If needed you may add extra logging in 
-     * addition to the default.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require(inRange(value, rangeMin, rangeMax));
-     * require(inRange(value, rangeMin, rangeMax), "Optional logging, eg. this=", this);
-     * </pre>
-     * @see #require(boolean, Object...)
-     */
     public static void require(final IContractCondition contract, final Object... description)
     {
         if (SyntacticSugar.isNull(contract) || !contract.condition())
@@ -85,19 +47,6 @@ public class Contract
         }
     }
 
-    /**
-     * Used this to define pre-conditions that are based on Matchers.
-     * Objects are required to fulfill the Matcher when entering a method. 
-     * The contract condition are logged in case of a violation. 
-     * If needed you may add extra logging in addition to the default.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require(value, is(not(nullValue()));
-     * require(value, is(not(nullValue(), "Must provide value");
-     * </pre>
-     * @see #require(boolean, Object...)
-     */
     public static void require(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
         if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
@@ -106,34 +55,11 @@ public class Contract
         }
     }
     
-    /**
-     * Use this to define post-conditions that is ensured to be valid. 
-     * <p>
-     * This call is delegated to get a predefined description during the logging 
-     * of a ensure contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * ensure(isInRage(value, rangeMin, rangeMax));
-     * ensure(isInRage(value, rangeMin, rangeMax), "Value not in range [", rangeMin, "-", "rangeMax]");
-     * </pre>
-     * @see #ensure(IContractCondition, Object...)
-     */
     public static void ensure(boolean ensureCondition, final Object... description)
     {
         ensure(equalsTrue(ensureCondition), description);
     }
     
-    /**
-     * Used to define post-conditions, required to be valid at exit-time.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * ensure(inRange(value, rangeMin, rangeMax));
-     * ensure(inRange(value, rangeMin, rangeMax), "Optional logging, eg. this=", this);
-     * </pre>
-     * @see #ensure(boolean, Object...)
-     */
     public static void ensure(final IContractCondition contract, final Object... description)
     {
         if (SyntacticSugar.isNull(contract) || !contract.condition())
@@ -142,15 +68,6 @@ public class Contract
         }
     }
 
-    /**
-     * Used to define post-conditions, required to be valid at exit-time.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * ensure(value, is(notNullValue());
-     * </pre>
-     * @see #ensure(boolean, Object...)
-     */
     public static void ensure(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
         if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
@@ -159,55 +76,11 @@ public class Contract
         }
     }
     
-    /**
-     * Used to define invariants for a class, required to be valid at the end 
-     * of construction, and at enter and exit of a public method.
-     * <p>
-     * This call is delegated to get a predefined description during the logging 
-     * of a violation. 
-     * @see #invariant(IContractCondition, Object...) (includes an example)
-     */
     public static void invariant(boolean invariantCondition, final Object... description)
     {
         invariant(equalsTrue(invariantCondition), description);
     }
 
-    /**
-     * Used to define invariants for a class, required to be valid at the end 
-     * of construction, and during entering and exiting of all public methods.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * public class Data
-     * {
-     *    private static final int MIN = 1;
-     *    private static final int MAX = 12;
-     *    private int myData;
-     * 
-     *    public Data()
-     *    {
-     *       myData = 1;
-     *  
-     *       invariant(isValid());
-     *    }
-     * 
-     *    public void setBigData(final int theData)
-     *    {
-     *       invariant(isValid());
-     *       require( theData > 7, "Expected big data, i.e > 7");
-     *    
-     *       myData = theData
-     *    
-     *       invariant(isValid());
-     *     }
-     * 
-     *     public boolean isValid()
-     *     {
-     *       return isInRange(myData, MAX, MIN);
-     *     }
-     * }</pre>
-     * @see #invariant(boolean, Object...)
-     */
     public static void invariant(final IContractCondition contract, final Object... description)
     {
         if (SyntacticSugar.isNull(contract) || !contract.condition())
@@ -224,34 +97,11 @@ public class Contract
         }
     }
     
-    /**
-     * Used to check a condition in the middle of a set of statements, in contrast 
-     * to require, ensure and invariant contracts. The need for this construct may
-     * indicate that a better solution would be to refactor using "extract method",
-     * and use real contract statements in that method.
-     * <p>
-     * The call is delegated to get a predefined description during the logging 
-     * of a violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    check( retValue < 0, "Query returned error condition.");</pre>
-     * @see #check(IContractCondition, Object... )
-     */
     public static void check(boolean checkCondition, final Object... description)
     {
         check(equalsTrue(checkCondition), description);
     }
 
-    /**
-     * Used to check a condition in the middle of a set of statements, in contrast 
-     * to require, ensure and invariant contracts. The need for this construct may
-     * indicate that a better solution would be to refactor using "extract method",
-     * and use real contract statements in that method.
-     * <pre>
-     *    check( retValue < 0, "Query returned error condition."); </pre>
-     * @see #check(boolean, Object... )
-     */
     public static void check(final IContractCondition contract, final Object... description)
     {
         if (SyntacticSugar.isNull(contract) || !contract.condition())
@@ -268,58 +118,12 @@ public class Contract
         }
     }
     
-    /**
-     * This type of contract is used to guard illegal / non-expected conditions
-     * and execution paths.
-     * <p>
-     * <b>Example #1:</b> 
-     * <pre>
-     * if (query1())
-     * { ... }
-     * else if(query2())
-     * { ... }
-     * else
-     * {
-     *    <b>neverGetHere("The queries query1 and query2 were supposed to be complementary!");</b> 
-     * }</pre>
-     * <p>
-     * <b>Example #2:</b>
-     * <pre>
-     * switch (month) 
-     * {
-     *       case 1:  System.out.println("January"); break;
-     *       case 2:  System.out.println("February"); break;
-     *       case 3:  System.out.println("March"); break;
-     *       case 4:  System.out.println("April"); break;
-     *       case 5:  System.out.println("May"); break;
-     *       case 6:  System.out.println("June"); break;
-     *       case 7:  System.out.println("July"); break;
-     *       case 8:  System.out.println("August"); break;
-     *       case 9:  System.out.println("September"); break;
-     *       case 10: System.out.println("October"); break;
-     *       case 11: System.out.println("November"); break;
-     *       case 12: System.out.println("December"); break;
-     *       default: <b>neverGetHere("Invalid month.")</b>;break;
-     * }</pre>
-     * </tt>
-     */
     public static void neverGetHere(final Object... description) 
     {
         final String contractDescription = "This code-path was never expected to be executed. ";
         throwContractViolationException(NEVERGETHERE_LABEL, contractDescription, description);
     }
 
-    /**
-     * This type of "contract" is used to mark a point that is under construction. Code with 
-     * this contract is not supposed to be released. It is ment to be used instead
-     * of a neverGetHere-contract, for the purpose of showing that a pice of code is not ready
-     * to be tested - i.e, no need to create a failure report. 
-     * <p>
-     * Tip: Code-spots under construction
-     * is easily found by a quick search for references to this method.
-     * <p>
-     * @param description - eg the reason and the developers name writing this "contract".
-     */
     public static void underConstruction(final Object... description) 
     {
         final String contractDescription = "You have reached code that is under construction, and not yet ready to be tested. ";
@@ -327,21 +131,8 @@ public class Contract
     }
     
     
-    // --------------------------------------------
-    // Contract programming helper methods.
-    // --------------------------------------------
     
     
-    /**
-     * When there is a need to verify a condition only if another conditions is true.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( implies(givenIsInitiated(), thenVerifyStatus()) );
-     * </pre>
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-     */
     public static boolean implies(
     		final boolean impliesCondition, 
     		final boolean condition)
@@ -350,33 +141,11 @@ public class Contract
     	return impliesCondition ? condition : doNotEvaluateCondition;
     }
     
-    /**
-     * When there is a need to verify that a reference is null.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * ensure( isNull(myDataToBeCleared) );
-     * </pre>
-     * @see #equalsNull()
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-     */
     public static <T> boolean isNull(final T ref)
     {
     	return (null == ref);
     }
 
-    /**
-     * When there is a need to verify that a reference is null. The basic
-     * logging is handled for you, but you may supply additional things to log
-     * in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * ensure( equalsNull(myDataToBeCleared) );
-     * </pre>
-     * @see #isNull()
-    */
     public static <T> IContractCondition equalsNull(final T ref)
     {
         final IContractCondition condition;
@@ -396,33 +165,11 @@ public class Contract
         return condition;
     }
     
-    /**
-     * When there is a need to verify that a reference isn't null.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isNotNull(myData), "Expected myData to refere to an instance, not null." );
-     * </pre>
-     * @see #notNull()
-     *
-     * @Deprecated Use equivalent in SyntaticSugar.java
-    */
     public static <T> boolean isNotNull(final T ref)
     {
     	return (null != ref);
     }
     
-    /**
-     * When there is a need to verify that a reference isn't null. The basic
-     * logging is handled for you, but you may supply additional things to log
-     * in case of a contract violation.     
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( notNull(myData) );
-     * </pre>
-     * @see #isNotNull()
-     */
     public static <T> IContractCondition notNull(final T ref)
     {
         final IContractCondition condition;
@@ -439,41 +186,7 @@ public class Contract
         return condition;
     }
 
-    // ------------------------------------
-    // Verifying that a value is non-negative.
-    // ------------------------------------
-    
-//    /**
-//     * When there is a need to test for whether a value is non-negative or not.
-//     * <p>
-//     * <b>Example:</b> 
-//     * <pre>
-//     * require( isNonNegative(myValue), "Expected myValue to be non-negative, not: ", myValue );
-//     * </pre>
-//     * @see #nonNegative(int)
-//     * @see #nonNegative(double)
-//     * @see #isNonNegative(double)
-//     * 
-//     * @Deprecated Use equivalent in SyntaticSugar.java
-//     */
-//    public static boolean isNonNegative(final int value)
-//    {
-//        return (0 <= value);
-//    }
 
-    /**
-     * When there is a need to test for whether a a value is non-negative or not.
-     * The basic logging is handled for you, but you may supply additional things 
-     * to log in case of a contract violation.     
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( nonNegative(myValue) );
-     * </pre>
-     * @see #isNonNegative(int)
-     * @see #nonNegative(double)
-     * @see #isNonNegative(double)
-     */
     public static IContractCondition nonNegative(final int value)
     {
         final IContractCondition condition;
@@ -491,19 +204,6 @@ public class Contract
     }
 
 
-    /**
-     * When there is a need to test for whether a a value is non-negative or not.
-     * The basic logging is handled for you, but you may supply additional things 
-     * to log in case of a contract violation.     
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( nonNegative(myValue) );
-     * </pre>
-     * @see #nonNegative(int)
-     * @see #isNonNegative(int)
-     * @see #isNonNegative(double)
-     */
     public static IContractCondition nonNegative(final double value)
     {
         final IContractCondition condition;
@@ -521,24 +221,6 @@ public class Contract
     }
 
     
-    // -------------------------------------------
-    // Testing if a value is in a specific range.
-    // -------------------------------------------
-    
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>int</code>) or not.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isInRange(myIntValue, 0, 100) );
-     * </pre>
-     * @see #inRange(int)
-     * @see #isInRange(double)
-     * @see #inRange(double)
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-     */
     public static boolean isInRange(final int value, final int rangeMin, final int rangeMax)
     {
         final boolean notBellow = (value >= rangeMin);
@@ -546,21 +228,6 @@ public class Contract
         return notBellow && notAbove;
     }
 
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>int</code>) or not.
-     * <p>
-     * The basic logging is handled for you, but you may supply additional things 
-     * to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( inRange(myIntValue, 0, 100) );
-     * </pre>
-     * @see #isInRange(int)
-     * @see #isInRange(double)
-     * @see #inRange(double)
-     */
     public static IContractCondition inRange(final int value, final int rangeMin, final int rangeMax)
     {
         final boolean notBellow = (value >= rangeMin);
@@ -581,20 +248,6 @@ public class Contract
     }
 
     
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>double</code>) or not.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isInRange(myIntValue, 0, 100) );
-     * </pre>
-     * @see #isInRange(int)
-     * @see #inRange(int)
-     * @see #inRange(double)
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-    */
     public static boolean isInRange(final double value, final double rangeMin, final double rangeMax)
     {
         final boolean notBellow = (value >= rangeMin);
@@ -602,21 +255,6 @@ public class Contract
         return notBellow && notAbove;
     }
             
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>double</code>) or not.
-     * <p>
-     * The basic logging is handled for you, but you may supply additional things 
-     * to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( inRange(myDoubleValue, -1.5, 3.14) );
-     * </pre>
-     * @see #isInRange(int)
-     * @see #inRange(int)
-     * @see #isInRange(double)
-     */
     public static IContractCondition inRange(final double value, final double rangeMin, final double rangeMax)
     {
         final boolean notBellow = (value >= rangeMin);
@@ -636,25 +274,6 @@ public class Contract
         return condition;
     }
     
-    // ------------------------------------
-    // Testing if a value is non-empty.
-    // ------------------------------------
-    
-    /**
-     * When there is a need to test a collection for non-emptyness...
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( isNotEmpty(getMyCollection()), "Expected a non-empty collection." );
-     * <p>
-     * @see #notEmpty(Collection)
-     * @see #isNotEmpty(String)
-     * @see #notEmpty(String)
-     * @see #isNotEmpty(Object[])
-     * @see #notEmpty(Object[])
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-     */
     public static boolean isNotEmpty(final Collection<?> collection)
     {
         boolean isNotEmpty = false;
@@ -667,22 +286,6 @@ public class Contract
         return isNotEmpty;
     }
 
-    /**
-     * When there is a need to test a collection for non-emptyness...
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.     
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( notEmpty(getMyCollection()) );
-     * <p>
-     * @see #isNotEmpty(Collection)
-     * @see #isNotEmpty(String)
-     * @see #notEmpty(String)
-     * @see #isNotEmpty(Object[])
-     * @see #notEmpty(Object[])
-     */
     public static IContractCondition notEmpty(final Collection<?> collection)
     {
         final IContractCondition condition;
@@ -701,22 +304,6 @@ public class Contract
 
     
 
-    /**
-     * When there is a need to test a string for non-emptyness. Null is also 
-     * considered beeing a failure.
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( isNotEmpty(getSessionId()), "Expected a non-empy session id." );
-     * <p>
-     * @see #isNotEmpty(Collection)
-     * @see #notEmpty(Collection)
-     * @see #notEmpty(String)
-     * @see #isNotEmpty(Object[])
-     * @see #notEmpty(Object[])
-     * 
-     * @Deprecated Use equivalent in SyntaticSugar.java
-     */
     public static boolean isNotEmpty(final String s)
     {
         boolean isNotEmpty = false;
@@ -729,22 +316,6 @@ public class Contract
         return isNotEmpty;
     }
 
-    /**
-     * When there is a need to test for non-emptyness...
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( notEmpty(getSessionId()) );
-     * <p>
-     * @see #isNotEmpty(Collection)
-     * @see #notEmpty(Collection)
-     * @see #isNotEmpty(String)
-     * @see #isNotEmpty(Object[])
-     * @see #notEmpty(Object[])
-     */
     public static IContractCondition notEmpty(final String s)
     {
         final IContractCondition condition;
@@ -761,22 +332,6 @@ public class Contract
         return condition;
     }
     
-    /**
-     * When there is a need to test a "farmer-array" for non-emptyness...
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( notEmpty(getFarmerArray()) );
-     * <p>
-     * @see #isNotEmpty(Collection)
-     * @see #notEmpty(Collection)
-     * @see #isNotEmpty(String)
-     * @see #notEmpty(String)
-     * @see #isNotEmpty(Object[])
-     */
     public static <T> IContractCondition notEmpty(final T[] objArr)
     {
         final IContractCondition condition;
@@ -794,22 +349,6 @@ public class Contract
         return condition;
     }
 
-    /**
-     * When there is a need to test a "farmer-array" for non-emptyness...
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <p>
-     * require( notEmpty(getFarmerArray()) );
-     * <p>
-     * @see #isNotEmpty(Collection)
-     * @see #notEmpty(Collection)
-     * @see #isNotEmpty(String)
-     * @see #notEmpty(String)
-     * @see #isNotEmpty(Object[])
-     */
     public static IContractCondition notEmpty(final double[] doubleArr)
     {
         final IContractCondition condition;
@@ -828,20 +367,6 @@ public class Contract
     }
 
 
-    // ------------------------------------
-    // Testing if a value is true or false.
-    // ------------------------------------    
-    
-    /**
-     * When there is a need to test if a value is true. It is provided mostly 
-     * for the purpose of converting a <code>boolean</code>-based contract to a 
-     * <code>ContractCondition</code> based contract.
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * @see #equalsFalse()
-     */
     public static IContractCondition equalsTrue(final boolean value)
     {
         final IContractCondition condition;
@@ -859,14 +384,6 @@ public class Contract
     }
 
 
-    /**
-     * When there is a need to test if a value is false.
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * @see #equalsTrue(boolean)
-     */
     public static IContractCondition equalsFalse(final boolean value)
     {
         final IContractCondition condition;
@@ -884,19 +401,6 @@ public class Contract
     }
 
     
-    /**
-     * When there is a need to verify a given condition for all elements in a 
-     * collection.
-     * <p>
-     * The basic logging is handled for you, but you may supply additional 
-     * things to log in case of a contract violation.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    ensure( forAll(myErrorLogCollection, isNotNull()) );
-     * </pre>
-     * @see #isForAll()
-     */
     public static IContractCondition forAll(final Collection<?> collection, final Comparable<?> forAllCondition)
     {
         final IContractCondition contractCondition;
@@ -925,30 +429,11 @@ public class Contract
 
     
     
-    // *************************************************************************
-    // *************************************************************************
-    // Public helper methods
-    // *************************************************************************
-    // *************************************************************************
-
- 
-    
-    /**
-     * Getter for a statically created success condition. Use this when you
-     * want to define your own conditions.
-     * 
-     * @see #createContractCondition(boolean, string)
-     */
     public static IContractCondition getSuccessContractCondition()
     {
         return SUCCESS_CONDITION;
     }
    
-    /**
-     * Factory method for creating your own contract conditions.
-     * 
-     * @see #getSuccessContractCondition() 
-     */
     public static IContractCondition createContractCondition(
             final boolean condition, 
             final String description)
@@ -977,13 +462,6 @@ public class Contract
         
         return new ContractCondition(condition, description);    
     }
-
-    
-    // *************************************************************************
-    // *************************************************************************
-    // Private helper methods
-    // *************************************************************************
-    // *************************************************************************    
 
     
     private static void throwContractViolationException(
@@ -1019,7 +497,6 @@ public class Contract
         throwContractViolationException(label, description.toString(), additionalValues);
     }
 
-    // Used by contracts without conditions.
     private static void throwContractViolationException(
             final String contractLabel, 
             final String contract, 
@@ -1171,11 +648,6 @@ public class Contract
     }
     
 
-    // *************************************************************************
-    // *************************************************************************
-    // Private fields.
-    // *************************************************************************
-    // *************************************************************************         
     
     // Texts to be logged.
     private static final String CONTRACT_VIOLATION      = " contract violation. ";
