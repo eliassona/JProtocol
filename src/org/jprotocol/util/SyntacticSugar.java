@@ -9,24 +9,13 @@ package org.jprotocol.util;
 
 import java.util.*;
 
-/**
- * SyntacticSugar - a pragmatic way to improve readability. 
- * (See Matchers from the hamcrest library for more options.)
- * 
- */
 public class SyntacticSugar {
 
-    // **********************
-    // *** OPERATOR LOGIC ***
-    // **********************
     
     public static boolean not(final boolean condition) {
         return (! condition);
     }
 
-    // ************
-    // *** NULL ***
-    // ************
 
     public static <T> boolean isNull(final T ref) {
         return (null == ref);
@@ -48,14 +37,6 @@ public class SyntacticSugar {
     // *** ARITHMETICS ***
     // *******************
     
-    /**
-     * When there is a need to test for whether a a value is non-negative or not.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isNonNegative(myValue), "Expected myValue to be non-negative, not: ", myValue);
-     * </pre>
-     */
     public static boolean isNonNegative(final double value) {
         return (0.0 <= value);
     }
@@ -65,30 +46,12 @@ public class SyntacticSugar {
     }
     
     
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>int</code>) or not.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isInRange(myIntValue, 0, 100) );
-     * </pre>
-     */
     public static boolean isInRange(final int value, final int rangeMin, final int rangeMax) {
         final boolean notBellow = (value >= rangeMin);
         final boolean notAbove  = (value <= rangeMax);
         return notBellow && notAbove;
     }
   
-    /**
-     * When there is a need to test for whether a value is in a range 
-     * (<code>double</code>) or not.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( isInRange(myIntValue, 0, 100) );
-     * </pre>
-    */
     public static boolean isInRange(final double value, final double rangeMin, final double rangeMax) {
         final boolean notBellow = (value >= rangeMin);
         final boolean notAbove  = (value <= rangeMax);
@@ -100,9 +63,6 @@ public class SyntacticSugar {
     // *** EMPTY ***
     // *************
     
-    /**
-     * When there is a need to test a "farmer-array" for non-emptyness...
-     */
     public static <T> boolean isNotEmpty(final T[] objArr) {
         boolean isNotEmpty = false;
         
@@ -113,9 +73,6 @@ public class SyntacticSugar {
         return isNotEmpty;
     }
     
-    /**
-     * When there is a need to test a "farmer-array" of doubles for non-emptyness...
-     */
     public static boolean isNotEmpty(final double[] doubleArr) {
         boolean isNotEmpty = false;
         
@@ -126,9 +83,6 @@ public class SyntacticSugar {
         return isNotEmpty;
     }
     
-    /**
-     * When there is a need to test a collection for non-emptyness...
-     */
     public static boolean isNotEmpty(final Collection<?> collection) {
         boolean isNotEmpty = false;
         
@@ -140,9 +94,6 @@ public class SyntacticSugar {
     }
     
     
-    /**
-     * When there is a need to test a string for non-emptyness. Null is also 
-     */
     public static boolean isNotEmpty(final String s) {
         boolean isNotEmpty = false;
         
@@ -153,15 +104,6 @@ public class SyntacticSugar {
         return isNotEmpty;
     }
     
-    /**
-     * Helper factory method to be used with e.g. <code>forAll(...)</code> in case you want to 
-     * make sure a collection does contain only non-empty strings.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    ensure( forAll(myErrorLogCollection), <b>isNonEmptyString()</b> );
-     * </pre>
-     */    
     public static Comparable<String> isNonEmptyString()
     {
         final Comparable<String> condition = new Comparable<String>()
@@ -182,17 +124,6 @@ public class SyntacticSugar {
         return condition;        
     }
     
-    /**
-     * Helper factory method to be used with <code>forAll(...)</code> in case you want to make
-     * sure a collection does contain only empty strings.
-     * <p> 
-     * (Utilizes the fact that java.lang.String implements the Comparable ifc.)
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    ensure( forAll(myClearedErrorLogCollection), <b>isEmptyString()</b> );
-     * </pre>
-     */    
     public static Comparable<String> isEmptyString() {
         final String conditionEmptyString = "";
         return conditionEmptyString;        
@@ -200,18 +131,6 @@ public class SyntacticSugar {
 
     
     
-    // *************
-    // *** OTHER ***
-    // *************
-    
-    /**
-     * When there is a need to verify a condition only if another conditions is true.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     * require( implies(givenIsInitiated(), thenVerifyStatus()) );
-     * </pre>
-     */
     public static boolean implies(
             final boolean impliesCondition, 
             final boolean condition) {
@@ -220,16 +139,6 @@ public class SyntacticSugar {
     }
     
     
-    /**
-     * When there is a need to verify a given condition for all elements in a 
-     * collection.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    if ( isForAll(myErrorLogCollection), isNotNull() ) ...;
-     * </pre>
-     * <p>
-     */
     public static boolean isForAll(final Collection<?> collection, final Comparable<?> condition)
     {
         final boolean resultForAllElements;
@@ -248,17 +157,10 @@ public class SyntacticSugar {
         return resultForAllElements;
     }
     
-    /**
-     * Helper method that converts a boolean value to an int compatible with the
-     * Comparable ifc.
-     */
     public static int analyzeConditionResult(final boolean conditionResult) {
         return conditionResult ? CONDITION_IS_OK : CONDITION_IS_NOT_OK;
     }
     
-    /**
-    * Utility method for concatenation String ellipsis arguments.
-    */
     public static String concatenate(final Object... descriptions) {
         // No descriptions (or if somebody explicitly sends in "null"...) 
         if (isNull(descriptions) || descriptions.length < 1) {
@@ -281,15 +183,6 @@ public class SyntacticSugar {
         }
     }
     
-    /**
-     * Helper factory method to be used with e.g. <code>forAll(...)</code> in case you want to make
-     * sure a collection does not contain null elements.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    if ( isForAll(myErrorLogCollection), <b>isNotNull()</b> ) ...;
-     * </pre>
-     */    
 	@SuppressWarnings("rawtypes")
 	public static Comparable isNotNull() {
         final Comparable condition = new Comparable() {
@@ -303,16 +196,6 @@ public class SyntacticSugar {
     }    
     
 
-    /**
-     * Helper factory method to be used with <code>forAll(...)</code> in case you want to 
-     * make sure a collection only contains strings, where all strings includes 
-     * a specific substring.
-     * <p>
-     * <b>Example:</b> 
-     * <pre>
-     *    ensure( forAll(myErrorLogCollection), <b>containsSubString("Success")</b> );
-     * </pre>
-      */
 	@SuppressWarnings("rawtypes")
 	public static Comparable containsSubString(final String substr) {
         final Comparable<String> condition = new Comparable<String>() {
@@ -334,11 +217,9 @@ public class SyntacticSugar {
     }
     
     public static void nothing() {
-        // This method is of course empty (on behalf of Guran)
     }
     
     public static void doNothing() {
-        // This method is of course empty
     }
     
     public static void doNothing(final String reason) {
@@ -382,9 +263,6 @@ public class SyntacticSugar {
         return string == null || string.trim().isEmpty();
     }
     
-    // *******************************************************************************
-    // *** Private *******************************************************************
-    // *******************************************************************************
     
     
     private static boolean gotNullParameters(
@@ -393,7 +271,6 @@ public class SyntacticSugar {
         return isNull(condition) || isNull(collection);
     }
     
-    //TODO: Update "condition" to use generics... 
 	private static boolean verifyConditionOnAllCollectionElements(
             final Collection<?> collection, 
             @SuppressWarnings("rawtypes") final Comparable condition) {
