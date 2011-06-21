@@ -1,1 +1,14 @@
-JProtocol
+<h1>JProtocol is a protocol framework for low-level protocols (byte arrays) with mock and simulator capabilities.</h1>
+
+<h2>What is it?</h2>
+<li>Implementation of protocol stack (only in JVM compatible languages)</li>
+<li>Protocol analyzer of a complete protocol stack</li>
+<li>Protocol testing framework, using the mock functionality</li>
+<li>Protocol simulators</li>
+
+
+Protocols data specifications are specified in protocol DSLs.
+Protocol APIs and default handlers are then generated from the DSLs.
+
+TBD... 
+
