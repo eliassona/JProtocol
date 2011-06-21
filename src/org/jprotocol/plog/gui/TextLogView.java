@@ -1,6 +1,6 @@
 package org.jprotocol.plog.gui;
 
-import static org.jprotocol.util.SyntacticSugar.doNothing;
+import static org.jprotocol.util.Sugar.doNothing;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -15,11 +15,11 @@ import static org.jprotocol.util.DBC.notEmpty;
 import static org.jprotocol.util.DBC.notNull;
 import static org.jprotocol.util.DBC.require;
 import static org.jprotocol.util.DBC.underConstruction;
-import static org.jprotocol.util.SyntacticSugar.containsSubString;
-import static org.jprotocol.util.SyntacticSugar.isEmptyString;
-import static org.jprotocol.util.SyntacticSugar.isForAll;
-import static org.jprotocol.util.SyntacticSugar.isNonEmptyString;
-import static org.jprotocol.util.SyntacticSugar.isNotNull;
+import static org.jprotocol.util.Sugar.containsSubString;
+import static org.jprotocol.util.Sugar.isEmptyString;
+import static org.jprotocol.util.Sugar.isForAll;
+import static org.jprotocol.util.Sugar.isNonEmptyString;
+import static org.jprotocol.util.Sugar.isNotNull;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
@@ -35,7 +35,7 @@ import junit.framework.TestCase;
 
 import org.hamcrest.Matcher;
 
-import org.jprotocol.util.SyntacticSugar;
+import org.jprotocol.util.Sugar;
 import org.jprotocol.util.DBC.DBCError;
 
 
@@ -699,7 +699,7 @@ public class ContractTest extends TestCase
             // Define condition to be true for all elements.            
             public int compareTo(final String str)
             {
-                return SyntacticSugar.analyzeConditionResult(!str.contains("ERROR"));
+                return Sugar.analyzeConditionResult(!str.contains("ERROR"));
             }
         };
         

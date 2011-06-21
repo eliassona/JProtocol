@@ -30,9 +30,6 @@ public class DBC
     }
 
         
-    // --------------------------------------------
-    // Contract Programming primitive definitions.
-    // --------------------------------------------
     
     public static void require(boolean requireCondition, final Object... description)
     {
@@ -41,7 +38,7 @@ public class DBC
 
     public static void require(final IDBCCondition contract, final Object... description)
     {
-        if (SyntacticSugar.isNull(contract) || !contract.condition())
+        if (Sugar.isNull(contract) || !contract.condition())
         {
             throwContractViolationException(REQUIRE_LABEL, contract, description);
         }
@@ -49,7 +46,7 @@ public class DBC
 
     public static void require(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
-        if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
+        if (Sugar.isNull(matcher) || !matcher.matches(object))
         {
             throwContractViolationException(REQUIRE_LABEL, object, matcher, additionalValues);
         }
@@ -62,7 +59,7 @@ public class DBC
     
     public static void ensure(final IDBCCondition contract, final Object... description)
     {
-        if (SyntacticSugar.isNull(contract) || !contract.condition())
+        if (Sugar.isNull(contract) || !contract.condition())
         {
             throwContractViolationException(ENSURE_LABEL, contract, description);
         }
@@ -70,7 +67,7 @@ public class DBC
 
     public static void ensure(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
-        if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
+        if (Sugar.isNull(matcher) || !matcher.matches(object))
         {
             throwContractViolationException(ENSURE_LABEL, object, matcher, additionalValues);
         }
@@ -83,7 +80,7 @@ public class DBC
 
     public static void invariant(final IDBCCondition contract, final Object... description)
     {
-        if (SyntacticSugar.isNull(contract) || !contract.condition())
+        if (Sugar.isNull(contract) || !contract.condition())
         {
             throwContractViolationException(INVARIANT_LABEL, contract, description);
         }
@@ -91,7 +88,7 @@ public class DBC
     
     public static void invariant(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
-        if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
+        if (Sugar.isNull(matcher) || !matcher.matches(object))
         {
             throwContractViolationException(INVARIANT_LABEL, object, matcher, additionalValues);
         }
@@ -104,7 +101,7 @@ public class DBC
 
     public static void check(final IDBCCondition contract, final Object... description)
     {
-        if (SyntacticSugar.isNull(contract) || !contract.condition())
+        if (Sugar.isNull(contract) || !contract.condition())
         {
             throwContractViolationException(CHECK_LABEL, contract, description);
         }
@@ -112,7 +109,7 @@ public class DBC
 
     public static void check(final Object object, final Matcher<?> matcher, final Object... additionalValues)
     {
-        if (SyntacticSugar.isNull(matcher) || !matcher.matches(object))
+        if (Sugar.isNull(matcher) || !matcher.matches(object))
         {
             throwContractViolationException(CHECK_LABEL, object, matcher, additionalValues);
         }
@@ -149,7 +146,7 @@ public class DBC
     public static <T> IDBCCondition equalsNull(final T ref)
     {
         final IDBCCondition condition;
-        if (SyntacticSugar.isNull(ref)) 
+        if (Sugar.isNull(ref)) 
         {
             condition = getSuccessContractCondition();
         }
@@ -173,7 +170,7 @@ public class DBC
     public static <T> IDBCCondition notNull(final T ref)
     {
         final IDBCCondition condition;
-        if (SyntacticSugar.isNotNull(ref)) 
+        if (Sugar.isNotNull(ref)) 
         {
             condition = getSuccessContractCondition();
         }
@@ -278,7 +275,7 @@ public class DBC
     {
         boolean isNotEmpty = false;
         
-        if (SyntacticSugar.isNotNull(collection) && !collection.isEmpty())
+        if (Sugar.isNotNull(collection) && !collection.isEmpty())
         {
             isNotEmpty = true;
         }
@@ -289,7 +286,7 @@ public class DBC
     public static IDBCCondition notEmpty(final Collection<?> collection)
     {
         final IDBCCondition condition;
-        if (SyntacticSugar.isNotNull(collection) && !collection.isEmpty()) 
+        if (Sugar.isNotNull(collection) && !collection.isEmpty()) 
         {
             condition = getSuccessContractCondition();
         }
@@ -308,7 +305,7 @@ public class DBC
     {
         boolean isNotEmpty = false;
         
-        if (SyntacticSugar.isNotNull(s) && !s.isEmpty())
+        if (Sugar.isNotNull(s) && !s.isEmpty())
         {
             isNotEmpty = true;
         }
@@ -319,7 +316,7 @@ public class DBC
     public static IDBCCondition notEmpty(final String s)
     {
         final IDBCCondition condition;
-        if (SyntacticSugar.isNotNull(s) && !s.isEmpty()) 
+        if (Sugar.isNotNull(s) && !s.isEmpty()) 
         {
             condition = getSuccessContractCondition();
         }
@@ -335,7 +332,7 @@ public class DBC
     public static <T> IDBCCondition notEmpty(final T[] objArr)
     {
         final IDBCCondition condition;
-        if (SyntacticSugar.isNotNull(objArr) && (objArr.length > 0)) 
+        if (Sugar.isNotNull(objArr) && (objArr.length > 0)) 
         {
             condition = getSuccessContractCondition();
         }
@@ -404,7 +401,7 @@ public class DBC
     public static IDBCCondition forAll(final Collection<?> collection, final Comparable<?> forAllCondition)
     {
         final IDBCCondition contractCondition;
-        if (SyntacticSugar.isForAll(collection, forAllCondition)) 
+        if (Sugar.isForAll(collection, forAllCondition)) 
         {
             contractCondition = getSuccessContractCondition();
         }
@@ -412,7 +409,7 @@ public class DBC
         {
             final String description = "The supplied condition was not true for all elements in the collection: ";
             final String collectionStr;
-            if (SyntacticSugar.isNotNull(collection))
+            if (Sugar.isNotNull(collection))
             {
                 collectionStr = collection.toString();
             }
@@ -470,7 +467,7 @@ public class DBC
             final Object... description) throws Error
     {
         String contractDescription = "Contract condition is null.";
-        if (SyntacticSugar.isNotNull(contract))
+        if (Sugar.isNotNull(contract))
         {
             contractDescription = contract.description();
         }
@@ -487,7 +484,7 @@ public class DBC
         final Description description = new StringDescription(); 
         description.appendText("\nExpected: ");
         
-        if (SyntacticSugar.isNull(matcher)) {
+        if (Sugar.isNull(matcher)) {
             description.appendText("<null>");
         } else {  
             matcher.describeTo(description);
@@ -514,7 +511,7 @@ public class DBC
     
     private static boolean hasUsefulStackTrace(final Error error)
     {
-        final boolean hasStackTraceElements = SyntacticSugar.isNotNull(error) && (error.getStackTrace().length > 0);
+        final boolean hasStackTraceElements = Sugar.isNotNull(error) && (error.getStackTrace().length > 0);
         
         boolean hasNoNullElements = false;
         if (hasStackTraceElements)
@@ -530,7 +527,7 @@ public class DBC
         boolean noNullElements = false;
         for (final StackTraceElement element : error.getStackTrace())
         {
-            noNullElements = SyntacticSugar.isNotNull(element);
+            noNullElements = Sugar.isNotNull(element);
             if (! noNullElements)
             {
                 break;
@@ -615,7 +612,7 @@ public class DBC
             final Object... description)
     {
         final String descriptionHeader = "\nDescription: ";   
-        return  descriptionHeader + contract + SyntacticSugar.concatenate(description);
+        return  descriptionHeader + contract + Sugar.concatenate(description);
     }
     
     private static String violationInfo(final String contractLabel)

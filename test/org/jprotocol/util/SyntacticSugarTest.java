@@ -1,6 +1,6 @@
 package org.jprotocol.util;
 
-import static org.jprotocol.util.SyntacticSugar.*;
+import static org.jprotocol.util.Sugar.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
