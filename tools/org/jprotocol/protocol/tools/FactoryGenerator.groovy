@@ -6,7 +6,7 @@ import org.jprotocol.codegen.NameFormatter
  
 import org.jprotocol.framework.core.MemoryLayoutFactory
 /**
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public class FactoryGenerator extends JavaGenerator {

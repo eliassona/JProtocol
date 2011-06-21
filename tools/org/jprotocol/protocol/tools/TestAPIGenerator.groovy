@@ -4,7 +4,7 @@ import com.sjm.protocol.framework.core.*
 import com.sjm.tools.quantity.*
 
 /**
- * @author eliasa01
+ * @author Anders Eliasson 
  *
  */
 class TestAPIGenerator extends AbstractAPIGenerator {
