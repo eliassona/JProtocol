@@ -8,7 +8,7 @@ import static org.jprotocol.framework.core.BitFilterUtil.offset;
 import static org.jprotocol.framework.core.BitFilterUtil.size;
 import junit.framework.TestCase;
 
-import org.jprotocol.util.DBC.ContractError;
+import org.jprotocol.util.DBC.DBCError;
 
 
 public class BitFilterUtilTest extends TestCase
@@ -58,7 +58,7 @@ public class BitFilterUtilTest extends TestCase
     public void testIntOfIndexOutOfBounds() {
     	try {
     		assertEquals(0x3, intOf(new int[]{0xff}, offset(7), size(2)));
-    	} catch (ContractError e) {
+    	} catch (DBCError e) {
     		return;
     	}
     	assertTrue(false);
@@ -67,7 +67,7 @@ public class BitFilterUtilTest extends TestCase
     public void testArrayOfIndexOutOfBounds() {
     	try {
         	assertEquals(new int[]{0x80, 0x1}, arrayOf(0x3, new int[]{0x0}, offset(7), size(2)));
-    	} catch (ContractError e) {
+    	} catch (DBCError e) {
     		return;
     	}
     	assertTrue(false);

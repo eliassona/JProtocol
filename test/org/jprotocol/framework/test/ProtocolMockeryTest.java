@@ -22,7 +22,7 @@ import org.jprotocol.framework.logger.IProtocolLogger;
 
 import org.jprotocol.quantity.Unit;
 import org.jprotocol.util.DBC;
-import org.jprotocol.util.DBC.ContractError;
+import org.jprotocol.util.DBC.DBCError;
 
 public class ProtocolMockeryTest extends TestCase {
     public static final String CHILD1_PROTOCOL_NAME = "Child1";
@@ -62,7 +62,7 @@ public class ProtocolMockeryTest extends TestCase {
         ProtocolMockery tc = new ProtocolMockery(root, new IProtocolLogger.NullProtocolLogger());
         try {
         	tc.expect(Expr.create("(\"ProtocolNam\" (\"a1\" \"v1\") (\"a2\" \"v3\"))"));
-        } catch (ContractError e) {
+        } catch (DBCError e) {
         	return;
         }
         DBC.neverGetHere();

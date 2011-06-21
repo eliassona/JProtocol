@@ -26,7 +26,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import org.jprotocol.quantity.Quantity;
-import org.jprotocol.util.DBC.ContractError;
+import org.jprotocol.util.DBC.DBCError;
 
 
 abstract public class HandlerTest {
@@ -165,7 +165,7 @@ abstract public class HandlerTest {
 	public void testIllegalRegister() {
 		try {
 			handler.register(10, mock(IUpperHandler.class));
-		} catch (ContractError e) {
+		} catch (DBCError e) {
 			return;
 		}
 		fail();

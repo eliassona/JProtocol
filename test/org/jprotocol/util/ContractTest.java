@@ -36,7 +36,7 @@ import junit.framework.TestCase;
 import org.hamcrest.Matcher;
 
 import org.jprotocol.util.SyntacticSugar;
-import org.jprotocol.util.DBC.ContractError;
+import org.jprotocol.util.DBC.DBCError;
 
 
 public class ContractTest extends TestCase 
@@ -54,7 +54,7 @@ public class ContractTest extends TestCase
             neverGetHere();
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }
@@ -66,7 +66,7 @@ public class ContractTest extends TestCase
             neverGetHere(nullStr);
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }
@@ -79,7 +79,7 @@ public class ContractTest extends TestCase
 			neverGetHere("Goes without saying!");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -92,7 +92,7 @@ public class ContractTest extends TestCase
             neverGetHere("Goes", "without", "saying!");
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }
@@ -107,7 +107,7 @@ public class ContractTest extends TestCase
             neverGetHere(objarr);
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }
@@ -130,7 +130,7 @@ public class ContractTest extends TestCase
    			      
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}		
@@ -167,7 +167,7 @@ public class ContractTest extends TestCase
             require(5, is(allOf(greaterThan(1), lessThan(3))));
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior
         }
@@ -181,7 +181,7 @@ public class ContractTest extends TestCase
 			require(false);
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -192,7 +192,7 @@ public class ContractTest extends TestCase
 			require(false, "Arg 1");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -206,7 +206,7 @@ public class ContractTest extends TestCase
 			require(equalsTrue(false), "Arg 1", b, "Arg 2", z, "Arg 3", a);
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -220,7 +220,7 @@ public class ContractTest extends TestCase
 			ensure(false);
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -231,7 +231,7 @@ public class ContractTest extends TestCase
 			ensure(false, "Arg 1");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -242,7 +242,7 @@ public class ContractTest extends TestCase
 			ensure(equalsTrue(false), "Arg 1", "Arg 2", "Arg 3", "Arg 4");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -254,7 +254,7 @@ public class ContractTest extends TestCase
             ensure(null,str,str,str);
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }		
@@ -267,7 +267,7 @@ public class ContractTest extends TestCase
             ensure(null,mather,arargs);
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }       
@@ -278,7 +278,7 @@ public class ContractTest extends TestCase
             ensure(null, "Arg 1", "Arg 2", "Arg 3", "Arg 4");
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior.
         }       
@@ -315,7 +315,7 @@ public class ContractTest extends TestCase
             ensure(5, is(nullValue()));
             fail();
         }
-        catch (ContractError expected)
+        catch (DBCError expected)
         {
             // Expected behavior
         }
@@ -329,7 +329,7 @@ public class ContractTest extends TestCase
 			invariant(false);
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
 		    // Expected behavior.
 		}
@@ -340,7 +340,7 @@ public class ContractTest extends TestCase
 			invariant(false, "Arg 1");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
 		    // Expected behavior.
 		}
@@ -351,7 +351,7 @@ public class ContractTest extends TestCase
 			invariant(equalsTrue(false), "Arg 1", "Arg 2", "Arg 3", "Arg 4", "Arg 5");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -381,7 +381,7 @@ public class ContractTest extends TestCase
             invariant(5, is(nullValue()));
             fail();
         }
-        catch (ContractError expected)
+        catch (DBCError expected)
         {
             // Expected behavior
         }
@@ -395,7 +395,7 @@ public class ContractTest extends TestCase
 			check(false);
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
 		    // Expected behavior.
 		}
@@ -406,7 +406,7 @@ public class ContractTest extends TestCase
 			check(false, "Arg 1");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -417,7 +417,7 @@ public class ContractTest extends TestCase
 			check(equalsTrue(false), "Testing ellipsis 1.", "Testing ellipsis 2.");
 			fail();
 		}
-		catch (final ContractError expected)
+		catch (final DBCError expected)
 		{
             // Expected behavior.
 		}
@@ -447,7 +447,7 @@ public class ContractTest extends TestCase
             check(0, not(lessThan(4)));
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behavior
         }
@@ -718,7 +718,7 @@ public class ContractTest extends TestCase
             require(equalsTrue(false));
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behaviour.
         }        
@@ -728,7 +728,7 @@ public class ContractTest extends TestCase
             require(equalsFalse(true));
             fail();
         }
-        catch (final ContractError expected)
+        catch (final DBCError expected)
         {
             // Expected behaviour.
         }

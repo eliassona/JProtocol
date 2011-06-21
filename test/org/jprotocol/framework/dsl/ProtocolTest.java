@@ -18,7 +18,7 @@ import org.jprotocol.framework.handler.IProtocolState;
 import org.jprotocol.framework.handler.ProtocolState;
 
 import org.jprotocol.quantity.Unit;
-import org.jprotocol.util.DBC.ContractError;
+import org.jprotocol.util.DBC.DBCError;
 
 
 class TestDBTFactory extends ProtocolLayoutFactory {
@@ -335,7 +335,7 @@ public class ProtocolTest extends TestCase {
             IProtocolMessage p = new ProtocolMessage(protocolType, false);
             p.getValue("Wrong");
             p.setValue("Wrong", "");
-        } catch (ContractError e) {
+        } catch (DBCError e) {
             return;
         }
         neverGetHere();
@@ -344,7 +344,7 @@ public class ProtocolTest extends TestCase {
         try {
             IProtocolMessage p = new ProtocolMessage(protocolType, false);
             p.setValue("arg1", "Wrong");
-        } catch (ContractError e) {
+        } catch (DBCError e) {
             return;
         }
         neverGetHere();
