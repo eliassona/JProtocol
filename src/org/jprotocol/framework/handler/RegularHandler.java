@@ -13,7 +13,7 @@ import org.jprotocol.framework.core.IProtocolMessage;
 
 /**
  * This abstract handler is in between a lower handler and upper handlers
- * @author eliasa01
+ * @author Anders Eliasson
  *
  * @param <R>
  * @param <S>

@@ -12,7 +12,7 @@ import org.jprotocol.framework.logger.IProtocolLogger;
 /**
  * The root handler is at the bottom of the handler hierarchy. 
  * Note that there can only be one root in a handler hierarchy
- * @author eliasa01
+ * @author Anders Eliasson
  *
  * @param <R>
  * @param <S>

@@ -7,7 +7,7 @@ import org.jprotocol.framework.core.IProtocolMessage;
  * All handlers ({@link Handler}) should delegate all trafic to a instance of this class.
  * The purpose of this is that all trafic can be sniffed. 
  * This can be used in a mock for example.
- * @author eliasa01
+ * @author Anders Eliasson
  * @see IHandler
  * @see Handler
  */

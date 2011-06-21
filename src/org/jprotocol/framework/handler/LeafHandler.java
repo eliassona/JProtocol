@@ -8,7 +8,7 @@ import org.jprotocol.framework.core.IProtocolMessage;
 
 /**
  * A leaf handler is at the top of the handler hierarchy
- * @author eliasa01
+ * @author Anders Eliasson
  *
  * @param <R>
  * @param <S>

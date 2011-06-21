@@ -7,7 +7,7 @@ import java.text.DecimalFormatSymbols;
 /**
  * Supports addition, subtraction and conversion of quantities i.e. values including units
  * Quantity is an immutable object like java.lang.String. 
- * @author eliasa01
+ * @author Anders Eliasson
  */
 public class Quantity {
     private final static DecimalFormatSymbols fs = new DecimalFormatSymbols();

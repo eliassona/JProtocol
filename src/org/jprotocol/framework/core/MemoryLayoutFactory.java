@@ -65,7 +65,7 @@ import org.jprotocol.framework.core.IProtocolLayoutType.Direction;
  * }
  * <code></pre>
  * 
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public class MemoryLayoutFactory extends AbstractMemoryLayoutFactory {

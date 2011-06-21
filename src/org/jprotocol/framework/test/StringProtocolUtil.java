@@ -5,7 +5,7 @@ import org.jprotocol.framework.list.Expr;
 
 /**
  * String protocol parser using the Lisp list syntax
- * @author eliasa01
+ * @author Anders Eliasson
  * @see Expr
  */
 public class StringProtocolUtil {

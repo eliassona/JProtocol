@@ -15,8 +15,7 @@ import java.io.Serializable;
  * assert bp.getSize() == 3;
  * </code></pre> 
  * The bit-pattern interface is immutable, cannot be changed once created.
- * @author eliasa01
- * @alias IBitPattern
+ * @author Anders Eliasson
  */
 public interface IBitPattern extends Serializable {
     /**

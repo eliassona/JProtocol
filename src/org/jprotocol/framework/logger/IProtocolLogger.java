@@ -9,7 +9,7 @@ import org.jprotocol.quantity.Quantity;
 
 /**
  * 
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public interface IProtocolLogger {

@@ -12,7 +12,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
  * This class will be used in the realtime system, so many instances will be created all the time at a fast pace. By reusing 
  * instances we can conserve memory. 
  *  
- * @author eliasa01
+ * @author Anders Eliasson
+ * 
  */
 @SuppressWarnings({ "unchecked", "serial" })
 final public class BitPattern implements IBitPattern {

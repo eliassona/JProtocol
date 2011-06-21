@@ -24,8 +24,8 @@ import org.jprotocol.quantity.Quantity;
 
 
 /**
- * Writes byte array information to a file called protocol.log that can be used by protocol analyzers afterwards.
- * @author eliasa01
+ * Writes byte array information to a file or a writer that can be used by protocol analyzers afterwards.
+ * @author Anders Eliasson
  */
 public class ProtocolLogger implements IProtocolLogger {    
     private final static Logger logger = Logger.getLogger(ProtocolLogger.class.getName());

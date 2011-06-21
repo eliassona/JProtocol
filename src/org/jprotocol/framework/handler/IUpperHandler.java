@@ -3,7 +3,7 @@ package org.jprotocol.framework.handler;
 
 /**
  * An upper handler is a handler closer to a leaf handler, or is a leaf handler
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public interface IUpperHandler extends IHandler {

@@ -28,7 +28,6 @@ import org.jprotocol.quantity.Quantity;
 
 /**
  * Base functionality for handlers
- * @author eliasa01
  *
  * @param <R> the request type
  * @param <S> the response type

@@ -6,7 +6,7 @@ import org.jprotocol.quantity.Quantity;
 /**
  * Represents an instance of a protocol or memory layout.
  * It is the operation part of it's type {@link IProtocolLayoutType} 
- * @alias IProtocol
+ * @author Anders Eliasson
  */
 public interface IProtocolMessage {
 

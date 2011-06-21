@@ -13,7 +13,7 @@ import org.jprotocol.quantity.Unit;
  * <li>Virtual: The argument is of type string. This means that the value of the argument 
  *     is not decoded/encoded from the underlying byte array like all other type, instead the protocol state {@link IProtocolState} is used</li>
  *   
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public interface IArgumentType {

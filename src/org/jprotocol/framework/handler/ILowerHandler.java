@@ -6,7 +6,7 @@ import org.jprotocol.framework.core.IProtocolMessage;
 
 /**
  * A lower handler is a handler that is closer to the root handler, or is the root handler. 
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public interface ILowerHandler extends IHandler {

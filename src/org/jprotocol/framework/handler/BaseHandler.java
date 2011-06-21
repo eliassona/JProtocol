@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * The purpose of this is to isolate and protect upper handlers
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 class BaseHandler {

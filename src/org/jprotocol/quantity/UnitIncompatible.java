@@ -3,7 +3,7 @@ package org.jprotocol.quantity;
 
 /**
  * Two units that cannot be converted to each other
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public class UnitIncompatible extends RuntimeException {

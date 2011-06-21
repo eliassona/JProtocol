@@ -3,7 +3,7 @@ package org.jprotocol.framework.core;
 
 /**
  * Decodes data in the protocols byte and decodes it to an integer.
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 class IntDecoder extends Decoder {

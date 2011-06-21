@@ -4,7 +4,7 @@ package org.jprotocol.framework.handler;
 
 /**
  * A small DSL for setting up a tree of handlers
- * @author eliasa01
+ * @author Anders Eliasson
  */
 public class HandlerDsl { 
     public static <T extends Handler<?, ?>> T root(T root, UpperHandler...asdfs) {

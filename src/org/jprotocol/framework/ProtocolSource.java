@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 /**
  * Annotation used to track the protocol version used to create DSL and handlers
  * for a protocol.
- * @author bergop01
+ * @author Anders Eliasson
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ProtocolSource {

@@ -11,7 +11,7 @@ import org.jprotocol.framework.core.IProtocolMessage;
  * The protocol stack is represented by this type
  * The handler is a composite consisting of a tree of protocol handlers.
  * Each handler has a {@link IProtocolLayoutFactory} which is a representation of the metadata of a protocol.
- * @author eliasa01
+ * @author Anders Eliasson
  *
  */
 public interface IHandler {

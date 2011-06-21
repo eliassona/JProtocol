@@ -9,8 +9,6 @@ import org.jprotocol.framework.core.IProtocolLayoutType;
 
 /**
  * The protocol state is used in conjunction with virtual arguments.
- * @see com.sjm.protocol.framework.dsl.AbstractMemoryLayout
- * @author eliasa01
  *
  */
 public interface IProtocolState {

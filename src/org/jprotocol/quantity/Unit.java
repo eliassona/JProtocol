@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author eliasa01
+ * @author Anders Eliasson
  */
 public enum Unit {
     noUnit("noUnit"),
